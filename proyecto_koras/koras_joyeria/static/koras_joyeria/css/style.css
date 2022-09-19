@@ -1,0 +1,68 @@
+body{
+    margin: 0%;
+    background-color: #f5eae8;
+    font-family: Georgia, serif;
+}
+footer{
+    background-color: #273746;
+    height: 30%;
+    width: 100%;
+    padding: 5%;
+    margin-top: 5%;
+    padding-bottom: 100%;
+}
+.img-joyeria{
+    width: 6%;
+    height: 10%;
+    margin-top: 2%;
+    padding-left: 10%;
+}
+.img-hablando{
+    width: 6%;
+    height: 10%;
+    margin-top: 2%;
+    margin-right: 4%;
+}
+.enlace-footer{
+    text-decoration: none;
+    color: rgb(146, 146, 146);
+}
+.Enlace-footer{
+    color: rgb(235, 232, 232);
+}
+.enlaces-footer{
+    display: flex;
+    flex-direction: column;
+}
+.flex1{
+    display: flex;
+    padding: 0%;
+    margin: 0%;
+}
+.icons-footer{
+    display: flex;
+    justify-content: space-between;
+}
+.redes-footer{
+    display: flex;
+    flex-direction: column;
+    margin-left: 12%;
+}
+.red-footer{
+    color: rgb(235, 232, 232);
+}
+.contacts-footer{
+    text-decoration: none;
+    color: rgb(146, 146, 146);
+    margin-left: 3%;
+}
+.contact-footer{
+    margin-top: 1%;
+    margin-left: 4%;
+}
+.t2-footer{
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    margin-bottom: 2%;
+}

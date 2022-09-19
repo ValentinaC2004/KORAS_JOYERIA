@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.urls import path
 from koras_joyeria.views import Home
 
+name_app = 'koras_joyeria'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Home),

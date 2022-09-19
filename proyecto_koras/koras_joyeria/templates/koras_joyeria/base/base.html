@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'koras_joyeria/img/favicon.png' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'koras_joyeria/css/style.css' %}">
+    {% block links %}  {% endblock links %}
+
+    <title>{% block title1 %}Koras Joyeria - {% endblock title1 %} {% block title2 %} ... {% endblock title2 %} </title>
+</head>
+<body>
+
+    {% block header %}
+    
+    {% endblock header %}
+    
+
+
+
+    {% block content %}
+    ...
+    {% endblock %}
+
+
+
+
+
+    <footer>
+        <div class="flex1">
+          
+            <img src="{% static 'koras_joyeria/img/joyeria.png' %}" alt="" class="img-joyeria">
+            <img src="{% static 'koras_joyeria/img/hablando.png' %}" alt="" class="img-hablando">
+            <div class="enlaces-footer">
+                <h4 class="Enlace-footer">ENLACES</h4>
+                <a href="#" class="enlace-footer">enlace 1</a>
+                <a href="#" class="enlace-footer">enlace 2</a>
+                <a href="#" class="enlace-footer">enlace 3</a>
+                <a href="#" class="enlace-footer">enlace 4</a>
+                <a href="#" class="enlace-footer">enlace 5</a> 
+            </div>
+        
+            <div class="redes-footer">
+                <h4 class="Enlace-footer">REDES SOCIALES</h4>
+                <div class="icons-footer">
+              <a href="" class="red-footer"><i class="material-icons">facebook</i></a>
+              <a href="" class="red-footer"><i class="material-icons">facebook</i></a>
+              <a href="" class="red-footer"><i class="material-icons">facebook</i></a>
+              <a href="" class="red-footer"><i class="material-icons">facebook</i></a>
+            </div>
+            </div>
+
+            <div class="redes-footer">
+                <h4 class="Enlace-footer">DEJA TU CORREO ELECTRONICO</h4>
+                <div>
+                    <input type="email" placeholder="Ingresa tu correo electronico">
+            </div>
+            </div>
+        </div>
+
+        <div class="contact-footer">
+            <div class="t2-footer">
+                <i class="material-icons">phone</i>
+                <a href="" class="contacts-footer">telefonoo</a>
+            </div>
+            <div class="t2-footer">
+                <i class="material-icons">mail</i>
+                <a href="" class="contacts-footer">email</a>
+            </div>
+            <div class="t2-footer">
+                <i class="material-icons">location_on</i>
+                <a href="" class="contacts-footer">dirección</a>
+            </div>
+        </div>
+       
+    </footer>
+
+
+</body>
+</html>
