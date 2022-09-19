@@ -5,11 +5,9 @@ body{
 }
 footer{
     background-color: #273746;
-    height: 30%;
     width: 100%;
     padding: 5%;
-    margin-top: 5%;
-    padding-bottom: 100%;
+    margin: 0%;
 }
 .img-joyeria{
     width: 6%;
@@ -65,4 +63,13 @@ footer{
     justify-content: stretch;
     align-items: center;
     margin-bottom: 2%;
+}
+.domin-desarrollador{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.domin-text{
+    color: #6e6e6e;
+    text-decoration: none;
 }
