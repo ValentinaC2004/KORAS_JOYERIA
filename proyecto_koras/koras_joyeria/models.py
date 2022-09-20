@@ -61,4 +61,44 @@ class CompraDetalle(models.Model):
         return f"{self.id} - {self.id_compra}"
 
 
+#Adicionales para el panel de personalización para el anillo
+
+class MarcoP(models.Model):
+    marcop = models.CharField(max_length=100, null=True)
+    
+    def __str__(self):
+        return f"{self.id} - {self.marcop}"
+
+class MaterialP(models.Model):
+    materialp = models.CharField(max_length=100, null=True)
+    
+    def __str__(self):
+        return f"{self.id} - {self.materialp}"
+
+class DiamanteP(models.Model):
+    diamantep = models.CharField(max_length=100, null=True)
+    
+    def __str__(self):
+        return f"{self.id} - {self.diamantep}"
+
+class TallaP(models.Model):
+    tallap = models.CharField(max_length=100, null=True)
+    
+    def __str__(self):
+        return f"{self.id} - {self.tallap}"
+
+
+class SizeP(models.Model):
+    sizep = models.CharField(max_length=100, null=True)
+
+    def __str__(self):
+        return f"{self.id} - {self.sizep}"
+
+class PesoP(models.Model):
+    pesop = models.CharField(max_length=100, null=True)
+
+    def __str__(self):
+        return f"{self.id} - {self.pesop}"
+
+
 

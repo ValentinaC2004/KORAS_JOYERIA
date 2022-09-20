@@ -1,6 +1,6 @@
 body{
     margin: 0%;
-    background-color: #f5eae8;
+    background-color: #F2F4F4;
     font-family: Georgia, serif;
 }
 footer{
@@ -72,4 +72,22 @@ footer{
 .domin-text{
     color: #6e6e6e;
     text-decoration: none;
+}
+.menu-nav{
+    margin-left: 2%;
+    margin-top: 1%;
+}
+.logo-menu{
+    width: 85%;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #000000;
+
+}
+.header{
+    background-color: white;
+    padding-top: 0.52%;
+    width: 100%;
+    padding-bottom: 1%;
+    box-shadow: 5px 10px 30px #9a9999;
+    
 }
