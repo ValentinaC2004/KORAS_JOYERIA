@@ -17,11 +17,12 @@ Including another URLconf
 #PRINCIPAL
 
 from django.contrib import admin
-from django.urls import path
-from koras_joyeria.views import Home
+from django.urls import path, include
+from koras_joyeria import views
 
-name_app = 'koras_joyeria'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Home),
+    path('', include('koras_joyeria.urls')),
+
 ]

@@ -34,7 +34,7 @@
 
                 {% block contentMenu %}
 
-                <li><a href="#!"><i class="material-icons">home</i>Inicio</a></li>
+                <li><a href="{% url 'koras:home' %}"><i class="material-icons">home</i>Inicio</a></li>
 
                 <li><a class='dropdown-trigger' href='#' data-target='dropdown1'><i class="material-icons">view_module</i>Categorias</a></li>
                 <ul id='dropdown1' class='dropdown-content'>
@@ -53,14 +53,14 @@
                     <li class="divider" tabindex="-1"></li>
                     <li><a href="#!">p3</a></li>
                     <li><a href="#!"><i class="material-icons">view_module</i>p4</a></li>
-                    <li><a href="#!"><i class="material-icons">cloud</i>p5</a></li>
+                    <li><a href="#!"><i class="material-icons">cloud</i>p5</a>p5</li>
                   </ul>
   
-                <li><a href="#!"><i class="material-icons">perm_identity</i>Registrarse</a></li>
+                <li><a href="{% url 'koras:registro' %}"><i class="material-icons">perm_identity</i>Registrarse</a></li>
                 <li><a href="#!"><i class="material-icons">person</i>Iniciar sesión</a></li>
                 <li><div class="divider"></div></li>
 
-                <li><a href="#!"><i class="material-icons">pan_tool</i>Dudas e inquietudes</a></li>
+                <li><a href="{% url 'koras:inicio' %}"><i class="material-icons">pan_tool</i>Dudas e inquietudes</a></li>
 
                 <li><a class='dropdown-trigger' href='#' data-target='dropdown3'>Conoce más</a></li>
                 <ul id='dropdown3' class='dropdown-content'>
@@ -92,8 +92,6 @@
 
     <footer>
         <div class="flex1">
-          
-            <img src="{% static 'koras_joyeria/img/joyeria.png' %}" alt="" class="img-joyeria">
             <img src="{% static 'koras_joyeria/img/hablando.png' %}" alt="" class="img-hablando">
             <div class="enlaces-footer">
                 <h5 class="Enlace-footer">ENLACES</h5>
@@ -114,7 +112,7 @@
             </div>
             </div>
 
-            <div class="redes-footer">
+            <div class="redes-footer col l6 s12">
                 <h5 class="Enlace-footer">DEJA TU CORREO ELECTRONICO</h5>
                 <div>
                     <input type="email" placeholder="Ingresa tu correo electronico">
@@ -124,11 +122,12 @@
 
         <br><br>
         <div class="contact-footer">
-            <div class="t2-footer">
+         
+            <div class="t2-footer ">
                 <i class="material-icons">phone</i>
                 <a href="" class="contacts-footer">telefonoo</a>
             </div>
-            <div class="t2-footer">
+            <div class="t2-footer ">
                 <i class="material-icons">mail</i>
                 <a href="" class="contacts-footer">email</a>
             </div>
@@ -145,6 +144,7 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+
         var elems = document.querySelectorAll('.sidenav');
         var instances = M.Sidenav.init(elems);
 
