@@ -1,8 +1,7 @@
 from pyexpat import model
 from django.contrib import admin
-from koras_joyeria.models import Producto, Categoria, Usuario, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, TallaP, SizeP, PesoP
+from koras_joyeria.models import Producto, Categoria, Usuario, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, TallaP, SizeP, PesoP , Empleado, Tipo
 # Register your models here.
-
 
 
 class CategoriaAdmin(admin.ModelAdmin):
@@ -20,6 +19,9 @@ class CompraAdmin(admin.ModelAdmin):
 class CompraDetalleAdmin(admin.ModelAdmin):
     list_display = ('id_compra','producto','precio','cantidad')
 
+class EmpleadoAdmin(admin.ModelAdmin):
+    list_display = ('nombre','apellido','correo','sueldo','fecha_nac','foto')
+
 
 admin.site.register(MarcoP)
 admin.site.register(MaterialP)
@@ -28,11 +30,11 @@ admin.site.register(TallaP)
 admin.site.register(SizeP)
 admin.site.register(PesoP)
 
-
+admin.site.register(Empleado,EmpleadoAdmin)
 admin.site.register(Producto,ProductoAdmin)
 admin.site.register(Categoria,CategoriaAdmin)
 admin.site.register(Usuario,UsuarioAdmin)
 admin.site.register(Compra,CompraAdmin)
 admin.site.register(CompraDetalle,CompraDetalleAdmin)
-
+admin.site.register(Tipo)
 

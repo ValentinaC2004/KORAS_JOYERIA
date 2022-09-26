@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from django.db import models
 
 # Create your models here.
@@ -20,8 +21,41 @@ class Producto(models.Model):
     peso = models.IntegerField(null=True)
     id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
     foto = models.CharField(max_length=10)
+    
     def __str__(self):
         return f"{self.id_producto} - {self.nombre_producto}"
+
+class Tipo(models.Model):
+    nombre = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+        verbose_name = 'Tipo'
+        verbose_name_plural = 'Tipos'
+        ordering = ['id']
+
+
+class Empleado(models.Model):
+    categoria_id = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+    descrip = models.CharField(max_length=100, null=True)
+    tipo = models.ForeignKey(Tipo, on_delete=models.PROTECT)
+    nombre = models.CharField(max_length=100, null=False)
+    apellido = models.CharField(max_length=100, null=False)
+    correo = models.EmailField(max_length=254, unique=True, null=False)
+    sueldo = models.IntegerField(null=False)
+    fecha_nac = models.DateField('YYYY-MM-DD')
+    foto = models.ImageField(upload_to = 'koras_joyeria/fotos', default='koras_joyeria/fotos/default.png')
+
+    def __str__(self):
+        return self.nombre + " " + self.apellido
+
+    class Meta:
+        verbose_name = 'Empleado'
+        verbose_name_plural = 'Empleados'
+        db_table = 'empleado'
+        ordering = ['id']
 
 class Usuario(models.Model):
     nombre = models.CharField(max_length=100)
