@@ -5,6 +5,60 @@
 {% block title2 %}Registro{% endblock title2 %}
 
 {% block content %}
+
+<section>
+
+  <div class="flex-registro">
+    <div class="formRegistro">
+      <h5>Registro</h5>
+      <form action="">
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">perm_identity</i>
+          <input id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Nombre</label>
+        </div>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">person</i>
+          <input id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Apellido</label>
+        </div>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Nombre de usuario</label>
+        </div>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">mail</i>
+          <input id="icon_prefix" type="email" class="validate">
+          <label for="icon_prefix">Correo</label>
+        </div>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">lock_outline</i>
+          <input id="icon_prefix" type="password" class="validate">
+          <label for="icon_prefix">Contraseña</label>
+        </div>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">lock</i>
+          <input id="icon_prefix" type="password" class="validate">
+          <label for="icon_prefix">Confirme la contraseña</label>
+        </div>
+
+        
+      <a class="waves-effect waves-light btn #424242 grey" type="submit">Registrarse</a>
+
+      </form>
+    </div>
+  </div>
+
+</section>
+
+<!--
 <section>
 
     <div class="container">
@@ -30,4 +84,6 @@
     </div>
 
 </section>
+-->
+
 {% endblock content %}

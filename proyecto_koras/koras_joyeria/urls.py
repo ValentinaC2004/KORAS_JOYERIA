@@ -6,9 +6,12 @@ from koras_joyeria import views
 
 app_name = 'koras_joyeria'
 urlpatterns = [
-    path('', views.Home , name='home'),
+    path('', views.Tienda , name='tienda'),
+    path('home/', views.Home , name='home'),
     path('registro/', views.Registro , name='registro'),
     path('inicio/', views.Inicio , name='inicio'),
+    path('tienda/', views.Tienda , name='tienda'),
+    path('inquietudes/', views.Inquietudes , name='inquietudes'),
 ]
 
 
