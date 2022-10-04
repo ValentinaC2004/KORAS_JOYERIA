@@ -1,7 +1,10 @@
 from audioop import reverse
+from email import message
+from multiprocessing import context
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import UserRegisterForm
 # Create your views here.
 
 def Inquietudes(request):
@@ -9,14 +12,22 @@ def Inquietudes(request):
 
 def Tienda(request):
     return render(request, 'koras_joyeria/tienda/tienda.html')
-    
+     
 
 def Home(request):
     return render(request, 'koras_joyeria/index.html')
 
 def Registro(request):
-    return render(request, 'koras_joyeria/ingreso/registro.html')
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            messages.success(request, f'Usuario {username}, ya puede iniciar sesión')
+            return redirect('koras_joyeria:inicio')
+    else:
+        form = UserRegisterForm()
+    context = { 'form' : form }
+    return render(request, 'koras_joyeria/ingreso/registro.html',context)
     
 
-def Inicio(request):
-    return render(request, 'koras_joyeria/ingreso/inicio.html')

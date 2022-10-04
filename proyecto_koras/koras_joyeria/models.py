@@ -1,7 +1,23 @@
 from tabnanny import verbose
 from django.db import models
 
-# Create your models here.
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+
+class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField()
+    password1 = forms.CharField()
+    password2 = forms.CharField()
+
+    class Meta:
+        model = User
+        fields = Userfields = ['first_name', 'last_name', 'email', 'username','password1', 'password2']
+        help_texts = {k:"" for k in fields }
+
+
+
 
 class Categoria(models.Model):
     id_categoria = models.IntegerField(unique=True)
@@ -64,11 +80,7 @@ class Usuario(models.Model):
     usuario = models.CharField(max_length=50)
     clave = models.CharField(max_length=254)
 
-    ROLES = (
-        (1, 'Administrador'),
-        (2, 'Cliente')
-    )
-    rol = models.SmallIntegerField(choices= ROLES, default=3)
+    
 
 class Compra(models.Model):
     fecha_hora = models.DateTimeField(auto_now_add=True)
