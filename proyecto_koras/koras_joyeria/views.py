@@ -4,14 +4,21 @@ from multiprocessing import context
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import UserRegisterForm
+from .models import Producto, UserRegisterForm
 # Create your views here.
+
+def VerProducto(request,id):
+    q = Producto.objects.get(pk = id)
+    contexto = {'data':q}
+    return render(request, 'koras_joyeria/tienda/ver-producto.html', contexto)
 
 def Inquietudes(request):
     return render(request, 'koras_joyeria/info/inquietudes.html')
 
 def Tienda(request):
-    return render(request, 'koras_joyeria/tienda/tienda.html')
+    q = Producto.objects.all()
+    contexto = {'data': q} 
+    return render(request, 'koras_joyeria/tienda/tienda.html', contexto)
      
 
 def Home(request):

@@ -1,5 +1,6 @@
 from pyexpat import model
 from django.contrib import admin
+from django.utils.html import format_html 
 from koras_joyeria.models import Producto, Categoria, Usuario, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, TallaP, SizeP, PesoP , Empleado, Tipo
 # Register your models here.
 
@@ -8,7 +9,11 @@ class CategoriaAdmin(admin.ModelAdmin):
     list_display = ('id_categoria','nombre_categoria')
 
 class ProductoAdmin(admin.ModelAdmin):
-    list_display = ('id_producto','nombre_producto','precio_producto')
+
+    def imagen(self, obj):
+        return format_html('<img src="{}" width="110px"/>'.format(obj.foto.url))
+        
+    list_display = ('imagen','nombre_producto','precio_producto','stock','talla','color','peso','id_categoria')
 
 class UsuarioAdmin(admin.ModelAdmin):
     list_display = ('nombre','apellido','correo','usuario','clave')

@@ -14,6 +14,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='koras_joyeria/ingreso/logout.html'), name='logout'),
     path('tienda/', views.Tienda , name='tienda'),
     path('inquietudes/', views.Inquietudes , name='inquietudes'),
+    path('ver-producto/<int:id>', views.VerProducto, name='ver-producto'),
 ]
 
 

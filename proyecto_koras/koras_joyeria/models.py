@@ -1,3 +1,5 @@
+from distutils.command.upload import upload
+from email.policy import default
 from tabnanny import verbose
 from django.db import models
 
@@ -27,16 +29,19 @@ class Categoria(models.Model):
 
 
 class Producto(models.Model):
-    id_producto = models.IntegerField(unique=True)
     nombre_producto = models.CharField(max_length=100)
     precio_producto = models.IntegerField()
     stock = models.IntegerField()
     desc = models.TextField()
     talla = models.IntegerField(null=True)
-    color = models.CharField(max_length=10, null=True)
+    COLOR = (
+        (1, "Dorado"),
+        (2, "Plateado")
+    )
+    color = models.SmallIntegerField(choices=COLOR)
     peso = models.IntegerField(null=True)
     id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
-    foto = models.CharField(max_length=10)
+    foto = models.ImageField(upload_to="productos", default="productos/default-productos.jpg")
     
     def __str__(self):
         return f"{self.id_producto} - {self.nombre_producto}"

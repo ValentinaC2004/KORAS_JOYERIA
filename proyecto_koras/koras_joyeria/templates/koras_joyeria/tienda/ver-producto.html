@@ -1,0 +1,25 @@
+
+{% extends 'koras_joyeria/base/base.html' %}
+{% load static %}
+
+{% block title2 %}Producto{% endblock title2 %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="center">{{ data.nombre_producto }}</h1>
+    + imgs
+    <div class="flex-producto center">
+        <img src="{{ data.foto.url }}" alt="{{ data.nombre_producto }}" width="50%">
+        <div class="content-producto">
+            <p>Precio: {{ data.precio }}</p>
+            <p>DESCRIPCION</p>
+            <P>{{ data.desc }}</P>
+            <p>TALLAS +</p>
+            <p>color +</p>
+        </div>
+    </div>
+</div>
+  
+
+{% endblock content %}
