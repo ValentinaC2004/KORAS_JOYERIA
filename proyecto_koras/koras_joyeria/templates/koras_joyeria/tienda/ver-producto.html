@@ -1,4 +1,3 @@
-
 {% extends 'koras_joyeria/base/base.html' %}
 {% load static %}
 
@@ -7,19 +6,40 @@
 {% block content %}
 
 <div class="container">
-    <h1 class="center">{{ data.nombre_producto }}</h1>
-    + imgs
-    <div class="flex-producto center">
+    <br><br><br>
+
+    <div class="flex-producto container">
+        <div class="imgs-producto">
+            + imgs
+        </div>
         <img src="{{ data.foto.url }}" alt="{{ data.nombre_producto }}" width="50%">
         <div class="content-producto">
-            <p>Precio: {{ data.precio }}</p>
+            <h4>{{ data.nombre_producto }}</h4>
             <p>DESCRIPCION</p>
             <P>{{ data.desc }}</P>
-            <p>TALLAS +</p>
-            <p>color +</p>
+            <p>color:</p>
+            <a class='dropdown-trigger btn' href='#' data-target='colorDrop'>{{ data.color }}</a>
+
+            <ul id='colorDrop' class='dropdown-content'>
+                <li><a href="#!">Dorado</a></li>
+                <li><a href="#!">Plateado</a></li>
+            </ul>
+            <p>Talla:</p>
+            <a class='dropdown-trigger btn' href='#' data-target='tallaDrop'>{{ data.talla }}</a>
+
+            <ul id='tallaDrop' class='dropdown-content'>
+                <li><a href="#!">1</a></li>
+                <li><a href="#!">2</a></li>
+                <li><a href="#!">3</a></li>
+            </ul>
+            <p>Precio: {{ data.precio_producto }}</p>
+
         </div>
     </div>
+    <br>
+    <span>SIMILARES</span>
+    <hr>
 </div>
-  
+
 
 {% endblock content %}

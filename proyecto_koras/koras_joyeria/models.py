@@ -27,7 +27,6 @@ class Categoria(models.Model):
     def __str__(self):
         return f"{self.id_categoria} - {self.nombre_categoria}"
 
-
 class Producto(models.Model):
     nombre_producto = models.CharField(max_length=100)
     precio_producto = models.IntegerField()
@@ -44,7 +43,7 @@ class Producto(models.Model):
     foto = models.ImageField(upload_to="productos", default="productos/default-productos.jpg")
     
     def __str__(self):
-        return f"{self.id_producto} - {self.nombre_producto}"
+        return f"{self.nombre_producto}"
 
 class Tipo(models.Model):
     nombre = models.CharField(max_length=100)
