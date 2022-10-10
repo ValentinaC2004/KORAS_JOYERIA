@@ -32,9 +32,11 @@
             <a href="#" data-target="menu-side" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
           
             
+            <a href="#" data-target="compra-side" class="sidenav-trigger">
             <span class="material-icons right">
                 shopping_cart_checkout
                 </span>
+            </a>
                 
     </div>
 </header>
@@ -93,6 +95,44 @@
                 {% endblock contentMenu %}
 
               </ul>
+
+              {% block compra %}
+              <ul id="compra-side" class="sidenav">
+                
+
+                {% block contentCompra %}
+
+               
+
+                  <li><a class='dropdown-trigger' href='#' data-target='dropdown2'><i class="material-icons">brush</i>Crea prediseños</a></li>
+                <ul id='dropdown2' class='dropdown-content'>
+                    <li><a href="#!">p1</a></li>
+                    <li><a href="#!">p2</a></li>
+                    <li class="divider" tabindex="-1"></li>
+                    <li><a href="#!">p3</a></li>
+                    <li><a href="#!"><i class="material-icons">view_module</i>p4</a></li>
+                    <li><a href="#!"><i class="material-icons">cloud</i>p5</a>p5</li>
+                  </ul>
+  
+                <li><div class="divider"></div></li>
+
+                <li><a href="{% url 'koras_joyeria:inquietudes' %}"><i class="material-icons">question_answer</i>Dudas o inquietudes</a></li>
+
+                <li><a href=""><i class="material-icons">connect_without_contact</i>Contáctenos</a></li>
+
+                <li><a class='dropdown-trigger' href='#' data-target='dropdown3'>Contáctenos</a></li>
+                <ul id='dropdown3' class='dropdown-content'>
+                    <li><a href="#!">Acerca de nosotros</a></li>
+                    <li><a href="#!">Testimonios y Comentarios</a></li>
+                    <li class="divider" tabindex="-1"></li>
+                    <li><a href="#!">Contáctenos</a></li>
+                  </ul>
+
+                {% endblock contentCompra %}
+
+              </ul>
+
+              {% endblock %}
 
               <!--Mensajes-->
               
@@ -190,10 +230,13 @@
     });
     </script>
     
+    <!--Modificar-->
     <script>
     $(document).ready(function(){
-        $('.sidenav').sidenav();
+    $('.sidenav').sidenav({
+        edge: 'right'
     });
+  });
     </script>
 
     <script src="{% static 'koras_joyeria/material/js/materialize.js' %}"></script>
