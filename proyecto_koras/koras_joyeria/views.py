@@ -24,6 +24,10 @@ def Tienda(request):
 def Home(request):
     return render(request, 'koras_joyeria/index.html')
 
+
+def Profile(request):
+    return render(request, 'koras_joyeria/profile/profile.html')
+
 def Registro(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)

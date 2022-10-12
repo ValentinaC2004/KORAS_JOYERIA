@@ -1,11 +1,15 @@
-from distutils.command.upload import upload
-from email.policy import default
-from tabnanny import verbose
+from django.utils import timezone
 from django.db import models
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="profiles", default="profiles/default-profile.png")
+
+    def __str__(self):
+        return f"Perfil de {self.user.username} - {self.image.url}"
 
 
 class UserRegisterForm(UserCreationForm):
@@ -18,9 +22,6 @@ class UserRegisterForm(UserCreationForm):
         fields = Userfields = ['first_name', 'last_name', 'email', 'username','password1', 'password2']
         help_texts = {k:"" for k in fields }
 
-
-
-
 class Categoria(models.Model):
     id_categoria = models.IntegerField(unique=True)
     nombre_categoria = models.CharField(max_length=12)
@@ -28,6 +29,8 @@ class Categoria(models.Model):
         return f"{self.id_categoria} - {self.nombre_categoria}"
 
 class Producto(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(default=timezone.now)
     nombre_producto = models.CharField(max_length=100)
     precio_producto = models.IntegerField()
     stock = models.IntegerField()
@@ -41,6 +44,9 @@ class Producto(models.Model):
     peso = models.IntegerField(null=True)
     id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
     foto = models.ImageField(upload_to="productos", default="productos/default-productos.jpg")
+
+    class Meta:
+        ordering = ['-timestamp']
     
     def __str__(self):
         return f"{self.nombre_producto}"

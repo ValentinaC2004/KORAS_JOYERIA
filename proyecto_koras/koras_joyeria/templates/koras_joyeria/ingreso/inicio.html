@@ -2,7 +2,7 @@
 {% extends 'koras_joyeria/base/base.html' %}
 {% load static %}
 
-{% block title2 %}Registro{% endblock title2 %}
+{% block title2 %}Iniciar sesión{% endblock title2 %}
 
 {% block content %}
 
@@ -10,6 +10,10 @@
 
   <div class="flex-registro">
     <div class="formRegistro">
+      {% if request.user.is_athenticated %}
+      <h1>Sesión iniciada</h1>
+      {% else %}
+      
       <h5>Iniciar sesión</h5>
       <form action="" method="POST">
         {% csrf_token %}
@@ -27,8 +31,10 @@
         </div>
   
         <button class="waves-effect waves-light btn #424242 grey" type="submit" id="submit">INICIAR SESIÓN</button>
-
       </form>
+      <br>
+      <a href="{% url 'koras_joyeria:registro' %}" class="grey-text link-inicio">No tienes una cuenta?</a>
+      {% endif %}
     </div>
   </div>
 

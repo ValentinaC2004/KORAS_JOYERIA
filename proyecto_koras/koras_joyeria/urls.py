@@ -15,6 +15,7 @@ urlpatterns = [
     path('tienda/', views.Tienda , name='tienda'),
     path('inquietudes/', views.Inquietudes , name='inquietudes'),
     path('ver-producto/<int:id>', views.VerProducto, name='ver-producto'),
+    path('profile/', views.Profile, name='profile'),
 ]
 
 

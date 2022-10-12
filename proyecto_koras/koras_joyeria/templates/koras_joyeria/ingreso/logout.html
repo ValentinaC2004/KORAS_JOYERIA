@@ -1,3 +1,7 @@
 {% block logout %}
+{% if request.user.is_authenticated %}
 <h1>logeado</h1>
+{% else %}
+<h1>No logeado</h1>
+{% endif %}
 {% endblock logout %}

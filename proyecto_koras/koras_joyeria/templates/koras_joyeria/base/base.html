@@ -30,16 +30,35 @@
      
         <div class="menu-nav">
             <a href="#" data-target="menu-side" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
-          
             
-            <a href="#" data-target="compra-side" class="sidenav-trigger">
-            <span class="material-icons right">
-                shopping_cart_checkout
-                </span>
+            {% if request.user.is_authenticated %}
+            <div>
+            <a class='dropdown-trigger right micuenta' href='#' data-target='micuenta'>{{ user.username }}</a>
+        </div>
+                <ul id='micuenta' class='dropdown-content'>
+                    <li><a href="#!">Editar</a></li>
+                    <li><a href="#"><i class="material-icons">power_settings_new</i></a></li>
+                  </ul>
+                  {% endif %}
+
+            <a class="waves-effect waves-light  modal-trigger right" href="#carrito">
+                <span class="material-icons right">
+                    shopping_cart_checkout
+                    </span>
             </a>
-                
+
     </div>
 </header>
+
+<div id="carrito" class="modal">
+    <div class="modal-content">
+      <h4>Carrito</h4>
+      <p>mostrar productos</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
+    </div>
+  </div>
 
             <ul id="menu-side" class="sidenav">
                 <li><div class="user-view">
@@ -53,6 +72,9 @@
 
                 {% block contentMenu %}
 
+                {% if request.user.is_authenticated %}
+                <li><a href="{% url 'koras_joyeria:profile' %}" class="cuenta"><i class="material-icons">perm_identity</i>{{ user.username }}</a></li>
+                {% endif %}
                 <li><a href="{% url 'koras_joyeria:home' %}"><i class="material-icons">home</i>Inicio</a></li>
                 <li><a href="{% url 'koras_joyeria:tienda' %}"><i class="material-icons">store</i>Tienda</a></li>
 
@@ -75,9 +97,7 @@
                     <li><a href="#!"><i class="material-icons">view_module</i>p4</a></li>
                     <li><a href="#!"><i class="material-icons">cloud</i>p5</a>p5</li>
                   </ul>
-  
-                <li><a href="{% url 'koras_joyeria:registro' %}"><i class="material-icons">perm_identity</i>Registrarse</a></li>
-                <li><a href="{% url 'koras_joyeria:inicio' %}"><i class="material-icons">person</i>Iniciar sesión</a></li>
+
                 <li><div class="divider"></div></li>
 
                 <li><a href="{% url 'koras_joyeria:inquietudes' %}"><i class="material-icons">question_answer</i>Dudas o inquietudes</a></li>
@@ -91,59 +111,24 @@
                     <li class="divider" tabindex="-1"></li>
                     <li><a href="#!">Contáctenos</a></li>
                   </ul>
+
+                  {% if request.user.is_authenticated %}
+                <li><a href="#"><i class="material-icons">power_settings_new</i>Cerrar sesión</a></li>
+                {% else %}
+                
+                <li><a href="{% url 'koras_joyeria:registro' %}"><i class="material-icons">perm_identity</i>Registrarse</a></li>
+                <li><a href="{% url 'koras_joyeria:inicio' %}"><i class="material-icons">person</i>Iniciar sesión</a></li>
+                {% endif %}
 
                 {% endblock contentMenu %}
 
               </ul>
 
-              {% block compra %}
-              <ul id="compra-side" class="sidenav">
-                
-
-                {% block contentCompra %}
-
-               
-
-                  <li><a class='dropdown-trigger' href='#' data-target='dropdown2'><i class="material-icons">brush</i>Crea prediseños</a></li>
-                <ul id='dropdown2' class='dropdown-content'>
-                    <li><a href="#!">p1</a></li>
-                    <li><a href="#!">p2</a></li>
-                    <li class="divider" tabindex="-1"></li>
-                    <li><a href="#!">p3</a></li>
-                    <li><a href="#!"><i class="material-icons">view_module</i>p4</a></li>
-                    <li><a href="#!"><i class="material-icons">cloud</i>p5</a>p5</li>
-                  </ul>
-  
-                <li><div class="divider"></div></li>
-
-                <li><a href="{% url 'koras_joyeria:inquietudes' %}"><i class="material-icons">question_answer</i>Dudas o inquietudes</a></li>
-
-                <li><a href=""><i class="material-icons">connect_without_contact</i>Contáctenos</a></li>
-
-                <li><a class='dropdown-trigger' href='#' data-target='dropdown3'>Contáctenos</a></li>
-                <ul id='dropdown3' class='dropdown-content'>
-                    <li><a href="#!">Acerca de nosotros</a></li>
-                    <li><a href="#!">Testimonios y Comentarios</a></li>
-                    <li class="divider" tabindex="-1"></li>
-                    <li><a href="#!">Contáctenos</a></li>
-                  </ul>
-
-                {% endblock contentCompra %}
-
-              </ul>
-
-              {% endblock %}
-
-              <!--Mensajes-->
-              
-
     <br><br><br><br>
-
 
     {% block content %}
     
     {% endblock %}
-
 <br><br><br><br>
 
     <footer class="page-footer #212121 grey darken-4">
@@ -185,7 +170,7 @@
                 <i class="material-icons">phone</i>
                 <a href="" class="contacts-footer">telefonoo</a>
             </div>
-            <div class="t2-footer ">
+            <div class="t2-footer">
                 <i class="material-icons">mail</i>
                 <a href="" class="contacts-footer">email</a>
             </div>
@@ -195,7 +180,7 @@
             </div>
         </div>
         <div class="domin-desarrollador col 14 m4 s12">
-            <a href="" class="domin-text">Koras Joyería|EmailDev:vcossio2004@gmail.com</a>
+            <a href="" class="domin-text">Koras Joyería</a>
         </div>
 
     </div>
@@ -237,6 +222,11 @@
         edge: 'right'
     });
   });
+    </script>
+
+    <script>
+
+
     </script>
 
     <script src="{% static 'koras_joyeria/material/js/materialize.js' %}"></script>
