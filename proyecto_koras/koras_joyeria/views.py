@@ -7,6 +7,8 @@ from django.contrib import messages
 from .models import Producto, UserRegisterForm
 # Create your views here.
 
+
+
 def VerProducto(request,id):
     q = Producto.objects.get(pk = id)
     contexto = {'data':q}
