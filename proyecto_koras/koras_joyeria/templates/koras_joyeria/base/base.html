@@ -52,8 +52,10 @@
 
 <div id="carrito" class="modal">
     <div class="modal-content">
-      <h4>Carrito</h4>
-      <p>mostrar productos</p>
+       <div class="col-6">
+        {% include "ver-carrito.html" %}
+       </div>
+        
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
@@ -77,6 +79,7 @@
                 {% endif %}
                 <li><a href="{% url 'koras_joyeria:home' %}"><i class="material-icons">home</i>Inicio</a></li>
                 <li><a href="{% url 'koras_joyeria:tienda' %}"><i class="material-icons">store</i>Tienda</a></li>
+                <li><a href="{% url 'koras_joyeria:ver-carrito' %}"><i class="material-icons">shopping_cart</i>Mi carrito de compras</a></li>
 
                 <li><a class='dropdown-trigger' href='#' data-target='dropdown1'><i class="material-icons">view_module</i>Catálogo</a></li>
                 <ul id='dropdown1' class='dropdown-content'>

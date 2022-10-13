@@ -1,0 +1,58 @@
+{% extends 'koras_joyeria/base/base.html' %}
+{% load static %}
+
+{% block title2 %}Carrito de compras{% endblock title2 %}
+
+{% block content %}
+<br><br><br><br>
+<div class="container">
+    <table>
+        <thead>
+            {% if request.session.carrito.items %}
+            <tr>
+                <th>CARRITO</th>
+            </tr>
+          <tr>
+              <th>IMAGEN</th>
+              <th>NOMBRE</th>
+              <th>PRECIO</th>
+              <th>CANTIDAD</th> 
+              <!--
+              Agregar mas cantidad
+              -->
+          </tr>
+        </thead>
+
+        <tbody>
+            {% for key, value in request.session.carrito.items %}
+          <tr>
+            <td>{{ value.foto.url }}</td>
+            <td>{{ value.nombre_producto }}</td>
+            <td>{{ value.precio_producto }}</td>
+            <td>{{ value.acumulado }}</td>
+            <td><a class="waves-effect waves-light black-text" href="{% url 'koras_joyeria:Add' value.producto_id %}"><i class="material-icons">add</i></a></td>
+            <td><a class="waves-effect waves-light black-text" href="{% url 'koras_joyeria:Sub' value.producto_id %}"><i class="material-icons">remove</i></a></td>
+          </tr>
+          <div class="row text-center">
+            <div class="col-6"><a href="{% url 'koras_joyeria:CLS' %}" class="waves-effect waves-light btn black grey-text"></a>Limpiar carrito</div>
+            <div class="col-6"><a href="#" class="waves-effect waves-light btn black grey-text"></a>Guardar</div>
+          </div>
+          {% endfor %}
+          {% else %}
+          <div class="container center">
+              <h4 >Sin productos</h4>
+              <i class="material-icons large">remove_shopping_cart</i>
+              <div>
+              <a class="waves-effect waves-light btn black grey-text">Ir a comprar</a>
+            </div>
+          </div>
+          {% endif %}
+          <tr>
+            <th scope="row">Total:</th>
+            <td colspan="2">$ {{ total_carrito }}</td>
+          </tr> 
+        </tbody>
+      </table>
+</div>
+
+{% endblock content %}

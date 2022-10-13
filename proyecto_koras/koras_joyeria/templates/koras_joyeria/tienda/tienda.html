@@ -74,7 +74,7 @@
   <section>
     <div class="container">
       <div class="row">
-
+        
         {% for i in data %}
 
         <a href="{% url 'koras_joyeria:ver-producto' i.id %}">
@@ -88,17 +88,16 @@
               <span class="card-title activator grey-text text-darken-4">{{ i.nombre_producto }}<i
                   class="material-icons right">more_vert</i></span>
               <p>precio: {{ i.precio_producto }}</p>
+              <a class="waves-effect waves-light btn black grey-text right" href="{% url 'koras_joyeria:Add' i.id %}">Agregar al carrito</a>
             </div>
+            
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4">{{ i.nombre_producto }}<i class="material-icons right">close</i></span>
               <p>{{ i.desc }}</p>
             </div>
           </div>
         </div>
-      
-
         {% endfor %}
-  
       </div>
     </div>
   </section>
