@@ -75,25 +75,25 @@
     <div class="container">
       <div class="row">
         
-        {% for i in data %}
+        {% for producto in productos %}
 
-        <a href="{% url 'koras_joyeria:ver-producto' i.id %}">
+        <a href="{% url 'koras_joyeria:ver-producto' producto.id %}">
         <div class="col 14 m4 s12 animate__animated animate__flipInY">
           <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{{ i.foto.url }}" width="auto" height="200px">
+              <img class="activator" src="{{ producto.foto.url }}" width="auto" height="200px">
             </div>
           </a>
             <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">{{ i.nombre_producto }}<i
+              <span class="card-title activator grey-text text-darken-4">{{ producto.nombre_producto }}<i
                   class="material-icons right">more_vert</i></span>
-              <p>precio: {{ i.precio_producto }}</p>
-              <a class="waves-effect waves-light btn black grey-text right" href="{% url 'koras_joyeria:Add' i.id %}">Agregar al carrito</a>
+              <p>precio: {{ producto.precio_producto }}</p>
+              <a class="waves-effect waves-light btn black grey-text right" href="{% url 'koras_joyeria:Add' producto.id %}">Agregar al carrito</a>
             </div>
             
             <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">{{ i.nombre_producto }}<i class="material-icons right">close</i></span>
-              <p>{{ i.desc }}</p>
+              <span class="card-title grey-text text-darken-4">{{ producto.nombre_producto }}<i class="material-icons right">close</i></span>
+              <p>{{ producto.desc }}</p>
             </div>
           </div>
         </div>

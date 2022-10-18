@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from koras_joyeria import Carrito
+from koras_joyeria.Carrito import Carrito
 from .models import Producto, UserRegisterForm
 # Create your views here.
 
@@ -13,36 +13,39 @@ def Inquietudes(request):
     return render(request, 'koras_joyeria/info/inquietudes.html')
 
 def Tienda(request):
-    q = Producto.objects.all()
-    context = {'data': q} 
-    return render(request, 'koras_joyeria/tienda/tienda.html', context)
+    productos = Producto.objects.all()
+    return render(request, 'koras_joyeria/tienda/tienda.html', {'productos':productos})
 
 def VerCarrito(request):
     return render(request, 'koras_joyeria/tienda/ver-carrito.html')
+
+def carritoCompra(request):
+    return render(request, 'koras_joyeria/tienda/carrito-compra.html')
 
 #if carrito
 def Agregar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = Producto.objects.get(id=producto_id)
     carrito.agregar(producto)
-    return redirect("koras_joyeria:ver-carrito")
+    messages.success(request, f'Se agrego un producto al carrito')
+    return redirect("koras_joyeria:tienda")
 
 def eliminar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = Producto.objects.get(id=producto_id)
     carrito.eliminar(producto)
-    return redirect("koras_joyeria:ver-carrito")
+    return redirect("koras_joyeria:carritoCompra")
 
 def restar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = Producto.objects.get(id=producto_id)
     carrito.restar(producto)
-    return redirect("koras_joyeria:ver-carrito")
+    return redirect("koras_joyeria:carritoCompra")
 
 def limpiar_carrito(request):
     carrito = Carrito(request)
     carrito.limpiar()
-    return redirect("koras_joyeria:ver-carrito")
+    return redirect("koras_joyeria:carritoCompra")
 
 #endif carrito
 
