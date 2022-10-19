@@ -11,11 +11,20 @@ class Profile(models.Model):
     def __str__(self):
         return f"Perfil de {self.user.username} - {self.image.url}"
 
-
 class UserRegisterForm(UserCreationForm):
+    first_name = forms.CharField(max_length=50)
+    last_name = forms.CharField(max_length=50)
     email = forms.EmailField()
     password1 = forms.CharField()
     password2 = forms.CharField()
+    
+    #ROL = (
+        #(1, "Cliente"),
+        #(2, "Empleado"),
+        #(3, "Administrador"),
+    #)
+
+    #rol = models.SmallIntegerField(choices=ROL, default=1)
 
     class Meta:
         model = User
@@ -89,8 +98,6 @@ class Usuario(models.Model):
     correo = models.EmailField(max_length=254)
     usuario = models.CharField(max_length=50)
     clave = models.CharField(max_length=254)
-
-    
 
 class Compra(models.Model):
     fecha_hora = models.DateTimeField(auto_now_add=True)

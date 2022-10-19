@@ -4,6 +4,9 @@ from koras_joyeria.Carrito import Carrito
 from .models import Producto, UserRegisterForm
 # Create your views here.
 
+def ProfileEdit(request):
+    return render(request, 'koras_joyeria/profile/profile-edit.html')
+
 def VerProducto(request,id):
     q = Producto.objects.get(pk = id)
     context = {'data':q}
@@ -27,8 +30,7 @@ def Agregar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = Producto.objects.get(id=producto_id)
     carrito.agregar(producto)
-    messages.success(request, f'Se agrego un producto al carrito')
-    return redirect("koras_joyeria:tienda")
+    return redirect("koras_joyeria:carritoCompra")
 
 def eliminar_producto(request, producto_id):
     carrito = Carrito(request)

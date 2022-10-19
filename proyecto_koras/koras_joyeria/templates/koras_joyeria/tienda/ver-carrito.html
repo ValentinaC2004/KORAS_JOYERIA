@@ -19,8 +19,9 @@
         </thead>
 
         <tbody>
-          <div class="row text-center">
-            <div class="col-6"><a href="{% url 'koras_joyeria:CLS' %}" class="waves-effect waves-light btn black grey-text">Limpiar carrito</a></div><br>
+          <br><br>
+          <div class="row">
+            <div class="col-6"><a href="{% url 'koras_joyeria:CLS' %}" class="waves-effect waves-light btn black grey-text">Eliminar productos</a></div><br>
             <div class="col-6"><a href="#" class="waves-effect waves-light btn black grey-text">Guardar</a></div>
           </div>
             {% for key, value in request.session.carrito.items %}

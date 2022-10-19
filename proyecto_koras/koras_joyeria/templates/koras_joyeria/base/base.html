@@ -33,17 +33,17 @@
             
             {% if request.user.is_authenticated %}
             <div>
-            <a class='dropdown-trigger right micuenta' href='#' data-target='micuenta'>{{ user.username }}</a>
+            <a class='dropdown-trigger right micuenta' href='#' data-target='micuenta'><img src="{{ user.profile.image.url }}" class="profile-navbar right"></a>
         </div>
                 <ul id='micuenta' class='dropdown-content'>
-                    <li><a href="#!">Editar</a></li>
+                    <li><a href="{% url 'koras_joyeria:profileEdit' %}">Editar perfil</a></li>
                     <li><a href="#"><i class="material-icons">power_settings_new</i></a></li>
                   </ul>
                   {% endif %}
 
             <a class="waves-effect waves-light  modal-trigger right" href="#carrito">
-                <span class="material-icons right">
-                    shopping_cart_checkout
+                <span class="material-icons right black-text">
+                    shopping_bag
                     </span>
             </a>
 
@@ -75,7 +75,8 @@
                 {% block contentMenu %}
 
                 {% if request.user.is_authenticated %}
-                <li><a href="{% url 'koras_joyeria:profile' %}" class="cuenta"><i class="material-icons">perm_identity</i>{{ user.username }}</a></li>
+
+                <li><a href="{% url 'koras_joyeria:profile' %}" class="cuenta"><img src="{{ user.profile.image.url }}" class="profile-nav">Perfil</a></li>
                 {% endif %}
                 <li><a href="{% url 'koras_joyeria:home' %}"><i class="material-icons">home</i>Inicio</a></li>
                 <li><a href="{% url 'koras_joyeria:tienda' %}"><i class="material-icons">store</i>Tienda</a></li>

@@ -79,6 +79,7 @@ footer{
     margin-left: 2%;
     margin-right: 2%;
     margin-top: 1%;
+    margin-bottom: 0%;
 }
 .logo-menu{
     width: 85%;
@@ -247,6 +248,51 @@ label:active {
 .micuenta{
     margin-left: 2%;
 }
-.cuenta{
-    margin-left: 2%;
+
+.profile-img{
+    margin-top: 2%;
+    margin-bottom: 0%;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    box-shadow: 0 1px 0 0 #343434;
+}
+.profile-user{
+    margin: 0%;
+    padding: 0%;
+}
+
+.profile-nav{
+    border-radius: 100%;
+    width: 11%;
+    height: 51%;
+    margin-right: 12%;
+    margin-bottom: 0px;
+}
+
+.profile-navbar{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+}
+
+.info-profile{
+    width: 20%;
+    height: auto;
+    background-color: antiquewhite;
+    box-shadow: 0 1px 0 0 #343434;
+    padding: 2%;
+}
+.img-info-user{
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+    margin-top: 10%;
+    margin-bottom: 0%;
+    padding: 0%;
+}
+
+.t{
+    padding-bottom: 2%;
+    margin-bottom: 2%;
 }
