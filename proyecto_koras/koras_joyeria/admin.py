@@ -1,9 +1,11 @@
 from pyexpat import model
 from django.contrib import admin
 from django.utils.html import format_html 
-from koras_joyeria.models import Producto,Profile, Categoria, Usuario, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, TallaP, SizeP, PesoP , Empleado, Tipo
+from koras_joyeria.models import Producto,Profile, Categoria, Usuario, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, TallaP, SizeP, PesoP , Empleado, Tipo, UserRegisterForm
 # Register your models here.
 
+class UserRegisterFormAdmin(admin.ModelAdmin):
+    list_display = ('id','first_name','last_name','username','email','rol')
 
 class CategoriaAdmin(admin.ModelAdmin):
     list_display = ('id_categoria','nombre_categoria')
@@ -34,7 +36,6 @@ class ProfileAdmin(admin.ModelAdmin):
 
     list_display = ('fotoPerfil','user')
 
-
 admin.site.register(MarcoP)
 admin.site.register(MaterialP)
 admin.site.register(DiamanteP)
@@ -50,4 +51,3 @@ admin.site.register(Compra,CompraAdmin)
 admin.site.register(CompraDetalle,CompraDetalleAdmin)
 admin.site.register(Tipo)
 admin.site.register(Profile, ProfileAdmin)
-

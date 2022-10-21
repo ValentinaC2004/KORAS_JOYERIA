@@ -296,3 +296,15 @@ label:active {
     padding-bottom: 2%;
     margin-bottom: 2%;
 }
+
+.edit-profile{
+    display: flex;
+    align-items: center;
+    justify-content: stretch;
+}
+
+.imgEdit{
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+}

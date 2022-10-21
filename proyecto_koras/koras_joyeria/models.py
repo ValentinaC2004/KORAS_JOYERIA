@@ -17,19 +17,19 @@ class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     password1 = forms.CharField()
     password2 = forms.CharField()
-    
-    #ROL = (
-        #(1, "Cliente"),
-        #(2, "Empleado"),
-        #(3, "Administrador"),
-    #)
 
-    #rol = models.SmallIntegerField(choices=ROL, default=1)
+    ROL = (
+        (1, "Cliente"),
+        (2, "Empleado"),
+        (3, "Administrador"),
+    )
+    rol = models.SmallIntegerField(choices=ROL, default=1)
+
 
     class Meta:
         model = User
         fields = Userfields = ['first_name', 'last_name', 'email', 'username','password1', 'password2']
-        help_texts = {k:"" for k in fields }
+       
 
 class Categoria(models.Model):
     id_categoria = models.IntegerField(unique=True)
