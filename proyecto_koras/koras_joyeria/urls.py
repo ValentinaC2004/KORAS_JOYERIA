@@ -8,7 +8,7 @@ from koras_joyeria import views
 app_name = 'koras_joyeria'
 urlpatterns = [
     #ingreso
-     path('', views.Tienda , name='tienda'),
+    path('', views.Tienda , name='tienda'),
     path('registro/', views.Registro , name='registro'),
     path('inicio/', LoginView.as_view(template_name='koras_joyeria/ingreso/inicio.html'), name='inicio'),
     path('logout/', LogoutView.as_view(template_name='koras_joyeria/ingreso/logout.html'), name='logout'),

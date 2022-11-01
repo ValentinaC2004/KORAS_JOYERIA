@@ -10,20 +10,30 @@
     <div class="col s12 m3">
       <div class="card center">
           <img src="{{ user.profile.image.url }}" class="img-info-user">
+          <div class="info-card">
           <p class="card-title t">@{{ user.username }}</p>
-          <a class="btn-floating btn-small cyan pulse grey right" href="{% url 'koras_joyeria:profileEdit' %}"><i class="material-icons">edit</i></a>
-          <hr>
           <p>{{ user.email }}</p>
-      </div>
+          <a class="waves-effect waves-light btn pulse grey" href="{% url 'koras_joyeria:profileEdit' %}"><i class="material-icons right">edit</i>Editar perfil</a>
+        </div>
     </div>
-
+    </div>
     <div class="col s12 m8">
         <div class="card center">
+          <div class="favoritos">
             <h5>Favoritos</h5>
+            <br><br><br><br><br>
+          </div>
             <hr>
-            <h5>Añadidos al carrito</h5>
+            <div class="carritos">
+              <h5>Añadidos al carrito</h5>
+              {% include 'koras_joyeria/tienda/ver-carrito.html' %}
+            </div>
             <hr>
-            <h5>Compras realizadas</h5>
+            <div class="compras">
+              <h5>Compras realizadas</h5>
+              <br><br><br><br><br>
+            </div>
+            
         </div>
       </div>
 

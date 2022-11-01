@@ -9,37 +9,49 @@
 <div class="container">
     <br><br><br>
     <div class="row center">
-        <form class="col s12">
+        <form class="col s12" method="post" action="" enctype="multipart/form-data">
+          
           <img src="{{ user.profile.image.url }}" class="imgEdit left">
+          
           <div class="row">
             <div class="input-field col s6">
-              <input placeholder="{{ user.first_name }}" id="first_name" type="text" class="validate">
+              <input placeholder="" id="first_name" type="text" class="validate" value="{{ user.first_name }}">
               <label for="first_name">Nombre</label>
             </div>
 
             <div class="input-field col s6">
-              <input placeholder="{{ user.last_name }}" id="first_name" type="text" class="validate">
+              <input placeholder="{{ user.last_name }}" id="first_name" type="text" class="validate" value="{{ user.last_name }}">
               <label for="first_name">Apellido</label>
             </div>
 
             <div class="input-field col s6">
-              <input placeholder="{{ user.username }}" id="first_name" type="text" class="validate">
-              <label for="first_name">Nombre de usuario</label>
+              <input id="first_name" type="text" class="validate" value="{{ user.username }}">
+              <label for="first_name">Usuario</label>
             </div>
 
             <div class="input-field col s6">
-              <input placeholder="{{ user.email }}" id="first_name" type="text" class="validate">
+              <div class="file-field input-field">
+                <div class="btn">
+                  <i class="material-icons">camera_alt</i>
+                  <input type="file" multiple>
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text" placeholder="Cargar foto para perfil">
+                </div>
+              </div>
+            </div>
+  
+            <div class="input-field col s6">
+              <input id="first_name" type="text" class="validate" value="{{ user.email }}">
               <label for="first_name">Correo electronico</label>
             </div>
 
             <div class="input-field col s6">
-              <input placeholder="Nombre de usuario" id="first_name" type="text" class="validate">
-              <label for="first_name">{{ user.username }}</label>
+              <a class="waves-effect waves-light btn grey">Actualizar perfil</a>
             </div>
 
           </div>
         </form>
-
       </div>
 </div>
 

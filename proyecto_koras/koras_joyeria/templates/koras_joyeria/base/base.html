@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="sweetalert2.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
 
     {% block links %}  {% endblock links %}
 
@@ -37,6 +38,7 @@
         </div>
                 <ul id='micuenta' class='dropdown-content'>
                     <li><a href="{% url 'koras_joyeria:profileEdit' %}">Editar perfil</a></li>
+                    
                     <li><a href="#"><i class="material-icons">power_settings_new</i></a></li>
                   </ul>
                   {% endif %}
@@ -117,7 +119,7 @@
                   </ul>
 
                   {% if request.user.is_authenticated %}
-                <li><a href="#"><i class="material-icons">power_settings_new</i>Cerrar sesión</a></li>
+                <li><a href="{% url 'koras_joyeria:logout' %}"><i class="material-icons">power_settings_new</i>Cerrar sesión</a></li>
                 {% else %}
                 
                 <li><a href="{% url 'koras_joyeria:registro' %}"><i class="material-icons">perm_identity</i>Registrarse</a></li>
