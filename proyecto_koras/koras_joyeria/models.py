@@ -25,6 +25,12 @@ class UserRegisterForm(UserCreationForm):
     )
     rol = models.SmallIntegerField(choices=ROL, default=1)
 
+    def nombreRol(self):
+        return self.get_rol_display()
+
+    def __str__(self):
+        return f"{self.username} - Rol: {self.nombreRol()}"
+
 
     class Meta:
         model = User

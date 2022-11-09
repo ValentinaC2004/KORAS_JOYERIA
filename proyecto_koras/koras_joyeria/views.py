@@ -5,6 +5,14 @@ from koras_joyeria.Carrito import Carrito
 from .models import Producto, UserRegisterForm
 # Create your views here.
 
+# Diseñar joyeria
+
+
+def diseñarHome(request):
+    return render(request, 'koras_joyeria/diseñar/diseñarHome.html')
+
+# Profile
+
 def ProfileEdit(request):
     return render(request, 'koras_joyeria/profile/profile-edit.html')
 
@@ -65,9 +73,10 @@ def Registro(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
-            messages.success(request, f'Usuario {username}, ya puede iniciar sesión')
+            messages.success(request, f'{username}, ya puedes iniciar sesión')
             return redirect('koras_joyeria:inicio')
     else:
+        messages.success(request, f'Ocurrio un problema, vuelva a intentarlo')
         form = UserRegisterForm()
     context = { 'form' : form }
     return render(request, 'koras_joyeria/ingreso/registro.html',context)
