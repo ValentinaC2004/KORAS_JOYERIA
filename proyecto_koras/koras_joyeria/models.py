@@ -4,9 +4,16 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="profiles", default="profiles/default-profile.png")
+    ROL = (
+        (1, "Cliente"),
+        (2, "Empleado"),
+        (3, "Administrador"),
+    )
+    rol = models.SmallIntegerField(choices=ROL, default=1)
 
     def __str__(self):
         return f"Perfil de {self.user.username} - {self.image.url}"
@@ -17,19 +24,6 @@ class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     password1 = forms.CharField()
     password2 = forms.CharField()
-
-    ROL = (
-        (1, "Cliente"),
-        (2, "Empleado"),
-        (3, "Administrador"),
-    )
-    rol = models.SmallIntegerField(choices=ROL, default=1)
-
-    def nombreRol(self):
-        return self.get_rol_display()
-
-    def __str__(self):
-        return f"{self.username} - Rol: {self.nombreRol()}"
 
 
     class Meta:
@@ -98,16 +92,9 @@ class Empleado(models.Model):
         db_table = 'empleado'
         ordering = ['id']
 
-class Usuario(models.Model):
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
-    correo = models.EmailField(max_length=254)
-    usuario = models.CharField(max_length=50)
-    clave = models.CharField(max_length=254)
-
 class Compra(models.Model):
     fecha_hora = models.DateTimeField(auto_now_add=True)
-    usuario = models.ForeignKey(Usuario, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     ESTADOS = (
         (1, "Creada"),
         (2, "Confirmada"),

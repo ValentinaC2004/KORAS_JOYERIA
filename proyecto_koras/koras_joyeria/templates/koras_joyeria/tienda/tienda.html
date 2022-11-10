@@ -74,13 +74,13 @@
   <section>
     <div class="container">
       <div class="row">
-
-        
         
         {% for producto in productos %}
 
-        <a href="{% url 'koras_joyeria:ver-producto' producto.id %}">
+        <a href="{% url 'koras_joyeria:ver-producto' producto.id %}">j
         <div class="col 14 m4 s12 animate__animated animate__flipInY">
+          <strong class="black-text">Fecha:</strong>
+          <span class="grey-text">{{ producto.timestamp }}</span>
           <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
               <img class="activator" src="{{ producto.foto.url }}" width="auto" height="200px">

@@ -1,7 +1,7 @@
 from pyexpat import model
 from django.contrib import admin
 from django.utils.html import format_html 
-from koras_joyeria.models import Producto,Profile, Categoria, Usuario, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, TallaP, SizeP, PesoP , Empleado, Tipo
+from koras_joyeria.models import Producto,Profile, Categoria, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, TallaP, SizeP, PesoP , Empleado, Tipo
 # Register your models here.
 
 class CategoriaAdmin(admin.ModelAdmin):
@@ -14,12 +14,8 @@ class ProductoAdmin(admin.ModelAdmin):
         
     list_display = ('imagen','nombre_producto','precio_producto','stock','talla','color','peso','id_categoria','timestamp')
 
-class UsuarioAdmin(admin.ModelAdmin):
-
-    list_display = ('nombre','apellido','correo','usuario','clave')
-
 class CompraAdmin(admin.ModelAdmin):
-    list_display = ('fecha_hora','usuario')
+    list_display = ('fecha_hora','user')
 
 class CompraDetalleAdmin(admin.ModelAdmin):
     list_display = ('id_compra','producto','precio','cantidad')
@@ -43,7 +39,6 @@ admin.site.register(PesoP)
 admin.site.register(Empleado,EmpleadoAdmin)
 admin.site.register(Producto,ProductoAdmin)
 admin.site.register(Categoria,CategoriaAdmin)
-admin.site.register(Usuario,UsuarioAdmin)
 admin.site.register(Compra,CompraAdmin)
 admin.site.register(CompraDetalle,CompraDetalleAdmin)
 admin.site.register(Tipo)
