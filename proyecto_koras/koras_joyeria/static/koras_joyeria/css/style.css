@@ -334,3 +334,18 @@ label:active {
     text-align: center;
     padding: 2%;
 }
+.foto-flex{
+    width: 200px;
+    height: 200px;
+    background-color: rgb(157, 156, 156);
+    border-radius: 100%;
+    align-items: center;
+    margin: 100px;
+    margin-top: 0%;
+    display: flex;
+    justify-content: center;
+}
+.foto-flex:hover{
+    background-color: #080808d5;
+    opacity: 100%;
+}

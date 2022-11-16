@@ -25,8 +25,6 @@
     <title>{% block title1 %}Koras Joyeria - {% endblock title1 %} {% block title2 %} ... {% endblock title2 %} </title>
 </head>
 <body>
-
-
     <header class="header">
      
         <div class="menu-nav">
@@ -34,21 +32,27 @@
             
             {% if request.user.is_authenticated %}
             <div>
-            <a class='dropdown-trigger right micuenta' href='#' data-target='micuenta'><img src="{{ user.profile.image.url }}" class="profile-navbar right"></a>
+                {% if user.profile.image %}
+                <a class='dropdown-trigger right micuenta' href='#' data-target='micuenta'><img src="{{ user.profile.image.url }}" class="profile-navbar right"></a>
+                {% else %}
+                <a class='dropdown-trigger right micuenta black-text' href='#' data-target='micuenta'><i class="material-icons small">person</i></a>
+                {% endif %}
         </div>
                 <ul id='micuenta' class='dropdown-content'>
+                    {% if request.user.profile %}
                     <li><a href="{% url 'koras_joyeria:profileEdit' %}">Editar perfil</a></li>
-                    
-                    <li><a href="#"><i class="material-icons">power_settings_new</i></a></li>
+                    {% else %}
+                    <li><a href="{% url 'koras_joyeria:profileEdit' %}">Personalizar perfil</a></li>
+                    {% endif %}
+                    <li><a href=""><i class="material-icons">power_settings_new</i></a></li>
                   </ul>
                   {% endif %}
 
             <a class="waves-effect waves-light  modal-trigger right" href="#carrito">
-                <span class="material-icons right black-text">
+                <span class="material-icons right black-text small">
                     shopping_bag
                     </span>
             </a>
-
     </div>
 </header>
 
@@ -77,8 +81,11 @@
                 {% block contentMenu %}
 
                 {% if request.user.is_authenticated %}
-
+                {% if user.profile.image %}
                 <li><a href="{% url 'koras_joyeria:profile' %}" class="cuenta"><img src="{{ user.profile.image.url }}" class="profile-nav">Perfil</a></li>
+                {% else %}
+                <li><a href="{% url 'koras_joyeria:profileEdit' %}" class="cuenta"><i class="material-icons small">person</i>Personalizar perfil</a></li>
+                {% endif %}
                 {% endif %}
                 <li><a href="{% url 'koras_joyeria:home' %}"><i class="material-icons">home</i>Inicio</a></li>
                 <li><a href="{% url 'koras_joyeria:tienda' %}"><i class="material-icons">store</i>Tienda</a></li>
@@ -104,7 +111,7 @@
                     <li><a href="#!"><i class="material-icons">cloud</i>p5</a>p5</li>
                   </ul>
 
-                <li><div class="divider"></div></li>
+                <li><div class="divider"></div></li> 
 
                 <li><a href="{% url 'koras_joyeria:inquietudes' %}"><i class="material-icons">question_answer</i>Dudas o inquietudes</a></li>
 

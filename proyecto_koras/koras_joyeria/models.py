@@ -4,16 +4,18 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+class Role(models.Model):
+    id_rol = models.IntegerField(unique=True)
+    nombre_rol = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"{self.nombre_rol}"
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="profiles", default="profiles/default-profile.png")
-    ROL = (
-        (1, "Cliente"),
-        (2, "Empleado"),
-        (3, "Administrador"),
-    )
-    rol = models.SmallIntegerField(choices=ROL, default=1)
+    rol = models.OneToOneField(Role, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"Perfil de {self.user.username} - {self.image.url}"
@@ -25,11 +27,9 @@ class UserRegisterForm(UserCreationForm):
     password1 = forms.CharField()
     password2 = forms.CharField()
 
-
     class Meta:
         model = User
         fields = Userfields = ['first_name', 'last_name', 'email', 'username','password1', 'password2']
-       
 
 class Categoria(models.Model):
     id_categoria = models.IntegerField(unique=True)

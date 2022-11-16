@@ -6,13 +6,26 @@
 
 {% block content %}
 
-<div class="container">
-    <br><br><br>
-    <div class="row center">
+<div class="container center">
+    <br><br><br><br>
+    <div class="row">
         <form class="col s12" method="post" action="" enctype="multipart/form-data">
-          
+          {% if user.profile.image %}
           <img src="{{ user.profile.image.url }}" class="imgEdit left">
-          
+          {% else %}
+          <div class="input-field left">
+            <div class="file-field input-field">
+              <div class="foto-flex">
+                <i class="material-icons medium">add_a_photo</i>
+                <input type="file" multiple>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Cargar foto de perfil">
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
           <div class="row">
             <div class="input-field col s6">
               <input placeholder="" id="first_name" type="text" class="validate" value="{{ user.first_name }}">
@@ -29,17 +42,7 @@
               <label for="first_name">Usuario</label>
             </div>
 
-            <div class="input-field col s6">
-              <div class="file-field input-field">
-                <div class="btn">
-                  <i class="material-icons">camera_alt</i>
-                  <input type="file" multiple>
-                </div>
-                <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text" placeholder="Cargar foto para perfil">
-                </div>
-              </div>
-            </div>
+            
   
             <div class="input-field col s6">
               <input id="first_name" type="text" class="validate" value="{{ user.email }}">
