@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{% static 'koras_joyeria/material/css/materialize.css' %}">
     <link rel="stylesheet" href="{% static 'koras_joyeria/material/css/materialize.min.css' %}">
     <link rel="stylesheet" href="{% static 'koras_joyeria/css/style.css' %}">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300&family=Playfair+Display&display=swap" rel="stylesheet">
@@ -18,13 +17,15 @@
     <link rel="stylesheet" href="sweetalert2.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    
+    <!--JAVASCRIPT-->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     {% block links %}  {% endblock links %}
 
     <title>{% block title1 %}Koras Joyeria - {% endblock title1 %} {% block title2 %} ... {% endblock title2 %} </title>
 </head>
 <body>
+    {% block headerBase %}
     <header class="header">
      
         <div class="menu-nav">
@@ -32,18 +33,12 @@
             
             {% if request.user.is_authenticated %}
             <div>
-                {% if user.profile.image %}
+            
                 <a class='dropdown-trigger right micuenta' href='#' data-target='micuenta'><img src="{{ user.profile.image.url }}" class="profile-navbar right"></a>
-                {% else %}
-                <a class='dropdown-trigger right micuenta black-text' href='#' data-target='micuenta'><i class="material-icons small">person</i></a>
-                {% endif %}
+               
         </div>
                 <ul id='micuenta' class='dropdown-content'>
-                    {% if request.user.profile %}
-                    <li><a href="{% url 'koras_joyeria:profileEdit' %}">Editar perfil</a></li>
-                    {% else %}
-                    <li><a href="{% url 'koras_joyeria:profileEdit' %}">Personalizar perfil</a></li>
-                    {% endif %}
+                    <li><a href="{% url 'koras_joyeria:profileEdit' %}">Editar</a></li>
                     <li><a href=""><i class="material-icons">power_settings_new</i></a></li>
                   </ul>
                   {% endif %}
@@ -55,6 +50,7 @@
             </a>
     </div>
 </header>
+{% endblock headerBase %}
 
 <div id="carrito" class="modal">
     <div class="modal-content">
@@ -86,8 +82,13 @@
                 {% else %}
                 <li><a href="{% url 'koras_joyeria:profileEdit' %}" class="cuenta"><i class="material-icons small">person</i>Personalizar perfil</a></li>
                 {% endif %}
+
+                {% else %}
+                <li><a href="{% url 'koras_joyeria:registro' %}"><i class="material-icons">perm_identity</i>Registrarse</a></li>
+                <li><a href="{% url 'koras_joyeria:inicio' %}"><i class="material-icons">person</i>Iniciar sesión</a></li>
                 {% endif %}
-                <li><a href="{% url 'koras_joyeria:home' %}"><i class="material-icons">home</i>Inicio</a></li>
+
+                <li><a href="{% url 'koras_joyeria:home' %}"><i class="material-icons">home</i>Acerca de Koras Joyería</a></li>
                 <li><a href="{% url 'koras_joyeria:tienda' %}"><i class="material-icons">store</i>Tienda</a></li>
                 <li><a href="{% url 'koras_joyeria:carritoCompra' %}"><i class="material-icons">shopping_cart</i>Mi carrito de compras</a></li>
 
@@ -127,10 +128,6 @@
 
                   {% if request.user.is_authenticated %}
                 <li><a href="{% url 'koras_joyeria:logout' %}"><i class="material-icons">power_settings_new</i>Cerrar sesión</a></li>
-                {% else %}
-                
-                <li><a href="{% url 'koras_joyeria:registro' %}"><i class="material-icons">perm_identity</i>Registrarse</a></li>
-                <li><a href="{% url 'koras_joyeria:inicio' %}"><i class="material-icons">person</i>Iniciar sesión</a></li>
                 {% endif %}
 
                 {% endblock contentMenu %}
@@ -247,7 +244,7 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
+<!--
     {% if messages %}
     {% for m in messages %}
     <script>
@@ -255,6 +252,6 @@
     </script>
     {% endfor %}
     {% endif %}
-
+-->
 </body>
 </html>

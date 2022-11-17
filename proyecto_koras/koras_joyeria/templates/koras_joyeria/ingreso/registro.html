@@ -7,6 +7,9 @@
 
 <section>
 
+  {% block headerBase %}  {% endblock headerBase %}
+
+  <!--
   {% if messages %}
   {% for message in messages %}
   <script>
@@ -22,13 +25,26 @@
   </script>
   {% endfor %}
   {% endif %}
+-->
 
   <div class="flex-registro">
+    <a href="{% url 'koras_joyeria:home' %}"><i class="medium material-icons left black-text">arrow_back</i></a>
     <div class="formRegistro">
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          {{ message }}
+        </div>
+      {% endfor %}
+      
+      {% endif %}
       <h5>Registro</h5>
       <form action="" method="POST">
         {% csrf_token %}
+        {{ form.as_p }}
 
+        <!--
         <div class="input-field col s6">
           <i class="material-icons prefix">perm_identity</i>
           <input id="icon_prefix" type="text" class="validate" name="first_name">
@@ -64,8 +80,10 @@
           <input id="icon_prefix" type="password" class="validate" name="password2">
           <label for="icon_prefix">Confirme la contraseña</label>
         </div>
+      -->
 
-        <button class="waves-effect waves-light btn #424242 grey" type="submit" id="submit">REGISTRARSE</button>
+        <button class="waves-effect waves-light btn #424242 grey" type="submit" id="submit">REGISTRARSE</button><br><br>
+        <a href="{% url 'koras_joyeria:inicio' %}" class="center black-text">Ya tienes una cuenta?</a>
 
       </form>
     </div>

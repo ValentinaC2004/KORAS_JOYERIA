@@ -1,35 +1,31 @@
 from django.utils import timezone
 from django.db import models
-from django import forms
+from koras_joyeria.forms import UserRegisterForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
-class Role(models.Model):
-    id_rol = models.IntegerField(unique=True)
-    nombre_rol = models.CharField(max_length=20)
-
-    def __str__(self):
-        return f"{self.nombre_rol}"
-
+from django.db.models.signals import post_save
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="profiles", default="profiles/default-profile.png")
-    rol = models.OneToOneField(Role, on_delete=models.CASCADE, null=True)
+    ROLES = (
+        (1, 'Administrador'),
+        (2, 'Empleado'),
+        (3, 'Cliente'),
+    )
+    rol = models.SmallIntegerField(choices= ROLES, default=3)
+    
+    def nombreRol(self):
+        return self.get_rol_display()
 
     def __str__(self):
-        return f"Perfil de {self.user.username} - {self.image.url}"
+        return f"{self.user.username} - Rol: {self.nombreRol()} Perfil de {self.user.username} - {self.image.url}"
 
-class UserRegisterForm(UserCreationForm):
-    first_name = forms.CharField(max_length=50)
-    last_name = forms.CharField(max_length=50)
-    email = forms.EmailField()
-    password1 = forms.CharField()
-    password2 = forms.CharField()
+def create_profile(sender, instance,created,**kwargs):
+    if created:
+        Profile.objects.create(user=instance)
 
-    class Meta:
-        model = User
-        fields = Userfields = ['first_name', 'last_name', 'email', 'username','password1', 'password2']
+post_save.connect(create_profile, sender=User)
 
 class Categoria(models.Model):
     id_categoria = models.IntegerField(unique=True)

@@ -8,15 +8,17 @@
 
 <div class="container center">
     <br><br><br><br>
+
     <div class="row">
         <form class="col s12" method="post" action="" enctype="multipart/form-data">
-          {% if user.profile.image %}
-          <img src="{{ user.profile.image.url }}" class="imgEdit left">
-          {% else %}
-          <div class="input-field left">
+          <div class="input-field left caja_7">
+            <img src="{{ user.profile.image.url }}" class="imgEdit left">
+            <div class="ovrly"></div>
+            <div class="buttons">
+              <a href="#" class="fa fa-link"><i class="material-icons center">add_a_photo</i></a>
+            </div>
             <div class="file-field input-field">
-              <div class="foto-flex">
-                <i class="material-icons medium">add_a_photo</i>
+              <div class="">
                 <input type="file" multiple>
               </div>
               <div class="file-path-wrapper">
@@ -24,7 +26,7 @@
               </div>
             </div>
           </div>
-          {% endif %}
+          
 
           <div class="row">
             <div class="input-field col s6">

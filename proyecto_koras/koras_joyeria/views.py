@@ -1,12 +1,12 @@
 from urllib import request
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from koras_joyeria.models import *
 from koras_joyeria.Carrito import Carrito
-from .models import Producto, UserRegisterForm
+from .forms import UserRegisterForm
 # Create your views here.
 
 # Diseñar joyeria
-
 
 def diseñarHome(request):
     return render(request, 'koras_joyeria/diseñar/diseñarHome.html')
@@ -63,10 +63,6 @@ def limpiar_carrito(request):
 def Home(request):
     return render(request, 'koras_joyeria/index.html')
 
-
-def Profile(request):
-    return render(request, 'koras_joyeria/profile/profile.html')
-
 def Registro(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -80,5 +76,9 @@ def Registro(request):
         form = UserRegisterForm()
     context = { 'form' : form }
     return render(request, 'koras_joyeria/ingreso/registro.html',context)
+
+
+def Profile(request):
+    return render(request, 'koras_joyeria/profile/profile.html')
 
 
