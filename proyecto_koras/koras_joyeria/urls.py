@@ -33,10 +33,13 @@ urlpatterns = [
     #Admin
     path('listaUsuarios/', views.ListaUsuarios, name='listaUsuarios'),
     path('listaProductos/', views.ListaProductos, name='listaProductos'),
+    path('listaCategorias/', views.ListaCategorias, name='listaCategorias'),
+
     path('editarUsuarios/', views.EditarUsuarios, name='editarUsuarios'),
     path('editarProductos/', views.EditarProductos, name='editarProductos'),
-    
 
+    path('crearUsuarios/', views.CrearUsuarios, name='crearUsuarios'),
+    path('crearProductos/', views.CrearProductos, name='crearProductos'),
 
 ]
 

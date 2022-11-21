@@ -1,6 +1,8 @@
 from urllib import request
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.urls import reverse
 from koras_joyeria.models import *
 from koras_joyeria.Carrito import Carrito
 from .forms import UserRegisterForm
@@ -83,16 +85,32 @@ def Profile(request):
 
 
 #Administración
+#LISTAS
 def ListaUsuarios(request):
     users= User.objects.all()
-    return render(request, 'koras_joyeria/admin/listaUsuarios.html', {'users':users})
+    return render(request, 'koras_joyeria/admin/listas/listaUsuarios.html', {'users':users})
 
 def ListaProductos(request):
     productos= Producto.objects.all()
-    return render(request, 'koras_joyeria/admin/listaProductos.html', {'productos':productos})
+    return render(request, 'koras_joyeria/admin/listas/listaProductos.html', {'productos':productos})
 
+def ListaCategorias(request):
+    categorias = Categoria.objects.all()
+    return render(request, 'koras_joyeria/admin/listas/listaCategoria.html', {'categorias':categorias})
+
+
+#EDITAR
 def EditarUsuarios(request):
     return render(request, 'koras_joyeria/admin/edits/editarUsuario.html')
 
 def EditarProductos(request):
     return render(request, 'koras_joyeria/admin/edits/editarProductos.html')
+
+
+#CREAR
+def CrearUsuarios(request):
+    return render(request, 'koras_joyeria/admin/add/crearUsuarios.html')
+
+def CrearProductos(request):
+    return render(request, 'koras_joyeria/admin/add/crearProductos.html')
+

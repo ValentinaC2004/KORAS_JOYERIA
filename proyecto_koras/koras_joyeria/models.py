@@ -33,20 +33,27 @@ class Categoria(models.Model):
     def __str__(self):
         return f"{self.id_categoria} - {self.nombre_categoria}"
 
+class Talla(models.Model):
+    talla = models.CharField(max_length=20)
+    categoria_id = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+
+class Peso(models.Model):
+    peso = models.CharField(max_length=20)
+    categoria_id = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+
 class Producto(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=timezone.now)
     nombre_producto = models.CharField(max_length=100)
     precio_producto = models.IntegerField()
     stock = models.IntegerField()
     desc = models.TextField()
-    talla = models.IntegerField(null=True)
+    talla_id = models.ForeignKey(Talla, on_delete=models.DO_NOTHING)
     COLOR = (
         (1, "Dorado"),
         (2, "Plateado")
     )
     color = models.SmallIntegerField(choices=COLOR)
-    peso = models.IntegerField(null=True)
+    peso_id = models.ForeignKey(Peso, on_delete=models.DO_NOTHING)
     id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
     foto = models.ImageField(upload_to="productos", default="productos/default-productos.jpg")
 
@@ -133,12 +140,6 @@ class DiamanteP(models.Model):
     def __str__(self):
         return f"{self.id} - {self.diamantep}"
 
-class TallaP(models.Model):
-    tallap = models.CharField(max_length=100, null=True)
-    
-    def __str__(self):
-        return f"{self.id} - {self.tallap}"
-
 
 class SizeP(models.Model):
     sizep = models.CharField(max_length=100, null=True)
@@ -146,11 +147,6 @@ class SizeP(models.Model):
     def __str__(self):
         return f"{self.id} - {self.sizep}"
 
-class PesoP(models.Model):
-    pesop = models.CharField(max_length=100, null=True)
-
-    def __str__(self):
-        return f"{self.id} - {self.pesop}"
 
 
 

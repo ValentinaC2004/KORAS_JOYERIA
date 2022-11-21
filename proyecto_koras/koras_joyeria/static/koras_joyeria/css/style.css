@@ -308,6 +308,10 @@ label:active {
     width: 200px;
     height: 200px;
 }
+.imgEditProducto{
+    width: 300px;
+    height: 200px;
+}
 .info-card{
     padding: 5%;
 }
@@ -360,15 +364,9 @@ label:active {
     color: black;
   }
 
-
-
-
-
-
   .caja_7 {
     width: 200px;
     height: 200px;
-    border-radius: 100%;
     border: none;
     overflow: hidden;
     position: relative;
@@ -450,4 +448,8 @@ label:active {
     border-radius: 100%;
     width: 100px;
     height: 100px;
+}
+
+.imgProductoEditar{
+    margin-left: 20%;
 }

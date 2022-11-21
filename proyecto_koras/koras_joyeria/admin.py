@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.html import format_html 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from koras_joyeria.models import Producto,Profile, Categoria, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, TallaP, SizeP, PesoP , Empleado, Tipo,UserRegisterForm
+from koras_joyeria.models import Producto,Profile, Categoria, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, Talla, SizeP, Peso , Empleado, Tipo,UserRegisterForm
 # Register your models here.
 
 #class UserRegisterFormAdmin(UserAdmin):
@@ -13,6 +13,13 @@ from koras_joyeria.models import Producto,Profile, Categoria, Compra, CompraDeta
    #)
     #fieldsets = UserAdmin.fieldsets
 
+
+class TallaAdmin(admin.ModelAdmin):
+    list_display = ('talla','categoria_id')
+
+class PesoAdmin(admin.ModelAdmin):
+    list_display = ('peso','categoria_id')
+
 class CategoriaAdmin(admin.ModelAdmin):
     list_display = ('id_categoria','nombre_categoria')
 
@@ -21,7 +28,7 @@ class ProductoAdmin(admin.ModelAdmin):
     def imagen(self, obj):
         return format_html('<img src="{}" width="110px"/>'.format(obj.foto.url))
         
-    list_display = ('imagen','nombre_producto','precio_producto','stock','talla','color','peso','id_categoria','timestamp')
+    list_display = ('imagen','nombre_producto','precio_producto','stock','talla_id','color','peso_id','id_categoria','timestamp')
 
 class CompraAdmin(admin.ModelAdmin):
     list_display = ('fecha_hora','user')
@@ -41,9 +48,9 @@ class ProfileAdmin(admin.ModelAdmin):
 admin.site.register(MarcoP)
 admin.site.register(MaterialP)
 admin.site.register(DiamanteP)
-admin.site.register(TallaP)
+admin.site.register(Talla, TallaAdmin)
 admin.site.register(SizeP)
-admin.site.register(PesoP)
+admin.site.register(Peso, PesoAdmin)
 
 admin.site.register(Empleado,EmpleadoAdmin)
 admin.site.register(Producto,ProductoAdmin)

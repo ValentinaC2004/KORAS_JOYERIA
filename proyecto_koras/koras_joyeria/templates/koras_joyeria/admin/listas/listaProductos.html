@@ -7,7 +7,20 @@
 <br><br><br><br>
 
 <div class="container">
-    <a href=""> <i class="material-icons black-text small">add</i> </a> 
+  <h4>Productos</h4>
+  <div class="input-field col s2">
+    <a class='dropdown-trigger btn black right' href='#' data-target='listas'>Listar</a>
+
+  <!-- Dropdown Structure -->
+  <ul id='listas' class='dropdown-content'>
+    <li><a href="{% url 'koras_joyeria:listaCategorias' %}" class="black-text">Categorias</a></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><a href="#!" class="black-text">Tallas</a></li>
+    <li><a href="#!" class="black-text">Pesos</a></li>
+  </ul>
+</div>
+    <a href="{% url 'koras_joyeria:crearProductos' %}"> <i class="material-icons black-text small">add</i> </a> 
+    <br><br>
     <table class="">
         <thead>
           <tr>

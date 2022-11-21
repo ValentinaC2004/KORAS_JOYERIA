@@ -1,0 +1,49 @@
+{% extends 'koras_joyeria/base/base.html' %}
+{% load static %}
+
+{% block title2 %}Lista de categorias{% endblock title2 %}
+
+{% block content %}
+<br><br><br><br>
+
+<div class="container">
+  
+  <div class="input-field col s2">
+    <a class='dropdown-trigger btn black right' href='#' data-target='listas'>Listar</a>
+
+  <!-- Dropdown Structure -->
+  <ul id='listas' class='dropdown-content'>
+    <li><a href="{% url 'koras_joyeria:listaProductos' %}" class="black-text">Productos</a></li>
+    <li class="divider" tabindex="-1"></li>
+    <li><a href="#!" class="black-text">Tallas</a></li>
+    <li><a href="#!" class="black-text">Pesos</a></li>
+  </ul>
+</div>
+    <a href="{% url 'koras_joyeria:crearProductos' %}"> <i class="material-icons black-text small">add</i> </a> 
+    <table class="">
+        <thead>
+          <tr>
+              <th>Id</th>
+              <th>Categoria</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <!--ciclo user + profile-->
+            {% for categoria in categorias %}
+          <tr>
+            <td>{{ categoria.id_categoria }}</td>
+            <td>{{ categoria.nombre_categoria }}</td>
+            <td>
+                <a href=""> <i class="material-icons black-text small">edit</i> </a> 
+                <a href=""> <i class="material-icons black-text small">delete</i> </a>
+            </td>
+          </tr>
+          {% endfor %}
+          <!--fin ciclo-->
+    
+        </tbody>
+      </table>
+</div>
+
+{% endblock content %}

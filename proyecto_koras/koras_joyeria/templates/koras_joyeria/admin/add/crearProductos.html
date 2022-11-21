@@ -1,0 +1,98 @@
+{% extends 'koras_joyeria/base/base.html' %}
+{% load static %}
+
+{% block title2 %}Crear Producto{% endblock title2 %}
+
+{% block content %}
+<br><br><br><br>
+
+<div class="container">
+    <a href="{% url 'koras_joyeria:listaProductos' %}"><i class="small material-icons left black-text">arrow_back</i></a>
+
+    <h4>Nuevo producto</h4>
+    <div class="row">
+        <form class="col s12" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate" name="nombre_producto" required>
+                    <label for="last_name">Nombre del producto</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <select class="browser-default">
+                        <option value="" disabled selected>SELECCIONAR CATEGORIA</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+                </div>
+
+            </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="last_name" type="number" class="validate" name="precio_producto" required>
+                        <label for="last_name">Precio del producto</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <select class="browser-default">
+                            <option value="" disabled selected>SELECCIONAR COLOR</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                </div>
+                    
+                    <div class="row">
+
+                        <div class="input-field col s6">
+                            <select class="browser-default">
+                                <option value="" disabled selected>SELECCIONAR TALLA</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <select class="browser-default">
+                                <option value="" disabled selected>SELECCIONAR PESO</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                          <textarea id="textarea1" class="materialize-textarea" required></textarea>
+                          <label for="textarea1">Agregar descripción</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input id="last_name" type="number" class="validate" name="precio_producto" required>
+                            <label for="last_name">Cantidad de productos</label>
+                        </div>
+
+                      </div>
+                
+                <div class="file-field input-field">
+                    <div class="btn grey">
+                        <span><i class="material-icons center">add_a_photo</i></span>
+                        <input type="file" multiple>
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Agregar una imagen del producto">
+                    </div>
+                </div>
+                <div class="row center">
+                    <a class="waves-effect waves-light btn black" type="submit">Crear producto</a>
+                </div>
+        </form>
+            </div>
+
+            {% endblock %}

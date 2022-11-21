@@ -1,28 +1,64 @@
 {% extends 'koras_joyeria/base/base.html' %}
+
 {% load static %}
 
-{% block title2 %}Editar usuario{% endblock title2 %}
+{% block title2 %}Editar Usuario{% endblock title2 %}
 
 {% block content %}
-<br><br><br><br>
 
-<div class="container">
+<div class="container center">
+    <br><br><br><br>
 
     <div class="row">
-        <form class="col s12">
-          <div class="row">
-            <div class="input-field col s6">
-              <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-              <label for="first_name">First Name</label>
+        <form class="col s12" method="post" action="" enctype="multipart/form-data">
+          <div class="input-field left caja_7">
+            <img src="" class="imgEdit left circle">
+            <div class="ovrly"></div>
+            <div class="buttons">
+              <a href="#" class="fa fa-link"><i class="material-icons center">add_a_photo</i></a>
             </div>
-            <div class="input-field col s6">
-              <input id="last_name" type="text" class="validate">
-              <label for="last_name">Last Name</label>
+            <div class="file-field input-field">
+              <div class="">
+                <input type="file" multiple>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Cargar foto de perfil">
+              </div>
             </div>
           </div>
+          
 
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="" id="first_name" type="text" class="validate" value="">
+              <label for="first_name">Nombre</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input placeholder="{{ user.last_name }}" id="first_name" type="text" class="validate" value="">
+              <label for="first_name">Apellido</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input placeholder="texto aqui" id="first_name" type="text" class="validate" value="">
+              <label for="first_name">Usuario</label>
+            </div>
+
+            
+  
+            <div class="input-field col s6">
+              <input placeholder="" id="first_name" type="text" class="validate" value="">
+              <label for="first_name">Correo electronico</label>
+            </div>
+
+            <div class="input-field col s6">
+              <a class="waves-effect waves-light btn grey">Actualizar usuario</a>
+            </div>
+
+          </div>
         </form>
       </div>
-
 </div>
-{% endblock %}
+
+
+{% endblock content %}

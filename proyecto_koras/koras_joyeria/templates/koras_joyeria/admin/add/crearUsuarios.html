@@ -2,17 +2,18 @@
 
 {% load static %}
 
-{% block title2 %}Editar perfil{% endblock title2 %}
+{% block title2 %}Crear usuario{% endblock title2 %}
 
 {% block content %}
 
 <div class="container center">
     <br><br><br><br>
+    <a href="{% url 'koras_joyeria:listaUsuarios' %}"><i class="small material-icons left black-text">arrow_back</i></a>
 
     <div class="row">
         <form class="col s12" method="post" action="" enctype="multipart/form-data">
           <div class="input-field left caja_7">
-            <img src="{{ user.profile.image.url }}" class="imgEdit left circle">
+            <img src="" class="imgEdit left circle">
             <div class="ovrly"></div>
             <div class="buttons">
               <a href="#" class="fa fa-link"><i class="material-icons center">add_a_photo</i></a>
@@ -30,33 +31,37 @@
 
           <div class="row">
             <div class="input-field col s6">
-              <input placeholder="" id="first_name" type="text" class="validate" value="{{ user.first_name }}">
+              <input placeholder="" id="first_name" type="text" class="validate" value="">
               <label for="first_name">Nombre</label>
             </div>
+            <div class="input-field col ">
+              <select class="browser-default">
+                  <option value="" disabled selected>ASIGNAR ROL</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+              </select>
+          </div>
 
             <div class="input-field col s6">
-              <input placeholder="{{ user.last_name }}" id="first_name" type="text" class="validate" value="{{ user.last_name }}">
+              <input placeholder="" id="first_name" type="text" class="validate" value="">
               <label for="first_name">Apellido</label>
             </div>
 
             <div class="input-field col s6">
-              <input id="first_name" type="text" class="validate" value="{{ user.username }}">
+              <input placeholder="" id="first_name" type="text" class="validate" value="">
               <label for="first_name">Usuario</label>
             </div>
 
-            
-  
             <div class="input-field col s6">
-              <input id="first_name" type="text" class="validate" value="{{ user.email }}">
+              <input placeholder="" id="first_name" type="email" class="validate" value="">
               <label for="first_name">Correo electronico</label>
             </div>
-
-            <div class="input-field col s6">
-              <a class="waves-effect waves-light btn grey">Actualizar perfil</a>
-            </div>
-
           </div>
         </form>
+        <div class="row center">
+          <a class="waves-effect waves-light btn black" type="submit">Crear usuario</a>
+      </div>
       </div>
 </div>
 
