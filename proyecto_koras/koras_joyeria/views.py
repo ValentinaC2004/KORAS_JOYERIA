@@ -82,3 +82,17 @@ def Profile(request):
     return render(request, 'koras_joyeria/profile/profile.html')
 
 
+#Administración
+def ListaUsuarios(request):
+    users= User.objects.all()
+    return render(request, 'koras_joyeria/admin/listaUsuarios.html', {'users':users})
+
+def ListaProductos(request):
+    productos= Producto.objects.all()
+    return render(request, 'koras_joyeria/admin/listaProductos.html', {'productos':productos})
+
+def EditarUsuarios(request):
+    return render(request, 'koras_joyeria/admin/edits/editarUsuario.html')
+
+def EditarProductos(request):
+    return render(request, 'koras_joyeria/admin/edits/editarProductos.html')

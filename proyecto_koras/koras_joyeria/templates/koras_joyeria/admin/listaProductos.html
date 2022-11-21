@@ -1,0 +1,45 @@
+{% extends 'koras_joyeria/base/base.html' %}
+{% load static %}
+
+{% block title2 %}Lista de usuarios{% endblock title2 %}
+
+{% block content %}
+<br><br><br><br>
+
+<div class="container">
+    <a href=""> <i class="material-icons black-text small">add</i> </a> 
+    <table class="">
+        <thead>
+          <tr>
+              <th>Imagen del producto</th>
+              <th>Nombre del producto</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Categoria</th>
+              <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <!--ciclo user + profile-->
+            {% for producto in productos %}
+          <tr>
+            <td><img src="{{ producto.foto.url }}" alt="" width="200px"></td>
+            <td>{{ producto.nombre_producto }}</td>
+            <td>{{ producto.precio_producto }}</td>
+            <td>{{ producto.stock }}</td>
+            <td>{{ producto.id_categoria }}</td>
+
+            <td>
+                <a href="{% url 'koras_joyeria:editarProductos' %}"> <i class="material-icons black-text small">edit</i> </a> 
+                <a href=""> <i class="material-icons black-text small">delete</i> </a>
+            </td>
+          </tr>
+          {% endfor %}
+          <!--fin ciclo-->
+    
+        </tbody>
+      </table>
+</div>
+
+{% endblock content %}

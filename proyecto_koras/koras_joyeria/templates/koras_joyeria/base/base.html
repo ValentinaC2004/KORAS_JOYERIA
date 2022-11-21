@@ -77,10 +77,11 @@
                 {% block contentMenu %}
 
                 {% if request.user.is_authenticated %}
-                {% if user.profile.image %}
                 <li><a href="{% url 'koras_joyeria:profile' %}" class="cuenta"><img src="{{ user.profile.image.url }}" class="profile-nav">Perfil</a></li>
-                {% else %}
-                <li><a href="{% url 'koras_joyeria:profileEdit' %}" class="cuenta"><i class="material-icons small">person</i>Personalizar perfil</a></li>
+
+                {% if request.user.profile.rol == 1 %}
+                <li><a href="{% url 'koras_joyeria:listaUsuarios' %}"><i class="material-icons">people</i>Usuarios</a></li>
+                <li><a href="{% url 'koras_joyeria:listaProductos' %}"><i class="material-icons">pie_chart</i>Productos</a></li>
                 {% endif %}
 
                 {% else %}

@@ -1,0 +1,42 @@
+{% extends 'koras_joyeria/base/base.html' %}
+{% load static %}
+
+{% block title2 %}Lista de usuarios{% endblock title2 %}
+
+{% block content %}
+<br><br><br><br>
+
+<div class="container">
+    <a href=""> <i class="material-icons black-text small">add</i> </a> 
+    <table class="centered">
+        <thead>
+          <tr>
+              <th>Foto de perfil</th>
+              <th>Nombre de usuario</th>
+              <th>Correo electronico</th>
+              <th>Rol asignado</th>
+              <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <!--ciclo user + profile-->
+            {% for user in users %}
+          <tr>
+            <td><img src="{{ user.profile.image.url }}" alt="" class="perfil-listauser"></td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.profile.rol }} - {{ user.profile.nombreRol }}</td>
+            <td>
+                <a href="{% url 'koras_joyeria:editarUsuarios' %}"> <i class="material-icons black-text small">edit</i></a> 
+                <a href=""> <i class="material-icons black-text small">delete</i> </a>
+            </td>
+          </tr>
+          {% endfor %}
+          <!--fin ciclo-->
+    
+        </tbody>
+      </table>
+</div>
+
+{% endblock content %}

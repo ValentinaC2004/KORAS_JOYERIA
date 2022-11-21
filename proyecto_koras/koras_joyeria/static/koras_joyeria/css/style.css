@@ -445,3 +445,9 @@ label:active {
 .caja_7:hover .ovrly {
     opacity: 1;
 }
+
+.perfil-listauser{
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+}

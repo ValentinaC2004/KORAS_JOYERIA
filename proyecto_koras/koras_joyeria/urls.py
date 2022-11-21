@@ -30,6 +30,14 @@ urlpatterns = [
     path('profile/', views.Profile, name='profile'),
     path('profileEdit/', views.ProfileEdit, name='profileEdit'),
 
+    #Admin
+    path('listaUsuarios/', views.ListaUsuarios, name='listaUsuarios'),
+    path('listaProductos/', views.ListaProductos, name='listaProductos'),
+    path('editarUsuarios/', views.EditarUsuarios, name='editarUsuarios'),
+    path('editarProductos/', views.EditarProductos, name='editarProductos'),
+    
+
+
 ]
 
 
