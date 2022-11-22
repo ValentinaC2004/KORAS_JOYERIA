@@ -1,3 +1,4 @@
+from os import remove , path
 from urllib import request
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -98,6 +99,14 @@ def ListaCategorias(request):
     categorias = Categoria.objects.all()
     return render(request, 'koras_joyeria/admin/listas/listaCategoria.html', {'categorias':categorias})
 
+def ListaTallas(request):
+    tallas= Talla.objects.all()
+    return render(request, 'koras_joyeria/admin/listas/listaTallas.html', {'tallas':tallas})
+
+def ListaPesos(request):
+    pesos= Peso.objects.all()
+    return render(request, 'koras_joyeria/admin/listas/listaPesos.html', {'pesos':pesos})
+
 
 #EDITAR
 def EditarUsuarios(request):
@@ -106,6 +115,15 @@ def EditarUsuarios(request):
 def EditarProductos(request):
     return render(request, 'koras_joyeria/admin/edits/editarProductos.html')
 
+def EditarCategorias(request):
+    return render(request, 'koras_joyeria/admin/edits/editarCategorias.html')
+
+def EditarTallas(request):
+    return render(request, 'koras_joyeria/admin/edits/editarTallas.html')
+
+def EditarPesos(request):
+    return render(request, 'koras_joyeria/admin/edits/editarPesos.html')
+
 
 #CREAR
 def CrearUsuarios(request):
@@ -113,4 +131,31 @@ def CrearUsuarios(request):
 
 def CrearProductos(request):
     return render(request, 'koras_joyeria/admin/add/crearProductos.html')
+
+def CrearCategorias(request):
+    return render(request, 'koras_joyeria/admin/add/crearCategorias.html')
+
+def CrearPesos(request):
+    return render(request, 'koras_joyeria/admin/add/crearPesos.html')
+
+def CrearTallas(request):
+    return render(request, 'koras_joyeria/admin/add/crearTallas.html')
+
+#VISTA PRODUCTO
+def VistaProducto(request):
+    return render(request, 'koras_joyeria/admin/vista/vistaProductos.html')
+
+#ELIMINAR   -  v
+def EliminarProducto(request):
+    q = Producto.objects.get(pk = id)
+    foto = str(BASE_DIR) + str(q.foto.url)        
+    q.delete()
+    messages.success(request, " eliminado correctamente!.")
+    if path.exists(foto):
+        if q.foto.url != '/uploads/productos/default.png':
+            remove(foto)
+            
+    return render(request, 'koras_joyeria/admin/vista/vistaProductos.html')
+
+
 

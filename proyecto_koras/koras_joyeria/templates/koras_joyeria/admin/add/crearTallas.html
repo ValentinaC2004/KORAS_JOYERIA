@@ -1,0 +1,41 @@
+{% extends 'koras_joyeria/base/base.html' %}
+
+{% load static %}
+
+{% block title2 %}Crear talla{% endblock title2 %}
+
+{% block content %}
+
+<div class="container center">
+    <br><br><br><br>
+    <a href="{% url 'koras_joyeria:listaTallas' %}"><i class="small material-icons left black-text">arrow_back</i></a>
+
+    <div class="row">
+        <form class="col s12" method="post" action="" enctype="multipart/form-data">
+
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="" id="first_name" type="text" class="validate" value="talla">
+              <label for="first_name">Talla</label>
+            </div>
+
+            <div class="row">
+                <select>
+                    <option value="" disabled selected>Seleccione la categoria</option>
+                    #ciclo
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                  </select>
+            </div>
+           
+          </div>
+        </form>
+        <div class="row center">
+          <a class="waves-effect waves-light btn black" type="submit">Crear talla</a>
+      </div>
+      </div>
+</div>
+
+
+{% endblock content %}

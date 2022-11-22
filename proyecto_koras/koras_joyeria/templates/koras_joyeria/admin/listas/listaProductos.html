@@ -1,7 +1,7 @@
 {% extends 'koras_joyeria/base/base.html' %}
 {% load static %}
 
-{% block title2 %}Lista de usuarios{% endblock title2 %}
+{% block title2 %}Lista de productos{% endblock title2 %}
 
 {% block content %}
 <br><br><br><br>
@@ -15,8 +15,8 @@
   <ul id='listas' class='dropdown-content'>
     <li><a href="{% url 'koras_joyeria:listaCategorias' %}" class="black-text">Categorias</a></li>
     <li class="divider" tabindex="-1"></li>
-    <li><a href="#!" class="black-text">Tallas</a></li>
-    <li><a href="#!" class="black-text">Pesos</a></li>
+    <li><a href="{% url 'koras_joyeria:listaTallas' %}" class="black-text">Tallas</a></li>
+    <li><a href="{% url 'koras_joyeria:listaPesos' %}" class="black-text">Pesos</a></li>
   </ul>
 </div>
     <a href="{% url 'koras_joyeria:crearProductos' %}"> <i class="material-icons black-text small">add</i> </a> 
@@ -37,12 +37,11 @@
             <!--ciclo user + profile-->
             {% for producto in productos %}
           <tr>
-            <td><img src="{{ producto.foto.url }}" alt="" width="200px"></td>
+            <td><a href="{% url 'koras_joyeria:vistaProductos' %}"><img src="{{ producto.foto.url }}" alt="" width="200px"></a></td>
             <td>{{ producto.nombre_producto }}</td>
             <td>{{ producto.precio_producto }}</td>
             <td>{{ producto.stock }}</td>
             <td>{{ producto.id_categoria }}</td>
-
             <td>
                 <a href="{% url 'koras_joyeria:editarProductos' %}"> <i class="material-icons black-text small">edit</i> </a> 
                 <a href=""> <i class="material-icons black-text small">delete</i> </a>
@@ -50,7 +49,6 @@
           </tr>
           {% endfor %}
           <!--fin ciclo-->
-    
         </tbody>
       </table>
 </div>

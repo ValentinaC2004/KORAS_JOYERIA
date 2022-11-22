@@ -29,17 +29,26 @@ urlpatterns = [
     #Profile
     path('profile/', views.Profile, name='profile'),
     path('profileEdit/', views.ProfileEdit, name='profileEdit'),
-
     #Admin
     path('listaUsuarios/', views.ListaUsuarios, name='listaUsuarios'),
     path('listaProductos/', views.ListaProductos, name='listaProductos'),
     path('listaCategorias/', views.ListaCategorias, name='listaCategorias'),
+    path('listaTallas/', views.ListaTallas, name='listaTallas'),
+    path('listaPesos/', views.ListaPesos, name='listaPesos'),
 
     path('editarUsuarios/', views.EditarUsuarios, name='editarUsuarios'),
     path('editarProductos/', views.EditarProductos, name='editarProductos'),
+    path('editarCategorias/', views.EditarCategorias, name='editarCategorias'),
+    path('editarTallas/', views.EditarTallas, name='editarTallas'),
+    path('editarPesos/', views.EditarPesos, name='editarPesos'),
 
     path('crearUsuarios/', views.CrearUsuarios, name='crearUsuarios'),
     path('crearProductos/', views.CrearProductos, name='crearProductos'),
+    path('crearCategorias/', views.CrearCategorias, name='crearCategorias'),
+    path('crearPesos/', views.CrearPesos, name='crearPesos'),
+    path('crearTallas/', views.CrearTallas, name='crearTallas'),
+
+    path('vistaProductos/', views.VistaProducto, name='vistaProductos'),
 
 ]
 

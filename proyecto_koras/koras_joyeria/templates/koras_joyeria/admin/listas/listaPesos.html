@@ -1,13 +1,14 @@
 {% extends 'koras_joyeria/base/base.html' %}
 {% load static %}
 
-{% block title2 %}Lista de categorias{% endblock title2 %}
+{% block title2 %}Lista de pesos{% endblock title2 %}
 
 {% block content %}
 <br><br><br><br>
 
 <div class="container">
-  <h4>Lista de categorias</h4>
+
+    <h4>Lista de pesos</h4>
   
   <div class="input-field col s2">
     <a class='dropdown-trigger btn black right' href='#' data-target='listas'>Listar</a>
@@ -16,27 +17,27 @@
   <ul id='listas' class='dropdown-content'>
     <li><a href="{% url 'koras_joyeria:listaProductos' %}" class="black-text">Productos</a></li>
     <li class="divider" tabindex="-1"></li>
+    <li><a href="{% url 'koras_joyeria:listaCategorias' %}" class="black-text">Categoria</a></li>
     <li><a href="{% url 'koras_joyeria:listaTallas' %}" class="black-text">Tallas</a></li>
-    <li><a href="{% url 'koras_joyeria:listaPesos' %}" class="black-text">Pesos</a></li>
   </ul>
 </div>
-    <a href="{% url 'koras_joyeria:crearCategorias' %}"> <i class="material-icons black-text small">add</i> </a> 
+    <a href="{% url 'koras_joyeria:crearPesos' %}"> <i class="material-icons black-text small">add</i> </a> 
     <table class="">
         <thead>
           <tr>
-              <th>Id</th>
+              <th>Peso</th>
               <th>Categoria</th>
           </tr>
         </thead>
 
         <tbody>
             <!--ciclo user + profile-->
-            {% for categoria in categorias %}
+            {% for peso in pesos %}
           <tr>
-            <td>{{ categoria.id_categoria }}</td>
-            <td>{{ categoria.nombre_categoria }}</td>
+            <td>{{ peso.peso }}</td>
+            <td>{{ peso.categoria_id }}</td>
             <td>
-                <a href="{% url 'koras_joyeria:editarCategorias' %}"> <i class="material-icons black-text small">edit</i> </a> 
+                <a href="{% url 'koras_joyeria:editarPesos' %}"> <i class="material-icons black-text small">edit</i> </a> 
                 <a href=""> <i class="material-icons black-text small">delete</i> </a>
             </td>
           </tr>

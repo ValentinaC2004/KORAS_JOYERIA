@@ -37,9 +37,15 @@ class Talla(models.Model):
     talla = models.CharField(max_length=20)
     categoria_id = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
 
+    def __str__(self):
+        return f"{self.talla} - {self.categoria_id}"
+
 class Peso(models.Model):
     peso = models.CharField(max_length=20)
     categoria_id = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return f"{self.peso} - {self.categoria_id}"
 
 class Producto(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
