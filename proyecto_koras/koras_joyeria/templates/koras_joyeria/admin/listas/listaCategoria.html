@@ -7,6 +7,14 @@
 <br><br><br><br>
 
 <div class="container">
+  {% if messages %}
+      {% for message in messages %}
+      <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          {{ message }}
+        </div>
+      {% endfor %}
+      {% endif %}
   <h4>Lista de categorias</h4>
   
   <div class="input-field col s2">
@@ -26,6 +34,8 @@
           <tr>
               <th>Id</th>
               <th>Categoria</th>
+              <th>Editar</th>
+              <th>Eliminar</th>
           </tr>
         </thead>
 
@@ -37,7 +47,9 @@
             <td>{{ categoria.nombre_categoria }}</td>
             <td>
                 <a href="{% url 'koras_joyeria:editarCategorias' %}"> <i class="material-icons black-text small">edit</i> </a> 
-                <a href=""> <i class="material-icons black-text small">delete</i> </a>
+            </td>
+            <td>
+              <a href="{% url 'koras_joyeria:eliminarCategoria' categoria.id %}"> <i class="material-icons black-text small">delete</i></a>
             </td>
           </tr>
           {% endfor %}

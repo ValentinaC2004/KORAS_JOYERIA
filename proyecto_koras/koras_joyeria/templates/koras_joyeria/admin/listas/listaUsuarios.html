@@ -16,7 +16,8 @@
               <th>Nombre de usuario</th>
               <th>Correo electronico</th>
               <th>Rol asignado</th>
-              <th>Acciones</th>
+              <th>Editar</th>
+              <th>Eliminar</th>
           </tr>
         </thead>
 
@@ -30,7 +31,9 @@
             <td>{{ user.profile.rol }} - {{ user.profile.nombreRol }}</td>
             <td>
                 <a href="{% url 'koras_joyeria:editarUsuarios' %}"> <i class="material-icons black-text small">edit</i></a> 
-                <a href=""> <i class="material-icons black-text small">delete</i> </a>
+            </td>
+            <td>
+              <a href="{% url 'koras_joyeria:eliminarUsuario' user.id %}"> <i class="material-icons black-text small">delete</i></a>
             </td>
           </tr>
           {% endfor %}

@@ -27,6 +27,8 @@
           <tr>
               <th>Peso</th>
               <th>Categoria</th>
+              <th>Editar</th>
+              <th>Eliminar</th>
           </tr>
         </thead>
 
@@ -38,7 +40,9 @@
             <td>{{ peso.categoria_id }}</td>
             <td>
                 <a href="{% url 'koras_joyeria:editarPesos' %}"> <i class="material-icons black-text small">edit</i> </a> 
-                <a href=""> <i class="material-icons black-text small">delete</i> </a>
+            </td>
+            <td>
+              <a href="{% url 'koras_joyeria:eliminarPesos' %}"> <i class="material-icons black-text small">delete</i></a>
             </td>
           </tr>
           {% endfor %}

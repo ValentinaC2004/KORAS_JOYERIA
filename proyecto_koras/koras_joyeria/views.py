@@ -1,12 +1,20 @@
 from os import remove , path
 from urllib import request
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.urls import reverse
 from koras_joyeria.models import *
 from koras_joyeria.Carrito import Carrito
 from .forms import UserRegisterForm
+
+from django.core.files.storage import FileSystemStorage
+
+# Captura del path absoluto de este archivo.
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent
+# Obtener rutas de archivos y poder borrarlos
+from os import remove, path
 # Create your views here.
 
 # Diseñar joyeria
@@ -129,8 +137,10 @@ def EditarPesos(request):
 def CrearUsuarios(request):
     return render(request, 'koras_joyeria/admin/add/crearUsuarios.html')
 
+#PLIS
 def CrearProductos(request):
-    return render(request, 'koras_joyeria/admin/add/crearProductos.html')
+    productos = Producto.objects.all()
+    return render(request, 'koras_joyeria/admin/add/crearProductos.html', {'productos':productos})
 
 def CrearCategorias(request):
     return render(request, 'koras_joyeria/admin/add/crearCategorias.html')
@@ -146,16 +156,50 @@ def VistaProducto(request):
     return render(request, 'koras_joyeria/admin/vista/vistaProductos.html')
 
 #ELIMINAR   -  v
-def EliminarProducto(request):
+def EliminarProducto(request, id):
     q = Producto.objects.get(pk = id)
-    foto = str(BASE_DIR) + str(q.foto.url)        
+    foto = str(BASE_DIR) + str(q.foto.url)  
     q.delete()
-    messages.success(request, " eliminado correctamente!.")
+    messages.success(request, "Producto eliminado correctamente!.")
     if path.exists(foto):
-        if q.foto.url != '/uploads/productos/default.png':
+        if q.foto.url != '/uploads/productos/default-productos.jpg':
             remove(foto)
-            
-    return render(request, 'koras_joyeria/admin/vista/vistaProductos.html')
+
+    return HttpResponseRedirect(reverse('koras_joyeria:listaProductos'))
+
+def EliminarCategoria(request,id):
+    q = Categoria.objects.get(pk = id)
+    q.delete()
+    messages.success(request, "Categoria eliminada correctamente!.")
+
+    return HttpResponseRedirect(reverse('koras_joyeria:listaCategorias'))
+
+def EliminarTalla(request,id):
+    q = Talla.objects.get(pk = id)
+    q.delete()
+    messages.success(request, "Talla eliminada correctamente!.")
+
+    return HttpResponseRedirect(reverse('koras_joyeria:listaTallas'))
+
+def EliminarUsuarios(request,id):
+    q = User.objects.get(pk = id)
+    q.delete()
+    messages.success(request, "Usuario eliminado correctamente!.")
+
+    return HttpResponseRedirect(reverse('koras_joyeria:listaUsuarios'))
+
+#ADD
+def guardarProducto(request):
+    q = Producto(
+        nombre_producto = request.POST["nombre_producto"],
+        precio_producto = request.POST["precio_producto"],
+        stock = request.POST["stock"],
+        talla_id = request.POST["talla_id"],
+        peso = request.POST["peso"],
+        id_categoria = request.POST["id_categoria"],
+    )
+
+        
 
 
 

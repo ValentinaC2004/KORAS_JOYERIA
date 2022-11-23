@@ -40,13 +40,6 @@ class Talla(models.Model):
     def __str__(self):
         return f"{self.talla} - {self.categoria_id}"
 
-class Peso(models.Model):
-    peso = models.CharField(max_length=20)
-    categoria_id = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
-
-    def __str__(self):
-        return f"{self.peso} - {self.categoria_id}"
-
 class Producto(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
     nombre_producto = models.CharField(max_length=100)
@@ -59,7 +52,7 @@ class Producto(models.Model):
         (2, "Plateado")
     )
     color = models.SmallIntegerField(choices=COLOR)
-    peso_id = models.ForeignKey(Peso, on_delete=models.DO_NOTHING)
+    peso= models.CharField(max_length=10)
     id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
     foto = models.ImageField(upload_to="productos", default="productos/default-productos.jpg")
 

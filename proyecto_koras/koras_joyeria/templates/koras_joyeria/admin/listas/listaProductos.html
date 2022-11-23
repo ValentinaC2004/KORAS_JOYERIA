@@ -7,6 +7,14 @@
 <br><br><br><br>
 
 <div class="container">
+  {% if messages %}
+      {% for message in messages %}
+      <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          {{ message }}
+        </div>
+      {% endfor %}
+      {% endif %}
   <h4>Productos</h4>
   <div class="input-field col s2">
     <a class='dropdown-trigger btn black right' href='#' data-target='listas'>Listar</a>
@@ -29,7 +37,8 @@
               <th>Precio</th>
               <th>Stock</th>
               <th>Categoria</th>
-              <th>Acciones</th>
+              <th>Editar</th>
+              <th>Eliminar</th>
           </tr>
         </thead>
 
@@ -43,8 +52,10 @@
             <td>{{ producto.stock }}</td>
             <td>{{ producto.id_categoria }}</td>
             <td>
-                <a href="{% url 'koras_joyeria:editarProductos' %}"> <i class="material-icons black-text small">edit</i> </a> 
-                <a href=""> <i class="material-icons black-text small">delete</i> </a>
+                <a href="{% url 'koras_joyeria:editarProductos' %}"> <i class="material-icons black-text small">edit</i></a> 
+            </td>
+            <td>
+              <a href="{% url 'koras_joyeria:eliminarProducto' producto.id %}"> <i class="material-icons black-text small">delete</i></a>
             </td>
           </tr>
           {% endfor %}

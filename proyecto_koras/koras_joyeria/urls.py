@@ -50,6 +50,11 @@ urlpatterns = [
 
     path('vistaProductos/', views.VistaProducto, name='vistaProductos'),
 
+    path('eliminarProducto/<int:id>', views.EliminarProducto, name='eliminarProducto'),
+    path('eliminarCategoria/<int:id>', views.EliminarCategoria, name='eliminarCategoria'),
+    path('eliminarTalla/<int:id>', views.EliminarTalla, name='eliminarTalla'),
+    path('eliminarUsuario/<int:id>', views.EliminarUsuarios, name='eliminarUsuario'),
+
 ]
 
 
