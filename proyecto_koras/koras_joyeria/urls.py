@@ -38,15 +38,21 @@ urlpatterns = [
 
     path('editarUsuarios/', views.EditarUsuarios, name='editarUsuarios'),
     path('editarProductos/', views.EditarProductos, name='editarProductos'),
-    path('editarCategorias/', views.EditarCategorias, name='editarCategorias'),
+    path('editarCategorias/<int:id>', views.EditarCategorias, name='editarCategorias'),
     path('editarTallas/', views.EditarTallas, name='editarTallas'),
     path('editarPesos/', views.EditarPesos, name='editarPesos'),
+
+    path('actualizarCategoria/', views.ActualizarCategoria, name='actualizarCategoria'),
 
     path('crearUsuarios/', views.CrearUsuarios, name='crearUsuarios'),
     path('crearProductos/', views.CrearProductos, name='crearProductos'),
     path('crearCategorias/', views.CrearCategorias, name='crearCategorias'),
     path('crearPesos/', views.CrearPesos, name='crearPesos'),
     path('crearTallas/', views.CrearTallas, name='crearTallas'),
+
+    path('addProductos/', views.addProductos, name='addProductos'),
+    path('addCategorias/', views.addCategorias, name='addCategorias'),
+
 
     path('vistaProductos/', views.VistaProducto, name='vistaProductos'),
 

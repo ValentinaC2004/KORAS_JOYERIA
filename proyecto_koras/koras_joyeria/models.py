@@ -28,17 +28,23 @@ def create_profile(sender, instance,created,**kwargs):
 post_save.connect(create_profile, sender=User)
 
 class Categoria(models.Model):
-    id_categoria = models.IntegerField(unique=True)
     nombre_categoria = models.CharField(max_length=12)
     def __str__(self):
-        return f"{self.id_categoria} - {self.nombre_categoria}"
+        return f"{self.nombre_categoria}"
 
 class Talla(models.Model):
     talla = models.CharField(max_length=20)
-    categoria_id = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+    id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return f"{self.talla} - {self.categoria_id}"
+        return f"{self.talla} - {self.id_categoria}"
+
+class Colore(models.Model):
+    nombre_color = models.CharField(max_length=20)
+    id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return f"{self.nombre_color} - {self.id_categoria}"
 
 class Producto(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
@@ -47,11 +53,7 @@ class Producto(models.Model):
     stock = models.IntegerField()
     desc = models.TextField()
     talla_id = models.ForeignKey(Talla, on_delete=models.DO_NOTHING)
-    COLOR = (
-        (1, "Dorado"),
-        (2, "Plateado")
-    )
-    color = models.SmallIntegerField(choices=COLOR)
+    id_color = models.ForeignKey(Colore, on_delete=models.DO_NOTHING)
     peso= models.CharField(max_length=10)
     id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
     foto = models.ImageField(upload_to="productos", default="productos/default-productos.jpg")
@@ -61,6 +63,7 @@ class Producto(models.Model):
     
     def __str__(self):
         return f"{self.nombre_producto}"
+
 
 class Tipo(models.Model):
     nombre = models.CharField(max_length=100)

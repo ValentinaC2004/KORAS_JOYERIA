@@ -11,18 +11,19 @@
     <a href="{% url 'koras_joyeria:listaCategorias' %}"><i class="small material-icons left black-text">arrow_back</i></a>
 
     <div class="row">
-        <form class="col s12" method="post" action="" enctype="multipart/form-data">
-
+        <form class="col s12" method="post" action="{% url 'koras_joyeria:addCategorias' %}" enctype="multipart/form-data">
+          {% csrf_token %}
           <div class="row">
+
             <div class="input-field col s6">
-              <input placeholder="" id="first_name" type="text" class="validate" value="nombre_categoria">
+              <input placeholder="" id="first_name" type="text" class="validate" value="" name="nombre_categoria">
               <label for="first_name">Nombre de la categoria</label>
             </div>
            
           </div>
+          <button class="waves-effect waves-light btn black" type="submit">Crear categoria</button>
         </form>
         <div class="row center">
-          <a class="waves-effect waves-light btn black" type="submit">Crear categoria</a>
       </div>
       </div>
 </div>

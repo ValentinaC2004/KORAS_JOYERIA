@@ -9,21 +9,21 @@
 <div class="container center">
     <br><br><br><br>
     <a href="{% url 'koras_joyeria:listaCategorias' %}"><i class="small material-icons left black-text">arrow_back</i></a>
-
+    {% csrf_token %}
     <div class="row">
-        <form class="col s12" method="post" action="" enctype="multipart/form-data">
+        <form class="col s12" method="post" action="{% url 'koras_joyeria:actualizarCategoria' %}" enctype="multipart/form-data">
+          <input type="hidden" name="" value="{{ c.id }}" readonly="readonly"/>
 
-          <div class="row">
             <div class="input-field col s6">
-              <input placeholder="" id="first_name" type="text" class="validate" value="nombre_categoria">
+              <input placeholder="{{ c.nombre_categoria }}" id="first_name" type="text" class="validate" value="nombre_categoria">
               <label for="first_name">Nombre de la categoria</label>
             </div>
            
           </div>
+          <div class="row center"> 
+            <a class="waves-effect waves-light btn black" type="submit">Actualizar categoria</a>
+        </div>
         </form>
-        <div class="row center">
-          <a class="waves-effect waves-light btn black" type="submit">Actualizar categoria</a>
-      </div>
       </div>
 </div>
 

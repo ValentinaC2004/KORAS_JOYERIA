@@ -11,7 +11,7 @@
 
     <h4>Nuevo producto</h4>
     <div class="row">
-        <form class="col s12" action="" method="post" enctype="multipart/form-data">
+        <form class="col s12" action="{% url 'koras_joyeria:addProductos' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
                 <div class="input-field col s6">
@@ -20,10 +20,10 @@
                 </div>
 
                 <div class="input-field col s6">
-                    <select class="browser-default">
+                    <select class="browser-default" name="id_categoria" required="required">
                         <option disabled selected>SELECCIONAR CATEGORIA</option>
-                        {% for producto in productos %}
-                        <option>{{ producto.id_categoria }}</option>
+                        {% for c in Categoria %}
+                        <option value="{{ c.id }}"> {{ c.nombre_categoria }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -36,61 +36,60 @@
                         <label for="last_name">Precio del producto</label>
                     </div>
 
-                    <div class="input-field col s6">
-                        <select class="browser-default">
-                            <option value="" disabled selected>SELECCIONAR COLOR</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                        </select>
-                    </div>
+                    
                 </div>
                     
                     <div class="row">
 
                         <div class="input-field col s6">
-                            <select class="browser-default">
-                                <option value="" disabled selected>SELECCIONAR TALLA</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                            <select class="browser-default" required="required" name="talla_id">
+                                <option disabled selected>SELECCIONAR TALLA</option>
+                            
+                                {% for t in Talla %}
+                                <option value="{{ t.id }}"> {{ t.id_categoria }} - {{ t.talla }}</option>
+                                {% endfor %}
+
                             </select>
                         </div>
 
                         <div class="input-field col s6">
-                            <select class="browser-default">
-                                <option value="" disabled selected>SELECCIONAR PESO</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                            <select class="browser-default" name="id_color" required="required">
+                                <option disabled selected>SELECCIONAR COLOR</option>
+                                {% for col in Colore %}
+                                <option value="{{ col.id }}"> {{ col.id_categoria }} {{ col.nombre_color }}</option>
+                                {% endfor %}
                             </select>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input id="last_name" type="number" class="validate" name="peso" required>
+                            <label for="last_name">Ingresar peso</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s6">
-                          <textarea id="textarea1" class="materialize-textarea" required></textarea>
+                          <textarea id="textarea1" class="materialize-textarea" required name="desc"></textarea>
                           <label for="textarea1">Agregar descripción</label>
                         </div>
 
                         <div class="input-field col s6">
-                            <input id="last_name" type="number" class="validate" name="precio_producto" required>
+                            <input id="last_name" type="number" class="validate" name="stock" required>
                             <label for="last_name">Cantidad de productos</label>
                         </div>
-
                       </div>
                 
                 <div class="file-field input-field">
                     <div class="btn grey">
                         <span><i class="material-icons center">add_a_photo</i></span>
-                        <input type="file" multiple>
+                        <input type="file" multiple name="foto">
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text" placeholder="Agregar una imagen del producto">
                     </div>
                 </div>
                 <div class="row center">
-                    <a class="waves-effect waves-light btn black" type="submit">Crear producto</a>
+                    <button class="waves-effect waves-light btn black" type="submit">Crear producto</button>
                 </div>
         </form>
             </div>

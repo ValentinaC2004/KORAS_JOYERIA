@@ -32,8 +32,7 @@
     <table class="">
         <thead>
           <tr>
-              <th>Id</th>
-              <th>Categoria</th>
+              <th>nombre de la categoria</th>
               <th>Editar</th>
               <th>Eliminar</th>
           </tr>
@@ -43,10 +42,9 @@
             <!--ciclo user + profile-->
             {% for categoria in categorias %}
           <tr>
-            <td>{{ categoria.id_categoria }}</td>
             <td>{{ categoria.nombre_categoria }}</td>
             <td>
-                <a href="{% url 'koras_joyeria:editarCategorias' %}"> <i class="material-icons black-text small">edit</i> </a> 
+                <a href="{% url 'koras_joyeria:editarCategorias' categoria.id %}"> <i class="material-icons black-text small">edit</i> </a> 
             </td>
             <td>
               <a href="{% url 'koras_joyeria:eliminarCategoria' categoria.id %}"> <i class="material-icons black-text small">delete</i></a>
