@@ -52,6 +52,7 @@ urlpatterns = [
 
     path('addProductos/', views.addProductos, name='addProductos'),
     path('addCategorias/', views.addCategorias, name='addCategorias'),
+    path('addTallas/', views.addTallas, name='addTallas'),
 
 
     path('vistaProductos/', views.VistaProducto, name='vistaProductos'),

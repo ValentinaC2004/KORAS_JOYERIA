@@ -170,9 +170,22 @@ def CrearPesos(request):
     return render(request, 'koras_joyeria/admin/add/crearPesos.html')
 
 def CrearTallas(request):
-    return render(request, 'koras_joyeria/admin/add/crearTallas.html')
+    c = Categoria.objects.all()
+    t = Talla.objects.all()
+
+    contexto = { "Categoria": c , "Talla":t}
+    return render(request, 'koras_joyeria/admin/add/crearTallas.html', contexto)
 
 #GUARDAR
+def addTallas(request):
+        t = Talla(
+            talla = request.POST["talla"],
+            id_categoria = request.POST["id_categoria"],
+        )
+        t.save()
+        messages.success(request, "Talla creada correctamente!.")
+        return HttpResponseRedirect(reverse('koras_joyeria:listaTallas'))
+
 def addCategorias(request):
         c = Categoria(
             nombre_categoria = request.POST["nombre_categoria"],
