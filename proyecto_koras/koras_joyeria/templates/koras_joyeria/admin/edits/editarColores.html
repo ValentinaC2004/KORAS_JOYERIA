@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title2 %}Editar categoria{% endblock title2 %}
+{% block title2 %}Editar color{% endblock title2 %}
 
 {% block content %}
 
@@ -10,18 +10,18 @@
     <br><br><br><br>
     <a href="{% url 'koras_joyeria:listaCategorias' %}"><i class="small material-icons left black-text">arrow_back</i></a>
     <div class="row">
-        <form class="col s12" method="post" action="{% url 'koras_joyeria:actualizarCategoria' %}" enctype="multipart/form-data">
+        <form class="col s12" method="post" action="#" enctype="multipart/form-data">
           {% csrf_token %}
           <input type="hidden" name="id" value="{{ data.id }}" readonly="readonly"/>
 
             <div class="input-field col s6">
-              <input placeholder=" " id="first_name" type="text" class="validate" value="{{data.nombre_categoria}}" name="nombre_categoria">
+              <input placeholder=" " id="first_name" type="text" class="validate" value="{{data.nombre_color}}" name="nombre_color">
               <label for="first_name"> </label>
             </div>
            
           </div>
           <div class="row center"> 
-            <button class="waves-effect waves-light btn black" type="submit">Actualizar categoria</button>
+            <button class="waves-effect waves-light btn black" type="submit">Actualizar color</button>
         </div>
         </form>
       </div>

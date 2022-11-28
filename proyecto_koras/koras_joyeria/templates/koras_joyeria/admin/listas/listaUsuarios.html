@@ -7,6 +7,14 @@
 <br><br><br><br>
 
 <div class="container">
+  {% if messages %}
+      {% for message in messages %}
+      <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          {{ message }}
+        </div>
+      {% endfor %}
+      {% endif %}
   <h4>Lista de usuarios</h4>
     <a href="{% url 'koras_joyeria:crearUsuarios' %}"> <i class="material-icons black-text small">add</i> </a> 
     <table class="centered">

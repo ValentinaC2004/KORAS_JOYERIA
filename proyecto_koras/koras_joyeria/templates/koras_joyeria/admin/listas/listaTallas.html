@@ -7,6 +7,14 @@
 <br><br><br><br>
 
 <div class="container">
+  {% if messages %}
+      {% for message in messages %}
+      <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          {{ message }}
+        </div>
+      {% endfor %}
+      {% endif %}
 
     <h4>Lista de tallas</h4>
   
@@ -18,7 +26,8 @@
     <li><a href="{% url 'koras_joyeria:listaProductos' %}" class="black-text">Productos</a></li>
     <li class="divider" tabindex="-1"></li>
     <li><a href="{% url 'koras_joyeria:listaCategorias' %}" class="black-text">Categoria</a></li>
-    <li><a href="{% url 'koras_joyeria:listaPesos' %}" class="black-text">Pesos</a></li>
+    <!--<li><a href="{% url 'koras_joyeria:listaPesos' %}" class="black-text">Pesos</a></li>-->
+    <li><a href="{% url 'koras_joyeria:listaColores' %}" class="black-text">Colores</a></li>
   </ul>
 </div>
     <a href="{% url 'koras_joyeria:crearTallas' %}"> <i class="material-icons black-text small">add</i> </a> 
@@ -37,9 +46,9 @@
             {% for talla in tallas %}
           <tr>
             <td>{{ talla.talla }}</td>
-            <td>{{ talla.categoria_id }}</td>
+            <td>{{ talla.id_categoria }}</td>
             <td>
-                <a href="{% url 'koras_joyeria:editarTallas' %}"> <i class="material-icons black-text small">edit</i></a> 
+                <a href="{% url 'koras_joyeria:editarTallas' talla.id %}"> <i class="material-icons black-text small">edit</i></a> 
             </td>
             <td>
               <a href="{% url 'koras_joyeria:eliminarTalla' talla.id %}"> <i class="material-icons black-text small">delete</i></a>

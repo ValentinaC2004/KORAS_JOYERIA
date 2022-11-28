@@ -2,22 +2,22 @@
 
 {% load static %}
 
-{% block title2 %}Crear talla{% endblock title2 %}
+{% block title2 %}Crear colores{% endblock title2 %}
 
 {% block content %}
 
 <div class="container center">
     <br><br><br><br>
-    <a href="{% url 'koras_joyeria:listaTallas' %}"><i class="small material-icons left black-text">arrow_back</i></a>
+    <a href="{% url 'koras_joyeria:listaColores' %}"><i class="small material-icons left black-text">arrow_back</i></a>
 
     <div class="row">
-        <form class="col s12" method="post" action="{% url 'koras_joyeria:addTallas' %}" enctype="multipart/form-data">
+        <form class="col s12" method="post" action="{% url 'koras_joyeria:addColores' %}" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="row">
 
             <div class="input-field col s6">
-              <input placeholder="" id="first_name" type="text" class="validate" value="" name="talla">
-              <label for="first_name">Nombre de la talla</label>
+              <input placeholder="" id="first_name" type="text" class="validate" value="" name="nombre_color">
+              <label for="first_name">Nombre del color</label>
             </div>
 
             <div class="input-field col s6">
@@ -30,7 +30,7 @@
           </div>
            
           </div>
-          <button class="waves-effect waves-light btn black" type="submit">Crear talla</button>
+          <button class="waves-effect waves-light btn black" type="submit">Crear color</button>
         </form>
         <div class="row center">
       </div>

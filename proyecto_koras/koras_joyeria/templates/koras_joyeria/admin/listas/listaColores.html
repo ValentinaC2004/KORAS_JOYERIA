@@ -1,13 +1,13 @@
 {% extends 'koras_joyeria/base/base.html' %}
 {% load static %}
 
-{% block title2 %}Lista de categorias{% endblock title2 %}
+{% block title2 %}Lista de colores{% endblock title2 %}
 
 {% block content %}
 <br><br><br><br>
 
 <div class="container">
-  {% if messages %}
+    {% if messages %}
       {% for message in messages %}
       <div class="alert">
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -15,7 +15,8 @@
         </div>
       {% endfor %}
       {% endif %}
-  <h4>Lista de categorias</h4>
+
+    <h4>Lista de colores</h4>
   
   <div class="input-field col s2">
     <a class='dropdown-trigger btn black right' href='#' data-target='listas'>Listar</a>
@@ -24,16 +25,16 @@
   <ul id='listas' class='dropdown-content'>
     <li><a href="{% url 'koras_joyeria:listaProductos' %}" class="black-text">Productos</a></li>
     <li class="divider" tabindex="-1"></li>
+    <li><a href="{% url 'koras_joyeria:listaCategorias' %}" class="black-text">Categoria</a></li>
     <li><a href="{% url 'koras_joyeria:listaTallas' %}" class="black-text">Tallas</a></li>
-    <!--<li><a href="{% url 'koras_joyeria:listaPesos' %}" class="black-text">Pesos</a></li>-->
-    <li><a href="{% url 'koras_joyeria:listaColores' %}" class="black-text">Colores</a></li>
   </ul>
 </div>
-    <a href="{% url 'koras_joyeria:crearCategorias' %}"> <i class="material-icons black-text small">add</i> </a> 
+    <a href="{% url 'koras_joyeria:crearColores' %}"> <i class="material-icons black-text small">add</i> </a> 
     <table class="">
         <thead>
           <tr>
-              <th>nombre de la categoria</th>
+              <th>nombre del color</th>
+              <th>Categoria</th>
               <th>Editar</th>
               <th>Eliminar</th>
           </tr>
@@ -41,14 +42,15 @@
 
         <tbody>
             <!--ciclo user + profile-->
-            {% for categoria in categorias %}
+            {% for color in colores %}
           <tr>
-            <td>{{ categoria.nombre_categoria }}</td>
+            <td>{{ color.nombre_color }}</td>
+            <td>{{ color.id_categoria }}</td>
             <td>
-                <a href="{% url 'koras_joyeria:editarCategorias' categoria.id %}"> <i class="material-icons black-text small">edit</i> </a> 
+                <a href="{% url 'koras_joyeria:editarColores' color.id %}"> <i class="material-icons black-text small">edit</i> </a> 
             </td>
             <td>
-              <a href="{% url 'koras_joyeria:eliminarCategoria' categoria.id %}"> <i class="material-icons black-text small">delete</i></a>
+              <a href="{% url 'koras_joyeria:eliminarColores' color.id %}"> <i class="material-icons black-text small">delete</i></a>
             </td>
           </tr>
           {% endfor %}

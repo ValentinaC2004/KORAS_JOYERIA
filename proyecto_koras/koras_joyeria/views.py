@@ -114,6 +114,10 @@ def ListaTallas(request):
 def ListaPesos(request):
     return render(request, 'koras_joyeria/admin/listas/listaPesos.html')
 
+def ListaColores(request):
+    colores= Colore.objects.all()
+    return render(request, 'koras_joyeria/admin/listas/listaColores.html', {'colores':colores})
+
 
 #EDITAR
 def EditarUsuarios(request):
@@ -122,13 +126,25 @@ def EditarUsuarios(request):
 def EditarProductos(request):
     return render(request, 'koras_joyeria/admin/edits/editarProductos.html')
 
-def EditarCategorias(request):
+def EditarCategorias(request, id):
     c = Categoria.objects.get(pk = id)
-    contexto = { 'Categoria': c}
+
+    contexto = {'data': c }
+
     return render(request, 'koras_joyeria/admin/edits/editarCategorias.html', contexto)
 
-def EditarTallas(request):
-    return render(request, 'koras_joyeria/admin/edits/editarTallas.html')
+def EditarColores(request, id):
+    col = Colore.objects.get(pk = id)
+
+    contexto = {'data': col }
+
+    return render(request, 'koras_joyeria/admin/edits/editarColores.html', contexto)
+
+def EditarTallas(request, id):
+    t = Talla.objects.get(pk = id)
+    c = Categoria.objects.all()
+    contexto = {'data': t , "Categoria":c}
+    return render(request, 'koras_joyeria/admin/edits/editarTallas.html', contexto)
 
 def EditarPesos(request):
     return render(request, 'koras_joyeria/admin/edits/editarPesos.html')
@@ -147,13 +163,37 @@ def ActualizarCategoria(request):
     c.nombre_categoria = request.POST["nombre_categoria"]
     #actualizamos el objeto en BD.
     c.save()
+    messages.success(request, "Categoria actualizada correctamente!.")
     return HttpResponseRedirect(reverse('koras_joyeria:listaCategorias'))
+
+def ActualizarColores(request):
+    col = Colore.objects.get(pk = request.POST["id"])
+
+    #actualizo los atributos del objeto, por los que viene del form
+    col.nombre_color = request.POST["nombre_color"]
+    #actualizamos el objeto en BD.
+    col.save()
+    messages.success(request, "Color cambiado correctamente!.")
+    return HttpResponseRedirect(reverse('koras_joyeria:listaColores'))
+
+def ActualizarTalla(request):
+    t = Talla.objects.get(pk = request.POST["id"])
+    c = Categoria.objects.get(pk = request.POST["id_categoria"])
+
+    #actualizo los atributos del objeto, por los que viene del form
+    t.talla = request.POST["talla"],
+    t.id_categoria = c,
+    #actualizamos el objeto en BD.
+    t.save()
+    messages.success(request, "Talla actualizada correctamente!.")
+    return HttpResponseRedirect(reverse('koras_joyeria:listaTallas'))
 
 #CREAR
 def CrearUsuarios(request):
     return render(request, 'koras_joyeria/admin/add/crearUsuarios.html')
 
 #PLIS
+
 def CrearProductos(request):
     col = Colore.objects.all()
     p = Producto.objects.all()
@@ -176,11 +216,29 @@ def CrearTallas(request):
     contexto = { "Categoria": c , "Talla":t}
     return render(request, 'koras_joyeria/admin/add/crearTallas.html', contexto)
 
+def CrearColores(request):
+    c = Categoria.objects.all()
+    col = Colore.objects.all()
+
+    contexto = { "Categoria": c , "Colore":col}
+    return render(request, 'koras_joyeria/admin/add/crearColores.html', contexto)
+
 #GUARDAR
+def addColores(request):
+        c = Categoria.objects.get(pk = request.POST["id_categoria"])
+        col = Colore(
+            nombre_color = request.POST["nombre_color"],
+            id_categoria = c
+        )
+        col.save()
+        messages.success(request, "Color creado correctamente!.")
+        return HttpResponseRedirect(reverse('koras_joyeria:listaColores'))
+
 def addTallas(request):
+        c = Categoria.objects.get(pk = request.POST["id_categoria"])
         t = Talla(
             talla = request.POST["talla"],
-            id_categoria = request.POST["id_categoria"],
+            id_categoria = c
         )
         t.save()
         messages.success(request, "Talla creada correctamente!.")
@@ -201,14 +259,16 @@ def addProductos(request):
         file = fss.save("proyecto_koras/uploads/productos/"+f.name, f)
     else:
         file = "proyecto_koras/uploads/productos/default-productos.jpg"
-        c = Categoria.objects.get(pk = request.POST["id"])
+        t = Talla.objects.get(pk = request.POST["talla_id"])
+        col = Colore.objects.get(pk = request.POST["id_color"])
+        c = Categoria.objects.get(pk = request.POST["id_categoria"])
         p = Producto(
             nombre_producto = request.POST["nombre_producto"],
             precio_producto = request.POST["precio_producto"],
             stock = request.POST["stock"],
             desc = request.POST["desc"],
-            talla_id = request.POST["talla_id"],
-            color = request.POST["color"],
+            talla_id = t,
+            id_color = col,
             peso = request.POST["peso"],
             id_categoria = c,
             foto = file
@@ -253,6 +313,13 @@ def EliminarUsuarios(request,id):
     messages.success(request, "Usuario eliminado correctamente!.")
 
     return HttpResponseRedirect(reverse('koras_joyeria:listaUsuarios'))
+
+def EliminarColores(request,id):
+    col = Colore.objects.get(pk = id)
+    col.delete()
+    messages.success(request, "Color eliminado correctamente!.")
+
+    return HttpResponseRedirect(reverse('koras_joyeria:listaColores'))
 
 #ADD
 def guardarProducto(request):

@@ -35,24 +35,30 @@ urlpatterns = [
     path('listaCategorias/', views.ListaCategorias, name='listaCategorias'),
     path('listaTallas/', views.ListaTallas, name='listaTallas'),
     path('listaPesos/', views.ListaPesos, name='listaPesos'),
+    path('listaColores/', views.ListaColores, name='listaColores'),
 
     path('editarUsuarios/', views.EditarUsuarios, name='editarUsuarios'),
     path('editarProductos/', views.EditarProductos, name='editarProductos'),
     path('editarCategorias/<int:id>', views.EditarCategorias, name='editarCategorias'),
-    path('editarTallas/', views.EditarTallas, name='editarTallas'),
+    path('editarTallas/<int:id>', views.EditarTallas, name='editarTallas'),
+    path('editarColores/<int:id>', views.EditarColores, name='editarColores'),
     path('editarPesos/', views.EditarPesos, name='editarPesos'),
 
     path('actualizarCategoria/', views.ActualizarCategoria, name='actualizarCategoria'),
+    path('actualizarTalla/', views.ActualizarTalla, name='actualizarTalla'),
+    path('actualizarColores/', views.ActualizarColores, name='actualizarColores'),
 
     path('crearUsuarios/', views.CrearUsuarios, name='crearUsuarios'),
     path('crearProductos/', views.CrearProductos, name='crearProductos'),
     path('crearCategorias/', views.CrearCategorias, name='crearCategorias'),
     path('crearPesos/', views.CrearPesos, name='crearPesos'),
     path('crearTallas/', views.CrearTallas, name='crearTallas'),
+    path('crearColores/', views.CrearColores, name='crearColores'),
 
     path('addProductos/', views.addProductos, name='addProductos'),
     path('addCategorias/', views.addCategorias, name='addCategorias'),
     path('addTallas/', views.addTallas, name='addTallas'),
+    path('addColores/', views.addColores, name='addColores'),
 
 
     path('vistaProductos/', views.VistaProducto, name='vistaProductos'),
@@ -61,6 +67,7 @@ urlpatterns = [
     path('eliminarCategoria/<int:id>', views.EliminarCategoria, name='eliminarCategoria'),
     path('eliminarTalla/<int:id>', views.EliminarTalla, name='eliminarTalla'),
     path('eliminarUsuario/<int:id>', views.EliminarUsuarios, name='eliminarUsuario'),
+    path('eliminarColores/<int:id>', views.EliminarColores, name='eliminarColores'),
 
 ]
 
