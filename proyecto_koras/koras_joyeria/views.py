@@ -332,6 +332,11 @@ def guardarProducto(request):
         id_categoria = request.POST["id_categoria"],
     )
 
+    #PERSONALIZAR
+def DiseñarAnillos(request):
+    return render(request, 'koras_joyeria/diseñar/diseñar-anillos/diseñar-anillos.html')
+
+
         
 
 
