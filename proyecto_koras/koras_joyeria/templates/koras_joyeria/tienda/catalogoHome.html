@@ -1,0 +1,25 @@
+{% extends 'koras_joyeria/base/base.html' %}
+{% load static %}
+
+{% block title2 %}Catalogo{% endblock title2 %}
+
+{% block content %} 
+<br><br>
+<div class="container">
+<div class="cards-list">
+
+  {% for categoria in categorias %}
+  <a href="{% url 'koras_joyeria:mostrarCatalogo' %}">
+    <div class="cardd 1">
+      <div class="card_imagen"> <img src="{{ categoria.foto.url }}" /> </div>
+      <div class="card_title title-white">
+        <p>{{ categoria.nombre_categoria }}</p>
+      </div>
+    </div>
+  </a>
+    {% endfor %}
+    
+    
+    </div>
+  </div>
+{% endblock %}

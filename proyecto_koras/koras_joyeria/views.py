@@ -19,6 +19,14 @@ from os import remove, path
 
 # Diseñar joyeria
 
+def mostrarCatalogo(request):
+    productos = Producto.objects.all()
+    return render(request, 'koras_joyeria/tienda/mostrarCatalogo.html', {'productos':productos})
+
+def CatalogoHome(request):
+    categorias = Categoria.objects.all()
+    return render(request, 'koras_joyeria/tienda/catalogoHome.html', {'categorias':categorias})
+
 def diseñarHome(request):
     return render(request, 'koras_joyeria/diseñar/diseñarHome.html')
 
@@ -91,7 +99,6 @@ def Registro(request):
 
 def Profile(request):
     return render(request, 'koras_joyeria/profile/profile.html')
-
 
 #Administración
 #LISTAS
@@ -256,9 +263,9 @@ def addProductos(request):
     if request.FILES:
         fss = FileSystemStorage()
         f = request.FILES["foto"]
-        file = fss.save("proyecto_koras/uploads/productos/"+f.name, f)
+        file = fss.save("proyecto_koras/productos/"+f.name, f)
     else:
-        file = "proyecto_koras/uploads/productos/default-productos.jpg"
+        file = "proyecto_koras/productos/default-productos.jpg"
         t = Talla.objects.get(pk = request.POST["talla_id"])
         col = Colore.objects.get(pk = request.POST["id_color"])
         c = Categoria.objects.get(pk = request.POST["id_categoria"])

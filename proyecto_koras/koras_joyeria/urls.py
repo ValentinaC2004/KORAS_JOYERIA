@@ -15,6 +15,7 @@ urlpatterns = [
     path('registro/', views.Registro , name='registro'),
     path('inicio/', LoginView.as_view(template_name='koras_joyeria/ingreso/inicio.html'), name='inicio'),
     path('logout/', LogoutView.as_view(template_name='koras_joyeria/ingreso/logout.html'), name='logout'),
+
     #Tienda
     path('verCarrito/', views.VerCarrito, name='verCarrito'),
     path('carritoCompra/', views.carritoCompra, name='carritoCompra'),
@@ -26,6 +27,10 @@ urlpatterns = [
     path('eliminar/<int:producto_id>', views.eliminar_producto, name='Remove'),
     path('restar/<int:producto_id>', views.restar_producto, name='Sub'),
     path('limpiar/', views.limpiar_carrito, name='CLS'),
+
+    path('catalogoHome/', views.CatalogoHome, name='catalogoHome'),
+    path('mostrarCatalogo/', views.mostrarCatalogo, name='mostrarCatalogo'),
+
     #Profile
     path('profile/', views.Profile, name='profile'),
     path('profileEdit/', views.ProfileEdit, name='profileEdit'),

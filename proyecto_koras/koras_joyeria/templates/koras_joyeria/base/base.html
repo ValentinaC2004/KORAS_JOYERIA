@@ -33,14 +33,17 @@
             
             {% if request.user.is_authenticated %}
             <div>
-            
-                <a class='dropdown-trigger right micuenta' href='#' data-target='micuenta'><img src="{{ user.profile.image.url }}" class="profile-navbar right"></a>
-               
+                <a class='dropdown-trigger right micuenta' href='#' onclick="M.toast({html: '{{ user.first_name }} {{ user.last_name }} ({{ user.username }} ) <br> {{ user.email }}  <a> Editar Perfil</a> '})"><img src="{{ user.profile.image.url }}" class="profile-navbar right"></a>
+               <!--data-target='micuenta'-->
         </div>
+
+        
+        <!--
                 <ul id='micuenta' class='dropdown-content'>
                     <li><a href="{% url 'koras_joyeria:profileEdit' %}">Editar</a></li>
                     <li><a href=""><i class="material-icons">power_settings_new</i></a></li>
                   </ul>
+                  -->
                   {% endif %}
 
             <a class="waves-effect waves-light  modal-trigger right" href="#carrito">
@@ -48,21 +51,21 @@
                     shopping_bag
                     </span>
             </a>
+
+            <div id="carrito" class="modal">
+                <div class="modal-content">
+                   <div class="col-6">
+                    {% include "koras_joyeria/tienda/ver-carrito.html" %}
+                   </div>
+                    
+                </div>
+                <div class="modal-footer">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
+                </div>
+              </div>
     </div>
 </header>
 {% endblock headerBase %}
-
-<div id="carrito" class="modal">
-    <div class="modal-content">
-       <div class="col-6">
-        {% include "koras_joyeria/tienda/ver-carrito.html" %}
-       </div>
-        
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
-    </div>
-  </div>
 
             <ul id="menu-side" class="sidenav">
                 <li><div class="user-view">
@@ -80,20 +83,20 @@
                 <li><a href="{% url 'koras_joyeria:profile' %}" class="cuenta"><img src="{{ user.profile.image.url }}" class="profile-nav">Perfil</a></li>
 
                 {% if request.user.profile.rol == 1 %}
-                <li><a href="{% url 'koras_joyeria:listaUsuarios' %}"><i class="material-icons">people</i>Usuarios</a></li>
-                <li><a href="{% url 'koras_joyeria:listaProductos' %}"><i class="material-icons">pie_chart</i>Productos</a></li>
+                <li><a href="{% url 'koras_joyeria:listaUsuarios' %}"><i class="material-icons black-text">people</i>Usuarios</a></li>
+                <li><a href="{% url 'koras_joyeria:listaProductos' %}"><i class="material-icons black-text">pie_chart</i>Productos</a></li>
                 {% endif %}
 
                 {% else %}
-                <li><a href="{% url 'koras_joyeria:registro' %}"><i class="material-icons">perm_identity</i>Registrarse</a></li>
-                <li><a href="{% url 'koras_joyeria:inicio' %}"><i class="material-icons">person</i>Iniciar sesión</a></li>
+                <li><a href="{% url 'koras_joyeria:registro' %}"><i class="material-icons black-text">perm_identity</i>Registrarse</a></li>
+                <li><a href="{% url 'koras_joyeria:inicio' %}"><i class="material-icons black-text">person</i>Iniciar sesión</a></li>
                 {% endif %}
 
-                <li><a href="{% url 'koras_joyeria:home' %}"><i class="material-icons">home</i>Acerca de Koras Joyería</a></li>
-                <li><a href="{% url 'koras_joyeria:tienda' %}"><i class="material-icons">store</i>Tienda</a></li>
-                <li><a href="{% url 'koras_joyeria:carritoCompra' %}"><i class="material-icons">shopping_cart</i>Mi carrito de compras</a></li>
+                <li><a href="{% url 'koras_joyeria:home' %}"><i class="material-icons black-text">home</i>Acerca de Koras Joyería</a></li>
+                <li><a href="{% url 'koras_joyeria:tienda' %}"><i class="material-icons black-text">store</i>Tienda</a></li>
+                <li><a href="{% url 'koras_joyeria:carritoCompra' %}"><i class="material-icons black-text">shopping_cart</i>Mi carrito de compras</a></li>
 
-                <li><a class='dropdown-trigger' href='#' data-target='dropdown1'><i class="material-icons">view_module</i>Catálogo</a></li>
+                <li><a class='dropdown-trigger' href="{% url 'koras_joyeria:catalogoHome' %}" data-target='dropdown1'><i class="material-icons black-text">view_module</i>Catálogo</a></li>
                 <ul id='dropdown1' class='dropdown-content'>
                     <li><a href="#!">Cadenas</a></li>
                     <li><a href="#!">Relojes</a></li>
@@ -102,22 +105,13 @@
                     <li class="divider" tabindex="-1"></li>
                     <li><a href="#!"><i class="material-icons">view_module</i>Matrimonio</a></li>
                   </ul>
-
-                  <li><a class='dropdown-trigger' href='#' data-target='dropdown2'><i class="material-icons">brush</i>Crea prediseños</a></li>
-                <ul id='dropdown2' class='dropdown-content'>
-                    <li><a href="#!">p1</a></li>
-                    <li><a href="#!">p2</a></li>
-                    <li class="divider" tabindex="-1"></li>
-                    <li><a href="#!">p3</a></li>
-                    <li><a href="#!"><i class="material-icons">view_module</i>p4</a></li>
-                    <li><a href="#!"><i class="material-icons">cloud</i>p5</a>p5</li>
-                  </ul>
+                  <li><a href="{% url 'koras_joyeria:diseñarHome' %}"><i class="material-icons black-text">brush</i>Crear prediseños</a></li>
 
                 <li><div class="divider"></div></li> 
 
-                <li><a href="{% url 'koras_joyeria:inquietudes' %}"><i class="material-icons">question_answer</i>Dudas o inquietudes</a></li>
+                <li><a href="{% url 'koras_joyeria:inquietudes' %}"><i class="material-icons black-text">question_answer</i>Dudas o inquietudes</a></li>
 
-                <li><a href=""><i class="material-icons">connect_without_contact</i>Contáctenos</a></li>
+                <li><a href=""><i class="material-icons black-text">connect_without_contact</i>Contáctenos</a></li>
 
                 <li><a class='dropdown-trigger' href='#' data-target='dropdown3'>Contáctenos</a></li>
                 <ul id='dropdown3' class='dropdown-content'>
@@ -128,7 +122,7 @@
                   </ul>
 
                   {% if request.user.is_authenticated %}
-                <li><a href="{% url 'koras_joyeria:logout' %}"><i class="material-icons">power_settings_new</i>Cerrar sesión</a></li>
+                <li><a href="{% url 'koras_joyeria:logout' %}"><i class="material-icons black-text">power_settings_new</i>Cerrar sesión</a></li>
                 {% endif %}
 
                 {% endblock contentMenu %}

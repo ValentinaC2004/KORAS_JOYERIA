@@ -10,7 +10,7 @@
   {% block headerBase %}  {% endblock headerBase %}
 
   <div class="flex-registro">
-    <a href=""><i class="medium material-icons left black-text">arrow_back</i></a>
+    <a href="{% url 'koras_joyeria:registro' %}"><i class="medium material-icons left black-text">arrow_back</i></a>
     <div class="formRegistro">
       {% if request.user.is_athenticated %}
       <h1>Sesión iniciada</h1>
@@ -29,7 +29,9 @@
       <h5>Iniciar sesión</h5>
       <form action="" method="POST">
         {% csrf_token %}
-
+        {{ form.as_p }}
+        
+        <!--
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" type="text" class="validate" name="username">
@@ -41,9 +43,12 @@
           <input id="icon_prefix" type="password" class="validate" name="password">
           <label for="icon_prefix">Contraseña</label>
         </div>
+  </div>
+-->
   
         <button class="waves-effect waves-light btn #424242 grey" type="submit" id="submit">INICIAR SESIÓN</button>
       </form>
+
       <br>
       <a href="{% url 'koras_joyeria:registro' %}" class="black-text link-inicio">No tienes una cuenta?</a>
       {% endif %}

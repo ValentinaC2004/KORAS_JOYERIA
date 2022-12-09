@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.html import format_html 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from koras_joyeria.models import Producto,Profile, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, Talla, SizeP, Empleado, Tipo, Colore, UserRegisterForm
+from koras_joyeria.models import Categoria, Producto,Profile, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, Talla, SizeP, Empleado, Tipo, Colore, UserRegisterForm
 # Register your models here.
 
 #class UserRegisterFormAdmin(UserAdmin):
@@ -12,6 +12,12 @@ from koras_joyeria.models import Producto,Profile, Compra, CompraDetalle, MarcoP
       # (None, {'fields': ('first_name', 'last_name', 'username','email')}),
    #)
     #fieldsets = UserAdmin.fieldsets
+
+class CategoriaAdmin(admin.ModelAdmin):
+    def imagen(self, obj):
+        return format_html('<img src="{}" width="110px"/>'.format(obj.foto.url))
+
+    list_display = ('imagen','nombre_categoria')
 
 class ColoreAdmin(admin.ModelAdmin):
     list_display = ('nombre_color','id_categoria')
@@ -54,5 +60,7 @@ admin.site.register(CompraDetalle,CompraDetalleAdmin)
 admin.site.register(Tipo)
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Colore, ColoreAdmin)
+
+admin.site.register(Categoria, CategoriaAdmin)
 #admin.site.register(UserRegisterForm, UserRegisterFormAdmin)
 
