@@ -3,6 +3,38 @@
 
 {% block title2 %}Lista de pesos{% endblock title2 %}
 
+
+{% block alert %}
+{% if messages %}
+{% for m in messages %}
+<script>
+    Swal.fire({
+      "title":"Peso creado",
+      "text":"{{m}}",
+      "icon":"success"
+    });
+</script>
+
+{% endfor %}
+{% endif %}
+
+<script>
+  function eliminarPeso(id) {
+    Swal.fire({
+      "title":"¿Estas seguro de eliminar?",
+      "text":"Esta acción no se puede deshacer",
+      "icon":"warning",
+      "showCancelButton":true,
+      "cancelButtonText":"No, Cancelar",
+      "confirmButtonText":"Si, eliminar",
+      "reverseButtons":true,
+      "confirmButtonColor":"darkred"
+    });
+     
+    }
+</script>
+{% endblock alert %}
+
 {% block content %}
 <br><br><br><br>
 
@@ -42,7 +74,8 @@
                 <a href="{% url 'koras_joyeria:editarPesos' %}"> <i class="material-icons black-text small">edit</i> </a> 
             </td>
             <td>
-              <a href="{% url 'koras_joyeria:eliminarPesos' %}"> <i class="material-icons black-text small">delete</i></a>
+              <!--href="{% url 'koras_joyeria:eliminarColores' color.id %}"-->
+              <a onclick="eliminarPeso({{ peso.id }})"> <i class="material-icons dl small">delete</i></a>
             </td>
           </tr>
           {% endfor %}

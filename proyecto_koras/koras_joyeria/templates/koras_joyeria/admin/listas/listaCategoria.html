@@ -3,18 +3,49 @@
 
 {% block title2 %}Lista de categorias{% endblock title2 %}
 
+{% block alert %}
+{% if messages %}
+{% for m in messages %}
+<script>
+    Swal.fire({
+      "title":"Felicidades",
+      "text":"{{m}}",
+      "icon":"success"
+    });
+</script>
+
+{% endfor %}
+{% endif %}
+
+<script>
+  function eliminarCategoria(id) {
+    Swal.fire({
+      "title":"¿Estas seguro de eliminar?",
+      "text":"Esta acción no se puede deshacer",
+      "icon":"warning",
+      "showCancelButton":true,
+      "cancelButtonText":"No, Cancelar",
+      "confirmButtonText":"Si, eliminar",
+      "reverseButtons":true,
+      "confirmButtonColor":"darkred"
+    })
+    
+    .then(function(result) {
+      if(result.isConfirmed) {
+        window.location.href = "/eliminarCategoria/"+id
+      }
+    })
+     
+    }
+</script>
+{% endblock alert %}
+
 {% block content %}
+
 <br><br><br><br>
 
 <div class="container">
-  {% if messages %}
-      {% for message in messages %}
-      <div class="alert">
-          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-          {{ message }}
-        </div>
-      {% endfor %}
-      {% endif %}
+  
   <h4>Lista de categorias</h4>
   
   <div class="input-field col s2">
@@ -48,7 +79,7 @@
                 <a href="{% url 'koras_joyeria:editarCategorias' categoria.id %}"> <i class="material-icons black-text small">edit</i> </a> 
             </td>
             <td>
-              <a href="{% url 'koras_joyeria:eliminarCategoria' categoria.id %}"> <i class="material-icons black-text small">delete</i></a>
+              <a onclick="eliminarCategoria({{ categoria.id }})"> <i class="material-icons small dl">delete</i></a>
             </td>
           </tr>
           {% endfor %}

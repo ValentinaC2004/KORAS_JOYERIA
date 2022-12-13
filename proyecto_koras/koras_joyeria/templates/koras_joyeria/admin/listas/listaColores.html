@@ -3,18 +3,48 @@
 
 {% block title2 %}Lista de colores{% endblock title2 %}
 
+
+{% block alert %}
+{% if messages %}
+{% for m in messages %}
+<script>
+    Swal.fire({
+      "title":"Felicidades",
+      "text":"{{m}}",
+      "icon":"success"
+    });
+</script>
+
+{% endfor %}
+{% endif %}
+
+<script>
+  function eliminarColor(id) {
+    Swal.fire({
+      "title":"¿Estas seguro de eliminar?",
+      "text":"Esta acción no se puede deshacer",
+      "icon":"warning",
+      "showCancelButton":true,
+      "cancelButtonText":"No, Cancelar",
+      "confirmButtonText":"Si, eliminar",
+      "reverseButtons":true,
+      "confirmButtonColor":"darkred"
+    })
+    .then(function(result) {
+      if(result.isConfirmed) {
+        window.location.href = "/eliminarColores/"+id
+      }
+    })
+     
+    }
+</script>
+{% endblock alert %}
+
 {% block content %}
 <br><br><br><br>
 
 <div class="container">
-    {% if messages %}
-      {% for message in messages %}
-      <div class="alert">
-          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-          {{ message }}
-        </div>
-      {% endfor %}
-      {% endif %}
+   
 
     <h4>Lista de colores</h4>
   
@@ -50,7 +80,8 @@
                 <a href="{% url 'koras_joyeria:editarColores' color.id %}"> <i class="material-icons black-text small">edit</i> </a> 
             </td>
             <td>
-              <a href="{% url 'koras_joyeria:eliminarColores' color.id %}"> <i class="material-icons black-text small">delete</i></a>
+              <!--href="{% url 'koras_joyeria:eliminarColores' color.id %}"-->
+              <a onclick="eliminarColor({{ color.id }})" > <i class="material-icons dl small">delete</i></a>
             </td>
           </tr>
           {% endfor %}

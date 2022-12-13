@@ -3,18 +3,43 @@
 
 {% block title2 %}Lista de usuarios{% endblock title2 %}
 
+
+{% block alert %}
+{% if messages %}
+{% for m in messages %}
+<script>
+    Swal.fire({
+      "title":"Usuario creado",
+      "text":"{{m}}",
+      "icon":"success"
+    });
+</script>
+
+{% endfor %}
+{% endif %}
+
+<script>
+  function eliminarUsuario(id) {
+    Swal.fire({
+      "title":"¿Estas seguro de eliminar?",
+      "text":"Esta acción no se puede deshacer",
+      "icon":"warning",
+      "showCancelButton":true,
+      "cancelButtonText":"No, Cancelar",
+      "confirmButtonText":"Si, eliminar",
+      "reverseButtons":true,
+      "confirmButtonColor":"darkred"
+    });
+     
+    }
+</script>
+{% endblock alert %}
+
 {% block content %}
 <br><br><br><br>
 
 <div class="container">
-  {% if messages %}
-      {% for message in messages %}
-      <div class="alert">
-          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-          {{ message }}
-        </div>
-      {% endfor %}
-      {% endif %}
+ 
   <h4>Lista de usuarios</h4>
     <a href="{% url 'koras_joyeria:crearUsuarios' %}"> <i class="material-icons black-text small">add</i> </a> 
     <table class="centered">
@@ -41,7 +66,8 @@
                 <a href="{% url 'koras_joyeria:editarUsuarios' %}"> <i class="material-icons black-text small">edit</i></a> 
             </td>
             <td>
-              <a href="{% url 'koras_joyeria:eliminarUsuario' user.id %}"> <i class="material-icons black-text small">delete</i></a>
+              <!--href="{% url 'koras_joyeria:eliminarColores' color.id %}"-->
+              <a onclick="eliminarUsuario({{ producto.id }})"> <i class="material-icons dl small">delete</i></a>
             </td>
           </tr>
           {% endfor %}

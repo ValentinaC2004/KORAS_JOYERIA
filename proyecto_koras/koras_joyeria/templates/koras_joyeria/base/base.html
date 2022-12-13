@@ -25,7 +25,7 @@
     <title>{% block title1 %}Koras Joyeria - {% endblock title1 %} {% block title2 %} ... {% endblock title2 %} </title>
 </head>
 <body>
-    {% block headerBase %}
+   
     <header class="header">
      
         <div class="menu-nav">
@@ -33,18 +33,9 @@
             
             {% if request.user.is_authenticated %}
             <div>
-                <a class='dropdown-trigger right micuenta' href='#' onclick="M.toast({html: '{{ user.first_name }} {{ user.last_name }} ({{ user.username }} ) <br> {{ user.email }}  <a> Editar Perfil</a> '})"><img src="{{ user.profile.image.url }}" class="profile-navbar right"></a>
-               <!--data-target='micuenta'-->
+                <a class='right micuenta' onclick="M.toast({html: '{{ user.first_name }} {{ user.last_name }} ({{ user.username }} ) <br> {{ user.email }}'})"><img src="{{ user.profile.image.url }}" class="profile-navbar right"></a>
         </div>
-
-        
-        <!--
-                <ul id='micuenta' class='dropdown-content'>
-                    <li><a href="{% url 'koras_joyeria:profileEdit' %}">Editar</a></li>
-                    <li><a href=""><i class="material-icons">power_settings_new</i></a></li>
-                  </ul>
-                  -->
-                  {% endif %}
+        {% endif %}
 
             <a class="waves-effect waves-light  modal-trigger right" href="#carrito">
                 <span class="material-icons right black-text small">
@@ -65,7 +56,7 @@
               </div>
     </div>
 </header>
-{% endblock headerBase %}
+
 
             <ul id="menu-side" class="sidenav">
                 <li><div class="user-view">
@@ -73,23 +64,18 @@
                     <img src="{% static 'koras_joyeria/img/font-joyas.jpg' %}" width="100%">
                   </div>
                   <a href="#user"><img src="{% static 'koras_joyeria/img/logo.png' %}" class="logo-menu"></a>
-                  <a href="#name"><span class="white-text name"> {% block nombreMenu %} {% endblock nombreMenu %} </span></a>
-                  <a href="#email"><span class="white-text email">{% block emailMenu %}{% endblock emailMenu %}</span></a>
                 </div></li>
-
-                {% block contentMenu %}
 
                 {% if request.user.is_authenticated %}
                 <li><a href="{% url 'koras_joyeria:profile' %}" class="cuenta"><img src="{{ user.profile.image.url }}" class="profile-nav">Perfil</a></li>
+                {% else %}
+                <li><a href="{% url 'koras_joyeria:registro' %}"><i class="material-icons black-text">perm_identity</i>Registrarse</a></li>
+                <li><a href="{% url 'koras_joyeria:inicio' %}"><i class="material-icons black-text">person</i>Iniciar sesión</a></li>
+                {% endif %}
 
                 {% if request.user.profile.rol == 1 %}
                 <li><a href="{% url 'koras_joyeria:listaUsuarios' %}"><i class="material-icons black-text">people</i>Usuarios</a></li>
                 <li><a href="{% url 'koras_joyeria:listaProductos' %}"><i class="material-icons black-text">pie_chart</i>Productos</a></li>
-                {% endif %}
-
-                {% else %}
-                <li><a href="{% url 'koras_joyeria:registro' %}"><i class="material-icons black-text">perm_identity</i>Registrarse</a></li>
-                <li><a href="{% url 'koras_joyeria:inicio' %}"><i class="material-icons black-text">person</i>Iniciar sesión</a></li>
                 {% endif %}
 
                 <li><a href="{% url 'koras_joyeria:home' %}"><i class="material-icons black-text">home</i>Acerca de Koras Joyería</a></li>
@@ -122,18 +108,16 @@
                   </ul>
 
                   {% if request.user.is_authenticated %}
-                <li><a href="{% url 'koras_joyeria:logout' %}"><i class="material-icons black-text">power_settings_new</i>Cerrar sesión</a></li>
-                {% endif %}
-
-                {% endblock contentMenu %}
+                  <li><a href="{% url 'koras_joyeria:logout' %}"><i class="material-icons black-text">power_settings_new</i>Cerrar sesión</a></li>
+                  {% endif %}
 
               </ul>
 
-    <br><br><br><br>
+              <br><br><br><br>
 
     {% block content %}
     
-    {% endblock %}
+    {% endblock content %}
 <br><br><br><br>
 
     <footer class="page-footer #212121 grey darken-4">
@@ -207,6 +191,9 @@
         var elems = document.querySelectorAll('.slider');
         var instances = M.Slider.init(elems);
 
+        var elems = document.querySelectorAll('.slides');
+        var instances = M.Slider.init(elems);
+
         var elems = document.querySelectorAll('.scrollspy');
         var instances = M.ScrollSpy.init(elems);
 
@@ -218,6 +205,7 @@
         toastInstance.dismiss();
 
     });
+
     </script>
     
     <!--Modificar-->
@@ -239,14 +227,10 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!--
-    {% if messages %}
-    {% for m in messages %}
-    <script>
-        Swal.fire('{{m}}')
-    </script>
-    {% endfor %}
-    {% endif %}
--->
+
+    {% block alert %}
+    
+    {% endblock alert %}
+
 </body>
 </html>

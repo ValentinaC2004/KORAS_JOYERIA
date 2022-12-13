@@ -31,7 +31,6 @@ def diseñarHome(request):
     return render(request, 'koras_joyeria/diseñar/diseñarHome.html')
 
 # Profile
-
 def ProfileEdit(request):
     return render(request, 'koras_joyeria/profile/profile-edit.html')
 
@@ -256,7 +255,7 @@ def addCategorias(request):
             nombre_categoria = request.POST["nombre_categoria"],
         )
         c.save()
-        messages.success(request, "Categoria creada correctamente!.")
+        messages.success(request, "La categoria a sido creada correctamente!.")
         return HttpResponseRedirect(reverse('koras_joyeria:listaCategorias'))
 
 def addProductos(request):
