@@ -64,6 +64,7 @@
     <table class="">
         <thead>
           <tr>
+            <th>Imagen</th>
               <th>nombre de la categoria</th>
               <th>Editar</th>
               <th>Eliminar</th>
@@ -74,6 +75,7 @@
             <!--ciclo user + profile-->
             {% for categoria in categorias %}
           <tr>
+            <td><img src="{{ categoria.foto.url }}" alt="" width="200px"></td>
             <td>{{ categoria.nombre_categoria }}</td>
             <td>
                 <a href="{% url 'koras_joyeria:editarCategorias' categoria.id %}"> <i class="material-icons black-text small">edit</i> </a> 

@@ -223,18 +223,14 @@ def CrearTallas(request):
     return render(request, 'koras_joyeria/admin/add/crearTallas.html', contexto)
 
 def CrearColores(request):
-    c = Categoria.objects.all()
     col = Colore.objects.all()
-
-    contexto = { "Categoria": c , "Colore":col}
+    contexto = { "Colore":col}
     return render(request, 'koras_joyeria/admin/add/crearColores.html', contexto)
 
 #GUARDAR
 def addColores(request):
-        c = Categoria.objects.get(pk = request.POST["id_categoria"])
         col = Colore(
             nombre_color = request.POST["nombre_color"],
-            id_categoria = c
         )
         col.save()
         messages.success(request, "Color creado correctamente!.")
@@ -251,8 +247,15 @@ def addTallas(request):
         return HttpResponseRedirect(reverse('koras_joyeria:listaTallas'))
 
 def addCategorias(request):
+    if request.FILES:
+        fss = FileSystemStorage()
+        f = request.FILES["foto"]
+        file = fss.save("proyecto_koras/categorias/"+f.name, f)
+    else:
+        file = "proyecto_koras/categorias/fontcategoria-default.jpg"
         c = Categoria(
             nombre_categoria = request.POST["nombre_categoria"],
+            foto = file
         )
         c.save()
         messages.success(request, "La categoria a sido creada correctamente!.")

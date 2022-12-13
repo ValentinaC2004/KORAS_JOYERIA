@@ -19,9 +19,6 @@ class CategoriaAdmin(admin.ModelAdmin):
 
     list_display = ('imagen','nombre_categoria')
 
-class ColoreAdmin(admin.ModelAdmin):
-    list_display = ('nombre_color','id_categoria')
-
 class TallaAdmin(admin.ModelAdmin):
     list_display = ('talla','id_categoria')
 
@@ -59,8 +56,7 @@ admin.site.register(Compra,CompraAdmin)
 admin.site.register(CompraDetalle,CompraDetalleAdmin)
 admin.site.register(Tipo)
 admin.site.register(Profile, ProfileAdmin)
-admin.site.register(Colore, ColoreAdmin)
-
+admin.site.register(Colore)
 admin.site.register(Categoria, CategoriaAdmin)
 #admin.site.register(UserRegisterForm, UserRegisterFormAdmin)
 

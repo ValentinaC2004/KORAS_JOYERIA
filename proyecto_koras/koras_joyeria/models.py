@@ -44,8 +44,7 @@ class Talla(models.Model):
 
 class Colore(models.Model):
     nombre_color = models.CharField(max_length=20)
-    id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
-
+  
     def __str__(self):
         return f"{self.nombre_color} - {self.id_categoria}"
 

@@ -16,11 +16,21 @@
           <div class="row">
 
             <div class="input-field col s6">
-              <input placeholder="" id="first_name" type="text" class="validate" value="" name="nombre_categoria">
+              <input placeholder="" type="text" class="validate" value="" name="nombre_categoria">
               <label for="first_name">Nombre de la categoria</label>
             </div>
-           
+
           </div>
+
+          <div class="file-field input-field">
+            <div class="btn grey">
+                <span><i class="material-icons center">add_a_photo</i></span>
+                <input type="file" multiple name="foto" accept="image/*">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Agregar una imagen para la categoria">
+            </div>
+        </div>
           <button class="waves-effect waves-light btn black" type="submit">Crear categoria</button>
         </form>
         <div class="row center">

@@ -64,7 +64,6 @@
         <thead>
           <tr>
               <th>nombre del color</th>
-              <th>Categoria</th>
               <th>Editar</th>
               <th>Eliminar</th>
           </tr>
@@ -75,7 +74,7 @@
             {% for color in colores %}
           <tr>
             <td>{{ color.nombre_color }}</td>
-            <td>{{ color.id_categoria }}</td>
+            
             <td>
                 <a href="{% url 'koras_joyeria:editarColores' color.id %}"> <i class="material-icons black-text small">edit</i> </a> 
             </td>
