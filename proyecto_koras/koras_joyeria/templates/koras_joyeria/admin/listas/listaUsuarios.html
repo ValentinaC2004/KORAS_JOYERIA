@@ -2,8 +2,6 @@
 {% load static %}
 
 {% block title2 %}Lista de usuarios{% endblock title2 %}
-
-
 {% block alert %}
 {% if messages %}
 {% for m in messages %}
@@ -14,10 +12,8 @@
       "icon":"success"
     });
 </script>
-
 {% endfor %}
 {% endif %}
-
 <script>
   function eliminarUsuario(id) {
     Swal.fire({
@@ -30,16 +26,12 @@
       "reverseButtons":true,
       "confirmButtonColor":"darkred"
     });
-     
     }
 </script>
 {% endblock alert %}
-
 {% block content %}
 <br><br><br><br>
-
 <div class="container">
- 
   <h4>Lista de usuarios</h4>
     <a href="{% url 'koras_joyeria:crearUsuarios' %}"> <i class="material-icons black-text small">add</i> </a> 
     <table class="centered">
@@ -53,7 +45,6 @@
               <th>Eliminar</th>
           </tr>
         </thead>
-
         <tbody>
             <!--ciclo user + profile-->
             {% for user in users %}
@@ -66,13 +57,11 @@
                 <a href="{% url 'koras_joyeria:editarUsuarios' %}"> <i class="material-icons black-text small">edit</i></a> 
             </td>
             <td>
-              <!--href="{% url 'koras_joyeria:eliminarColores' color.id %}"-->
-              <a onclick="eliminarUsuario({{ producto.id }})"> <i class="material-icons dl small">delete</i></a>
+              <a><i class="material-icons dl small">delete</i></a>
             </td>
           </tr>
           {% endfor %}
           <!--fin ciclo-->
-    
         </tbody>
       </table>
 </div>

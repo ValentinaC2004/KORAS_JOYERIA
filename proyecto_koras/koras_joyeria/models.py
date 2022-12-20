@@ -54,18 +54,17 @@ class Producto(models.Model):
     precio_producto = models.IntegerField()
     stock = models.IntegerField()
     desc = models.TextField()
-    talla_id = models.ForeignKey(Talla, on_delete=models.DO_NOTHING)
-    id_color = models.ForeignKey(Colore, on_delete=models.DO_NOTHING)
-    peso= models.CharField(max_length=10)
-    id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
-    foto = models.ImageField(upload_to="proyecto_koras/productos", default="proyecto_koras/productos/default-productos.jpg")
+    talla_id = models.ForeignKey(Talla, on_delete=models.DO_NOTHING , null=True)
+    id_color = models.ForeignKey(Colore, on_delete=models.DO_NOTHING, null=True)
+    peso= models.CharField(max_length=10 , null=True)
+    id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING, null=True)
+    foto = models.ImageField(upload_to="proyecto_koras/productos", default="proyecto_koras/productos/default-productos.jpg", null=True)
 
     class Meta:
         ordering = ['-timestamp']
     
     def __str__(self):
         return f"{self.nombre_producto}"
-
 
 class Tipo(models.Model):
     nombre = models.CharField(max_length=100)

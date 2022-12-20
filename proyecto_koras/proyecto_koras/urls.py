@@ -22,6 +22,9 @@ from koras_joyeria import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+from koras_joyeria.views import Error404View
+from django.conf.urls import handler404
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('koras_joyeria.urls')),
@@ -30,3 +33,5 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = Error404View.as_view()

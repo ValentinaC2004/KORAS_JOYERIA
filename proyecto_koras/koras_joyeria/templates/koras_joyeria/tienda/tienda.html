@@ -3,6 +3,37 @@
 
 {% block title2 %}Tienda{% endblock title2 %}
 
+{% block alert %}
+{% if messages %}
+{% for m in messages %}
+
+<script>
+    Swal.fire({
+      "title":"Importante",
+      "text":"{{m}}",
+      "icon":"warning",
+      "showCancelButton":true,
+      "cancelButtonText":"Cancelar",
+      "confirmButtonText":"Iniciar",
+      "reverseButtons":true,
+      "confirmButtonColor":"black"
+    })
+
+    .then(function(result) {
+      if(result.isConfirmed) {
+        window.location.href = "/inicio/"
+      }
+    })
+     
+  
+</script>
+
+{% endfor %}
+{% endif %}
+
+{% endblock alert %}
+
+
 {% block content %} 
 <br><br>
 

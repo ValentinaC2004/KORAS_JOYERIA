@@ -1,9 +1,10 @@
 #SECUNDARIAS URLS
-from re import template
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import admin
 from django.urls import path
 from koras_joyeria import views
+
+
 
 app_name = 'koras_joyeria'
 urlpatterns = [
@@ -76,5 +77,7 @@ urlpatterns = [
 
     path('diseñarAnillos/', views.DiseñarAnillos, name='diseñarAnillos'),
 ]
+
+
 
 
