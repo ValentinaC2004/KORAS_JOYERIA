@@ -57,6 +57,9 @@ def carritoCompra(request):
 
 #if carrito
 def Agregar_producto(request, producto_id):
+    if not request.user.is_authenticated:
+        messages.info(request, "Es necesario que inicie sesión primero...")
+        return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
     carrito = Carrito(request)
     producto = Producto.objects.get(id=producto_id)
     carrito.agregar(producto)
@@ -270,13 +273,16 @@ def CrearProductos(request):
         if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-
-        col = Colore.objects.all()
-        c = Categoria.objects.all()
-        t = Talla.objects.all()
-
-        contexto = { "Categoria": c , "Talla":t , "Colore":col}
-        return render(request, 'koras_joyeria/admin/add/crearProductos.html',contexto)
+        
+        if request.user.profile.rol == 1:
+            col = Colore.objects.all()
+            c = Categoria.objects.all()
+            t = Talla.objects.all()
+            contexto = { "Categoria": c , "Talla":t , "Colore":col}
+            return render(request, 'koras_joyeria/admin/add/crearProductos.html',contexto)
+        else:
+            messages.warning(request, "No estas autorizado para realizar esta acción.")
+            return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
 
     except ValueError:
         messages.warning(request, "Valores no válidas en el formulario.")
@@ -288,8 +294,12 @@ def CrearCategorias(request):
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
 
-        return render(request, 'koras_joyeria/admin/add/crearCategorias.html')
-    
+        if request.user.profile.rol == 1:
+            return render(request, 'koras_joyeria/admin/add/crearCategorias.html')
+        else:
+            messages.warning(request, "No estas autorizado para realizar esta acción.")
+            return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
+
     except ValueError:
         messages.warning(request, "Valores no válidas en el formulario.")
         return HttpResponseRedirect(reverse('koras_joyeria:crearCategorias'))
@@ -302,12 +312,14 @@ def CrearTallas(request):
         if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-    
-        c = Categoria.objects.all()
-        t = Talla.objects.all()
-
-        contexto = { "Categoria": c , "Talla":t}
-        return render(request, 'koras_joyeria/admin/add/crearTallas.html', contexto)
+        if request.user.profile.rol == 1:
+            c = Categoria.objects.all()
+            t = Talla.objects.all()
+            contexto = { "Categoria": c , "Talla":t}
+            return render(request, 'koras_joyeria/admin/add/crearTallas.html', contexto)
+        else:
+            messages.warning(request, "No estas autorizado para realizar esta acción.")
+            return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
 
     except ValueError:
         messages.warning(request, "Valores no válidas en el formulario.")
@@ -318,9 +330,13 @@ def CrearColores(request):
         if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-        col = Colore.objects.all()
-        contexto = { "Colore":col}
-        return render(request, 'koras_joyeria/admin/add/crearColores.html', contexto)
+        if request.user.profile.rol == 1:
+            col = Colore.objects.all()
+            contexto = { "Colore":col}
+            return render(request, 'koras_joyeria/admin/add/crearColores.html', contexto)
+        else:
+            messages.warning(request, "No estas autorizado para realizar esta acción.")
+            return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
 
     except ValueError:
         messages.warning(request, "Valores no válidas en el formulario.")
@@ -331,75 +347,90 @@ def addColores(request):
         if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-    
-        col = Colore(
-            nombre_color = request.POST["nombre_color"],
-        )
-        col.save()
-        messages.success(request, "Color creado correctamente!.")
-        return HttpResponseRedirect(reverse('koras_joyeria:listaColores'))
+        if request.user.profile.rol == 1:
+            col = Colore(
+             nombre_color = request.POST["nombre_color"],
+            )
+            col.save()
+            messages.success(request, "Color creado correctamente!.")
+            return HttpResponseRedirect(reverse('koras_joyeria:listaColores'))
+        else:
+            messages.warning(request, "No estas autorizado para realizar esta acción.")
+            return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
 
 def addTallas(request):
         if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-        c = Categoria.objects.get(pk = request.POST["id_categoria"])
-        t = Talla(
-            talla = request.POST["talla"],
-            id_categoria = c
-        )
-        t.save()
-        messages.success(request, "Talla creada correctamente!.")
-        return HttpResponseRedirect(reverse('koras_joyeria:listaTallas'))
+        if request.user.profile.rol == 1:
+            c = Categoria.objects.get(pk = request.POST["id_categoria"])
+            t = Talla(
+                talla = request.POST["talla"],
+                id_categoria = c
+            )
+            t.save()
+            messages.success(request, "Talla creada correctamente!.")
+            return HttpResponseRedirect(reverse('koras_joyeria:listaTallas'))
+        else:
+            messages.warning(request, "No estas autorizado para realizar esta acción.")
+            return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
 
 def addCategorias(request):
     if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-
-    if request.FILES:
-        fss = FileSystemStorage()
-        f = request.FILES["foto"]
-        file = fss.save("proyecto_koras/categorias/"+f.name, f)
-    else:
-        file = "proyecto_koras/categorias/fontcategoria-default.jpg"
-        c = Categoria(
-            nombre_categoria = request.POST["nombre_categoria"],
-            foto = file
-        )
-        c.save()
-        messages.success(request, "La categoria a sido creada correctamente!.")
-        return HttpResponseRedirect(reverse('koras_joyeria:listaCategorias'))
-
-def addProductos(request):
-    try:
-        autentica = request.session.get('autentica', False)
-        if autentica == False:
-            messages.info(request, "Inicie sesión primero...")
-            return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
+    if request.user.profile.rol == 1:
         if request.FILES:
             fss = FileSystemStorage()
             f = request.FILES["foto"]
-            file = fss.save("proyecto_koras/productos/"+f.name, f)
+            file = fss.save("proyecto_koras/categorias/"+f.name, f)
         else:
-            file = "proyecto_koras/productos/default-productos.jpg"   
-        col = Colore.objects.get(pk = request.POST["id_color"])
-        t = Talla.objects.get(pk = request.POST["talla_id"])
-        c = Categoria.objects.get(pk = request.POST["id_categoria"])
-        p = Producto(
-            nombre_producto = request.POST["nombre_producto"],
-            precio_producto = request.POST["precio_producto"],
-            stock = request.POST["stock"],
-            desc = request.POST["desc"],
-            talla_id = t,
-            id_color = col,
-            peso = request.POST["peso"],
-            id_categoria = c,
-            foto = file
-        )
-        p.save()
-        messages.success(request, "Producto creado correctamente!.")
-        return HttpResponseRedirect(reverse('koras_joyeria:listaProductos'))
+            file = "proyecto_koras/categorias/fontcategoria-default.jpg"
+            c = Categoria(
+                nombre_categoria = request.POST["nombre_categoria"],
+                foto = file
+            )
+            c.save()
+            messages.success(request, "La categoria a sido creada correctamente!.")
+            return HttpResponseRedirect(reverse('koras_joyeria:listaCategorias'))
+    else:
+            messages.warning(request, "No estas autorizado para realizar esta acción.")
+            return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
+
+def addProductos(request):
+    try:
+        if not request.user.is_authenticated:
+            messages.info(request, "Inicie sesión primero...")
+            return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
+
+        if request.user.profile.rol == 1:
+            if request.FILES:
+                fss = FileSystemStorage()
+                f = request.FILES["foto"]
+                file = fss.save("proyecto_koras/productos/"+f.name, f)
+            else:
+                file = "proyecto_koras/productos/default-productos.jpg"   
+            col = Colore.objects.get(pk = request.POST["id_color"])
+            t = Talla.objects.get(pk = request.POST["talla_id"])
+            c = Categoria.objects.get(pk = request.POST["id_categoria"])
+            p = Producto(
+                nombre_producto = request.POST["nombre_producto"],
+                precio_producto = request.POST["precio_producto"],
+                stock = request.POST["stock"],
+                desc = request.POST["desc"],
+                talla_id = t,
+                id_color = col,
+                peso = request.POST["peso"],
+                id_categoria = c,
+                foto = file
+            )
+            p.save()
+            messages.success(request, "Producto creado correctamente!.")
+            return HttpResponseRedirect(reverse('koras_joyeria:listaProductos'))
+        else:
+            messages.warning(request, "No estas autorizado para realizar esta acción.")
+            return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
+
     except ValueError:
         messages.warning(request, "Valores no válidos en el formulario.")
         return HttpResponseRedirect(reverse('koras_joyeria:crearProductos'))
@@ -413,75 +444,100 @@ def EliminarProducto(request, id):
     if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-    q = Producto.objects.get(pk = id)
-    foto = str(BASE_DIR) + str(q.foto.url)  
-    q.delete()
-    messages.success(request, "Producto eliminado correctamente!.")
-    if path.exists(foto):
-        if q.foto.url != '/uploads/productos/default-productos.jpg':
-            remove(foto)
+    if request.user.profile.rol == 1:
+        q = Producto.objects.get(pk = id)
+        foto = str(BASE_DIR) + str(q.foto.url)  
+        q.delete()
+        messages.success(request, "Producto eliminado correctamente!.")
+        if path.exists(foto):
+            if q.foto.url != '/uploads/productos/default-productos.jpg':
+                remove(foto)
 
-    return HttpResponseRedirect(reverse('koras_joyeria:listaProductos'))
+        return HttpResponseRedirect(reverse('koras_joyeria:listaProductos'))
+    else:
+        messages.warning(request, "No estas autorizado para realizar esta acción.")
+        return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
+
 
 def EliminarCategoria(request,id):
     if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-    q = Categoria.objects.get(pk = id)
-    q.delete()
-    messages.success(request, "Categoria eliminada correctamente!.")
+    if request.user.profile.rol == 1:
+        q = Categoria.objects.get(pk = id)
+        q.delete()
+        messages.success(request, "Categoria eliminada correctamente!.")
 
-    return HttpResponseRedirect(reverse('koras_joyeria:listaCategorias'))
+        return HttpResponseRedirect(reverse('koras_joyeria:listaCategorias'))
+    else:
+        messages.warning(request, "No estas autorizado para realizar esta acción.")
+        return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
+
 
 def EliminarTalla(request,id):
     if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-    q = Talla.objects.get(pk = id)
-    q.delete()
-    messages.success(request, "Talla eliminada correctamente!.")
+    if request.user.profile.rol == 1:
+        q = Talla.objects.get(pk = id)
+        q.delete()
+        messages.success(request, "Talla eliminada correctamente!.")
 
-    return HttpResponseRedirect(reverse('koras_joyeria:listaTallas'))
+        return HttpResponseRedirect(reverse('koras_joyeria:listaTallas'))
+    else:
+        messages.warning(request, "No estas autorizado para realizar esta acción.")
+        return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
+
 
 def EliminarUsuarios(request,id):
     if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-    q = User.objects.get(pk = id)
-    q.delete()
-    messages.success(request, "Usuario eliminado correctamente!.")
+    if request.user.profile.rol == 1:
+        q = User.objects.get(pk = id)
+        q.delete()
+        messages.success(request, "Usuario eliminado correctamente!.")
 
-    return HttpResponseRedirect(reverse('koras_joyeria:listaUsuarios'))
+        return HttpResponseRedirect(reverse('koras_joyeria:listaUsuarios'))
+    else:
+        messages.warning(request, "No estas autorizado para realizar esta acción.")
+        return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
 
 def EliminarColores(request,id):
     if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-    col = Colore.objects.get(pk = id)
-    col.delete()
-    messages.success(request, "Color eliminado correctamente!.")
+    if request.user.profile.rol == 1:
+        col = Colore.objects.get(pk = id)
+        col.delete()
+        messages.success(request, "Color eliminado correctamente!.")
 
-    return HttpResponseRedirect(reverse('koras_joyeria:listaColores'))
+        return HttpResponseRedirect(reverse('koras_joyeria:listaColores'))
+    else:
+        messages.warning(request, "No estas autorizado para realizar esta acción.")
+        return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
 
 #ADD
 def guardarProducto(request):
     if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-    q = Producto(
-        nombre_producto = request.POST["nombre_producto"],
-        precio_producto = request.POST["precio_producto"],
-        stock = request.POST["stock"],
-        talla_id = request.POST["talla_id"],
-        peso = request.POST["peso"],
-        id_categoria = request.POST["id_categoria"],
+    if request.user.profile.rol == 1:
+        q = Producto(
+            nombre_producto = request.POST["nombre_producto"],
+            precio_producto = request.POST["precio_producto"],
+            stock = request.POST["stock"],
+            talla_id = request.POST["talla_id"],
+            peso = request.POST["peso"],
+            id_categoria = request.POST["id_categoria"],
     )
+    else:
+        messages.warning(request, "No estas autorizado para realizar esta acción.")
+        return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
 
     #PERSONALIZAR
 def DiseñarAnillos(request):
     return render(request, 'koras_joyeria/diseñar/diseñar-anillos/diseñar-anillos.html')
-
-
         
 class Error404View(TemplateView):
     template_name = "koras_joyeria/Error_404.html"

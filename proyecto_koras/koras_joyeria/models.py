@@ -46,7 +46,7 @@ class Colore(models.Model):
     nombre_color = models.CharField(max_length=20)
   
     def __str__(self):
-        return f"{self.nombre_color} - {self.id_categoria}"
+        return f"{self.nombre_color}"
 
 class Producto(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)

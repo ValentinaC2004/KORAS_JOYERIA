@@ -5,28 +5,47 @@
 
 {% block alert %}
 {% if messages %}
+
 {% for m in messages %}
 
-<script>
-    Swal.fire({
-      "title":"Importante",
-      "text":"{{m}}",
-      "icon":"warning",
-      "showCancelButton":true,
-      "cancelButtonText":"Cancelar",
-      "confirmButtonText":"Iniciar",
-      "reverseButtons":true,
-      "confirmButtonColor":"black"
-    })
+{% if request.user.is_authenticated %}
 
-    .then(function(result) {
-      if(result.isConfirmed) {
-        window.location.href = "/inicio/"
-      }
-    })
-     
-  
+<script>
+  Swal.fire({
+    "title":"Acceso denegado",
+    "text":"{{m}}",
+    "icon":"warning",
+    "confirmButtonText":"Cerrar ventana",
+    "reverseButtons":true,
+    "confirmButtonColor":"black"
+  })
 </script>
+
+{% else %}
+
+<script>
+  Swal.fire({
+    "title":"Importante",
+    "text":"{{m}}",
+    "icon":"warning",
+
+    "showCancelButton":true,
+    "cancelButtonText":"Cancelar",
+    "confirmButtonText":"Iniciar",
+    "reverseButtons":true,
+    "confirmButtonColor":"black"
+  })
+
+  .then(function(result) {
+    if(result.isConfirmed) {
+      window.location.href = "/inicio/"
+    }
+  })
+   
+
+</script>
+
+{% endif %}
 
 {% endfor %}
 {% endif %}
@@ -135,5 +154,6 @@
       </div>
     </div>
   </section>
+
 
 {% endblock content %}

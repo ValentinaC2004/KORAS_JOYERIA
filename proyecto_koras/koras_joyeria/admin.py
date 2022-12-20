@@ -44,6 +44,9 @@ class ProfileAdmin(admin.ModelAdmin):
 
     list_display = ('fotoPerfil','user','rol')
 
+class ColoreAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nombre_color')
+
 admin.site.register(MarcoP)
 admin.site.register(MaterialP)
 admin.site.register(DiamanteP)
@@ -56,7 +59,7 @@ admin.site.register(Compra,CompraAdmin)
 admin.site.register(CompraDetalle,CompraDetalleAdmin)
 admin.site.register(Tipo)
 admin.site.register(Profile, ProfileAdmin)
-admin.site.register(Colore)
+admin.site.register(Colore, ColoreAdmin)
 admin.site.register(Categoria, CategoriaAdmin)
 #admin.site.register(UserRegisterForm, UserRegisterFormAdmin)
 
