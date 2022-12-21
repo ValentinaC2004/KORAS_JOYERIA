@@ -34,12 +34,12 @@
               <input placeholder="" id="first_name" type="text" class="validate" value="">
               <label for="first_name">Nombre</label>
             </div>
-            <div class="input-field col ">
-              <select class="browser-default">
-                  <option value="" disabled selected>ASIGNAR ROL</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
+            <div class="input-field col s6">
+              <select class="browser-default" name="rol" required="required">
+                  <option disabled selected>ASIGNAR ROL</option>
+                  {% for user in users %}
+                  <option value="{{ rol }}"> </option>
+                  {% endfor %}
               </select>
           </div>
 

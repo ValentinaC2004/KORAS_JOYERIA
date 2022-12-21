@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="proyecto_koras/profiles", default="proyecto_koras/profiles/profile-default.jpg")
+    image = models.ImageField(upload_to="proyecto_koras/profiles", default="proyecto_koras/profiles/profile-default.png")
     ROLES = (
         (1, 'Administrador'),
         (2, 'Empleado'),
@@ -58,7 +58,7 @@ class Producto(models.Model):
     id_color = models.ForeignKey(Colore, on_delete=models.DO_NOTHING, null=True)
     peso= models.CharField(max_length=10 , null=True)
     id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING, null=True)
-    foto = models.ImageField(upload_to="proyecto_koras/productos", default="proyecto_koras/productos/default-productos.jpg", null=True)
+    foto = models.ImageField(upload_to="proyecto_koras/productos", default="proyecto_koras/productos/productos-default.png", null=True)
 
     class Meta:
         ordering = ['-timestamp']

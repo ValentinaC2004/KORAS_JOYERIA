@@ -7,9 +7,10 @@
 {% for m in messages %}
 <script>
     Swal.fire({
-      "title":"Usuario creado",
+      "title":"Felicidades",
       "text":"{{m}}",
-      "icon":"success"
+      "icon":"success",
+      "confirmButtonColor":"black"
     });
 </script>
 {% endfor %}
@@ -17,7 +18,7 @@
 <script>
   function eliminarUsuario(id) {
     Swal.fire({
-      "title":"¿Estas seguro de eliminar?",
+      "title":"¿Estas seguro de eliminar el usuario?",
       "text":"Esta acción no se puede deshacer",
       "icon":"warning",
       "showCancelButton":true,
@@ -25,7 +26,14 @@
       "confirmButtonText":"Si, eliminar",
       "reverseButtons":true,
       "confirmButtonColor":"darkred"
-    });
+    })
+
+    .then(function(result) {
+      if(result.isConfirmed) {
+        window.location.href = "/eliminarUsuarios/"+id
+      }
+    })
+
     }
 </script>
 {% endblock alert %}
@@ -57,7 +65,7 @@
                 <a href="{% url 'koras_joyeria:editarUsuarios' %}"> <i class="material-icons black-text small">edit</i></a> 
             </td>
             <td>
-              <a><i class="material-icons dl small">delete</i></a>
+              <a onclick="eliminarUsuario({{ user.id }})"><i class="material-icons dl small">delete</i></a>
             </td>
           </tr>
           {% endfor %}

@@ -115,6 +115,7 @@ def ListaUsuarios(request):
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
     users= User.objects.all()
+
     return render(request, 'koras_joyeria/admin/listas/listaUsuarios.html', {'users':users})
 
 def ListaProductos(request):
@@ -442,22 +443,27 @@ def VistaProducto(request):
 #ELIMINAR   -  v
 def EliminarProducto(request, id):
     if not request.user.is_authenticated:
-            messages.info(request, "Es necesario que inicie sesión primero...")
-            return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
+        messages.info(request, "Es necesario que inicie sesión primero...")
+        return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
     if request.user.profile.rol == 1:
-        q = Producto.objects.get(pk = id)
-        foto = str(BASE_DIR) + str(q.foto.url)  
-        q.delete()
-        messages.success(request, "Producto eliminado correctamente!.")
-        if path.exists(foto):
-            if q.foto.url != '/uploads/productos/default-productos.jpg':
-                remove(foto)
-
-        return HttpResponseRedirect(reverse('koras_joyeria:listaProductos'))
+        try:
+            q = Producto.objects.get(pk = id)
+            foto = str(BASE_DIR) + str(q.foto.url)
+            q.delete()
+            messages.success(request, "Producto eliminado correctamente!.")
+            if path.exists(foto):
+                if q.foto.url != '/uploads/proyecto_koras/productos/productos-default.png':
+                    remove(foto)
+            else:
+                raise Exception("No existe el archivo.")
+        except Empleado.DoesNotExist:
+            messages.error(request, "No existe el Usuario.")
+        except Exception as p:
+            messages.error(request, f"Error al eliminar foto. {p}")
     else:
         messages.warning(request, "No estas autorizado para realizar esta acción.")
         return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-
+    return HttpResponseRedirect(reverse('koras_joyeria:listaProductos'))
 
 def EliminarCategoria(request,id):
     if not request.user.is_authenticated:
@@ -491,17 +497,28 @@ def EliminarTalla(request,id):
 
 def EliminarUsuarios(request,id):
     if not request.user.is_authenticated:
-            messages.info(request, "Es necesario que inicie sesión primero...")
-            return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
+        messages.info(request, "Es necesario que inicie sesión primero...")
+        return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
     if request.user.profile.rol == 1:
-        q = User.objects.get(pk = id)
-        q.delete()
-        messages.success(request, "Usuario eliminado correctamente!.")
+        try:
+            q = User.objects.get(pk = id)
+            image = str(BASE_DIR) + str(q.profile.image.url)
+            q.delete()
+            messages.success(request, "Usuario eliminado correctamente!.")
 
-        return HttpResponseRedirect(reverse('koras_joyeria:listaUsuarios'))
+            if path.exists(image):
+                if q.profile.image.url != '/uploads/proyecto_koras/profiles/profile-default.png':
+                    remove(image)
+            else:
+                raise Exception("No existe el archivo.")
+        except Empleado.DoesNotExist:
+            messages.error(request, "No existe el Usuario.")
+        except Exception as u:
+            messages.error(request, f"Error al eliminar foto. {u}")
     else:
         messages.warning(request, "No estas autorizado para realizar esta acción.")
         return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
+    return HttpResponseRedirect(reverse('koras_joyeria:listaUsuarios'))
 
 def EliminarColores(request,id):
     if not request.user.is_authenticated:
@@ -541,5 +558,9 @@ def DiseñarAnillos(request):
         
 class Error404View(TemplateView):
     template_name = "koras_joyeria/Error_404.html"
+
+def Loader(request):
+    return render(request, 'koras_joyeria/base/loader.html')
+        
 
 

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'koras_joyeria/material/css/materialize.css' %}">
     <link rel="stylesheet" href="{% static 'koras_joyeria/material/css/materialize.min.css' %}">
     <link rel="stylesheet" href="{% static 'koras_joyeria/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'koras_joyeria/css/loader.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300&family=Playfair+Display&display=swap" rel="stylesheet">
@@ -25,6 +26,12 @@
     <title>{% block title1 %}Koras Joyeria - {% endblock title1 %} {% block title2 %} ... {% endblock title2 %} </title>
 </head>
 <body>
+    
+    <div class="contenedor_loader">
+        <div class="loader">
+            
+        </div>
+    </div>
    
     <header class="header">
      
@@ -210,10 +217,7 @@
   });
     </script>
 
-    <script>
-
-
-    </script>
+    <script src="{% static 'koras_joyeria/js/loader.js' %}"></script>
 
     <script src="{% static 'koras_joyeria/material/js/materialize.js' %}"></script>
     <script src="{% static 'koras_joyeria/material/js/materialize.min.js' %}"></script>
