@@ -58,7 +58,7 @@ class Producto(models.Model):
     id_color = models.ForeignKey(Colore, on_delete=models.DO_NOTHING, null=True)
     peso= models.CharField(max_length=10 , null=True)
     id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING, null=True)
-    foto = models.ImageField(upload_to="proyecto_koras/productos", default="proyecto_koras/productos/productos-default.png", null=True)
+    foto = models.ImageField(upload_to="proyecto_koras/productos", default="proyecto_koras/productos/product-default.jpg", null=True)
 
     class Meta:
         ordering = ['-timestamp']
@@ -76,7 +76,6 @@ class Tipo(models.Model):
         verbose_name = 'Tipo'
         verbose_name_plural = 'Tipos'
         ordering = ['id']
-
 
 class Empleado(models.Model):
     categoria_id = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)

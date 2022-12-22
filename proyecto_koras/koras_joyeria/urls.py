@@ -43,8 +43,8 @@ urlpatterns = [
     path('listaPesos/', views.ListaPesos, name='listaPesos'),
     path('listaColores/', views.ListaColores, name='listaColores'),
 
-    path('editarUsuarios/', views.EditarUsuarios, name='editarUsuarios'),
-    path('editarProductos/', views.EditarProductos, name='editarProductos'),
+    path('editarUsuarios/<int:id>', views.EditarUsuarios, name='editarUsuarios'),
+    path('editarProductos/<int:id>', views.EditarProductos, name='editarProductos'),
     path('editarCategorias/<int:id>', views.EditarCategorias, name='editarCategorias'),
     path('editarTallas/<int:id>', views.EditarTallas, name='editarTallas'),
     path('editarColores/<int:id>', views.EditarColores, name='editarColores'),

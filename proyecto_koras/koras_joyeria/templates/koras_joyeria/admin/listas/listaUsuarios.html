@@ -62,7 +62,7 @@
             <td>{{ user.email }}</td>
             <td>{{ user.profile.rol }} - {{ user.profile.nombreRol }}</td>
             <td>
-                <a href="{% url 'koras_joyeria:editarUsuarios' %}"> <i class="material-icons black-text small">edit</i></a> 
+                <a href="{% url 'koras_joyeria:editarUsuarios' user.id %}"> <i class="material-icons black-text small">edit</i></a> 
             </td>
             <td>
               <a onclick="eliminarUsuario({{ user.id }})"><i class="material-icons dl small">delete</i></a>

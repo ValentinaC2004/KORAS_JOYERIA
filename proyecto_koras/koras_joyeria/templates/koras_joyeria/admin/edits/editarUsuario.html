@@ -2,18 +2,18 @@
 
 {% load static %}
 
-{% block title2 %}Editar Usuario{% endblock title2 %}
+{% block title2 %}Editar usuario{% endblock title2 %}
 
 {% block content %}
 
-<div class="container center">
+<div class="container">
     <br><br><br><br>
     <a href="{% url 'koras_joyeria:listaUsuarios' %}"><i class="small material-icons left black-text">arrow_back</i></a>
-
+    <h4>Editar usuario</h4>
     <div class="row">
         <form class="col s12" method="post" action="" enctype="multipart/form-data">
           <div class="input-field left caja_7">
-            <img src="" class="imgEdit left circle">
+            <img src="{{ data.profile.image.url }}" class="imgEdit left circle">
             <div class="ovrly"></div>
             <div class="buttons">
               <a href="#" class="fa fa-link"><i class="material-icons center">add_a_photo</i></a>
@@ -27,37 +27,40 @@
               </div>
             </div>
           </div>
-          
 
           <div class="row">
             <div class="input-field col s6">
-              <input placeholder="" id="first_name" type="text" class="validate" value="">
-              <label for="first_name">Nombre</label>
+              <input placeholder="" id="first_name" type="text" class="validate" name="first_name" value="{{ data.first_name }}">
+                  <label for="first_name">Nombre del usuario</label>
             </div>
+            <div class="input-field col s6">
+              <select class="browser-default" name="rol" required="required">
+                  <option disabled selected>ASIGNAR ROL</option>
+                  {% for user in users %}
+                  <option value="{{ rol }}"> </option>
+                  {% endfor %}
+              </select>
+          </div>
 
             <div class="input-field col s6">
-              <input placeholder="{{ user.last_name }}" id="first_name" type="text" class="validate" value="">
+              <input placeholder="" id="first_name" type="text" class="validate" name="last_name" value="{{ data.last_name }}">
               <label for="first_name">Apellido</label>
             </div>
 
             <div class="input-field col s6">
-              <input placeholder="texto aqui" id="first_name" type="text" class="validate" value="">
+              <input placeholder="" id="first_name" type="text" class="validate" name="username" value="{{ data.username }}">
               <label for="first_name">Usuario</label>
             </div>
 
-            
-  
             <div class="input-field col s6">
-              <input placeholder="" id="first_name" type="text" class="validate" value="">
+              <input placeholder="" id="first_name" type="email" class="validate" name="email" value="{{ data.email }}">
               <label for="first_name">Correo electronico</label>
             </div>
-
-            <div class="input-field col s6">
-              <a class="waves-effect waves-light btn grey">Actualizar usuario</a>
-            </div>
-
           </div>
         </form>
+        <div class="row center">
+          <a class="waves-effect waves-light btn black" type="submit">Crear usuario</a>
+      </div>
       </div>
 </div>
 

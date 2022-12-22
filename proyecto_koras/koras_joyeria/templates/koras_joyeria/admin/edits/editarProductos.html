@@ -1,47 +1,98 @@
 {% extends 'koras_joyeria/base/base.html' %}
 {% load static %}
 
-{% block title2 %}Editar Productos{% endblock title2 %}
+{% block title2 %}Editar Producto{% endblock title2 %}
 
 {% block content %}
 <br><br><br><br>
 
 <div class="container">
+    <a href="{% url 'koras_joyeria:listaProductos' %}"><i
+            class="small material-icons left black-text">arrow_back</i></a>
+
+    <h4>Editar producto</h4>
     <div class="row">
-        <form class="col s12" method="post" action="" enctype="multipart/form-data">
-          <div class="row">
-            <div class="input-field col s6">
-              <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-              <label for="first_name">Nombre del producto</label>
+        <form class="col s12" action="{% url 'koras_joyeria:addProductos' %}" method="post"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ data.id }}" readonly="readonly"/>
+            <div class="row">
+                <div class="input-field col s6">
+                  <input placeholder="" id="first_name" type="text" class="validate" value="{{ data.nombre_producto }}">
+                  <label for="first_name">Nombre del producto</label>
+                </div>
+
+                <div class="input-field col s6">
+                  <select class="browser-default" name="id_categoria" value="{{ data.id_categoria }}" required="required">
+                      <option disabled selected>SELECCIONAR OTRA CATEGORIA</option>
+                      {% for cat in Categoria %}
+                      <option value="{{ cat.id }}" value="{{ cat.id }}" {% if cat.id == data.Categoria.id %} selected {% endif %}> {{ cat.nombre_categoria }}</option>
+                      {% endfor %}
+                  </select>
+              </div>
+
             </div>
 
-            <div class="input-field left caja_7">
-              <img src="{% static 'koras_joyeria/img/font-joyas.jpg' %}" class="imgEditProducto">
-              <div class="ovrly"></div>
-              <div class="buttons">
-                <a href="#" class="fa fa-link"><i class="material-icons center">add_a_photo</i></a>
-              </div>
-              <div class="file-field input-field">
-                <div class="">
-                  <input type="file" multiple>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="last_name" type="number" class="validate" name="precio_producto" required>
+                    <label for="last_name">Precio del producto</label>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="input-field col s6">
+                  <select class="browser-default" name="talla_id" value="{{ data.talla_id }}" required="required">
+                    <option disabled selected></option>
+                    {% for t in Talla %}
+                    <option value="{{ t.id }}" value="{{ t.id }}" {% if t.id == data.Talla.id %} selected {% endif %}> {{ t.talla }}</option>
+                    {% endfor %}
+                </select>
+                </div>
+
+                <div class="input-field col s6">
+                  <select class="browser-default" name="id_color" value="{{ data.id_color }}" required="required">
+                    <option disabled selected></option>
+                    {% for col in Colore %}
+                    <option value="{{ col.id }}" value="{{ col.id }}" {% if c.id == data.Colore.id %} selected {% endif %}> {{ col.nombre_color }}</option>
+                    {% endfor %}
+                </select>
+                </div>
+
+                <div class="input-field col s6">
+                    <input id="last_name" type="number" class="validate" name="peso" required>
+                    <label for="last_name">Ingresar peso</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <textarea id="textarea1" class="materialize-textarea" required name="desc"></textarea>
+                    <label for="textarea1">Agregar descripción</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input id="last_name" type="number" class="validate" name="stock" required>
+                    <label for="last_name">Cantidad de productos</label>
+                </div>
+            </div>
+
+            <div class="file-field input-field">
+                <div class="btn grey">
+                    <span><i class="material-icons center">add_a_photo</i></span>
+                    <input type="file" multiple name="foto" accept="image/*">
                 </div>
                 <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text" placeholder="Cargar foto de perfil">
+                    <input class="file-path validate" type="text" placeholder="Agregar una imagen del producto">
                 </div>
-              </div>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="input-field col s6">
-              <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-              <label for="first_name">Precio</label>
+            <div class="row center">
+                <button class="waves-effect waves-light btn black" type="submit">Crear producto</button>
             </div>
-            <div class="input-field col s6">
-                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                <label for="first_name">Descripción</label>
-              </div>
-          </div>
-</div>
+        </form>
+    </div>
 
-{% endblock %}
+    {% endblock %}
+

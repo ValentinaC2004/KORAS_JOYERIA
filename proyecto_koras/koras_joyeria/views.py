@@ -115,7 +115,6 @@ def ListaUsuarios(request):
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
     users= User.objects.all()
-
     return render(request, 'koras_joyeria/admin/listas/listaUsuarios.html', {'users':users})
 
 def ListaProductos(request):
@@ -154,17 +153,26 @@ def ListaColores(request):
     return render(request, 'koras_joyeria/admin/listas/listaColores.html', {'colores':colores})
 
 #EDITAR
-def EditarUsuarios(request):
+def EditarUsuarios(request,id):
     if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-    return render(request, 'koras_joyeria/admin/edits/editarUsuario.html')
+    u = User.objects.get(pk = id)
 
-def EditarProductos(request):
+    contexto = {'data': u }
+    return render(request, 'koras_joyeria/admin/edits/editarUsuario.html', contexto)
+
+def EditarProductos(request,id):
     if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-    return render(request, 'koras_joyeria/admin/edits/editarProductos.html')
+    p = Producto.objects.get(pk = id)
+    col = Colore.objects.all()
+    cat = Categoria.objects.all()
+    t = Talla.objects.all()
+    contexto = { "Categoria": cat , "Talla":t , "Producto":p, "Colore":col}
+
+    return render(request, 'koras_joyeria/admin/edits/editarProductos.html',contexto)
 
 def EditarCategorias(request, id):
     if not request.user.is_authenticated:
@@ -410,7 +418,7 @@ def addProductos(request):
                 f = request.FILES["foto"]
                 file = fss.save("proyecto_koras/productos/"+f.name, f)
             else:
-                file = "proyecto_koras/productos/default-productos.jpg"   
+                file = "proyecto_koras/productos/product-default.jpg"   
             col = Colore.objects.get(pk = request.POST["id_color"])
             t = Talla.objects.get(pk = request.POST["talla_id"])
             c = Categoria.objects.get(pk = request.POST["id_categoria"])
@@ -452,14 +460,14 @@ def EliminarProducto(request, id):
             q.delete()
             messages.success(request, "Producto eliminado correctamente!.")
             if path.exists(foto):
-                if q.foto.url != '/uploads/proyecto_koras/productos/productos-default.png':
+                if q.foto.url != '/uploads/proyecto_koras/productos/product-default.jpg':
                     remove(foto)
             else:
                 raise Exception("No existe el archivo.")
         except Empleado.DoesNotExist:
             messages.error(request, "No existe el Usuario.")
         except Exception as p:
-            messages.error(request, f"Error al eliminar foto. {p}")
+            messages.error(request, f"No se alcanzo a eliminar la foto. {p}")
     else:
         messages.warning(request, "No estas autorizado para realizar esta acción.")
         return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
@@ -467,17 +475,27 @@ def EliminarProducto(request, id):
 
 def EliminarCategoria(request,id):
     if not request.user.is_authenticated:
-            messages.info(request, "Es necesario que inicie sesión primero...")
-            return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
+        messages.info(request, "Es necesario que inicie sesión primero...")
+        return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
     if request.user.profile.rol == 1:
-        q = Categoria.objects.get(pk = id)
-        q.delete()
-        messages.success(request, "Categoria eliminada correctamente!.")
-
-        return HttpResponseRedirect(reverse('koras_joyeria:listaCategorias'))
+        try:
+            q = Categoria.objects.get(pk = id)
+            foto = str(BASE_DIR) + str(q.foto.url)
+            q.delete()
+            messages.success(request, "Categoria eliminada correctamente!.")
+            if path.exists(foto):
+                if q.foto.url != '/uploads/proyecto_koras/categorias/categoria-default.webp':
+                    remove(foto)
+            else:
+                raise Exception("No existe el archivo.")
+        except Empleado.DoesNotExist:
+            messages.error(request, "No existe la categoria.")
+        except Exception as p:
+            messages.error(request, f"No se alcanzo a eliminar la foto. {p}")
     else:
         messages.warning(request, "No estas autorizado para realizar esta acción.")
         return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
+    return HttpResponseRedirect(reverse('koras_joyeria:listaCategorias'))
 
 
 def EliminarTalla(request,id):
