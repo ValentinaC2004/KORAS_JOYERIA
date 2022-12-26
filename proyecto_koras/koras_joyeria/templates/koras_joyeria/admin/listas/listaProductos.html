@@ -64,6 +64,16 @@
     <br><br>
     <table class="">
         <thead>
+          <nav>
+            <div class="nav-wrapper">
+              <div class="col s12 black">
+                <h5 class="center">Seleccionar categoria</h5>
+                {% for cat in Categoria %}
+                <a href="#!" class="breadcrumb">{{ cat.nombre_categoria }}</a>
+                {% endfor %}
+              </div>
+            </div>
+          </nav>
           <tr>
               <th>Imagen del producto</th>
               <th>Nombre del producto</th>
@@ -74,22 +84,21 @@
               <th>Eliminar</th>
           </tr>
         </thead>
-
+        
         <tbody>
             <!--ciclo user + profile-->
-            {% for producto in productos %}
+            {% for p in Producto %}
           <tr>
-            <td><a href="{% url 'koras_joyeria:vistaProductos' %}"><img src="{{ producto.foto.url }}" alt="" width="130px"></a></td>
-            <td>{{ producto.nombre_producto }}</td>
-            <td>{{ producto.precio_producto }}</td>
-            <td>{{ producto.stock }}</td>
-            <td>{{ producto.id_categoria }}</td>
+            <td><a href="{% url 'koras_joyeria:vistaProductos' %}"><img src="{{ p.foto.url }}" alt="" width="130px"></a></td>
+            <td>{{ p.nombre_producto }}</td>
+            <td>{{ p.precio_producto }}</td>
+            <td>{{ p.stock }}</td>
+            <td>{{ p.id_categoria }}</td>
             <td>
-                <a href="{% url 'koras_joyeria:editarProductos' producto.id %}"> <i class="material-icons black-text small">edit</i></a> 
+                <a href="{% url 'koras_joyeria:editarProductos' p.id %}"> <i class="material-icons black-text small">edit</i></a> 
             </td>
             <td>
-              
-              <a onclick="eliminarProducto({{ producto.id }})"> <i class="material-icons dl small">delete</i></a>
+              <a onclick="eliminarProducto({{ p.id }})"> <i class="material-icons dl small">delete</i></a>
             </td>
           </tr>
           {% endfor %}

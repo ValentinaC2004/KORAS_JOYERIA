@@ -101,6 +101,9 @@ def Registro(request):
     context = { 'form' : form }
     return render(request, 'koras_joyeria/ingreso/registro.html',context)
 
+def modificarPerfil(request,id):
+    pass
+
 
 def Profile(request):
     if not request.user.is_authenticated:
@@ -121,8 +124,10 @@ def ListaProductos(request):
         if not request.user.is_authenticated:
             messages.info(request, "Es necesario que inicie sesión primero...")
             return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
-        productos= Producto.objects.all()
-        return render(request, 'koras_joyeria/admin/listas/listaProductos.html', {'productos':productos})
+        p= Producto.objects.all()
+        cat = Categoria.objects.all()
+        contexto = { "Categoria": cat , "Producto":p }
+        return render(request, 'koras_joyeria/admin/listas/listaProductos.html', contexto)
         
 
 def ListaCategorias(request):
