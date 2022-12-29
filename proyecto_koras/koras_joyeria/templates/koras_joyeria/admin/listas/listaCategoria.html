@@ -14,10 +14,8 @@
       "confirmButtonColor":"black"
     });
 </script>
-
 {% endfor %}
 {% endif %}
-
 <script>
   function eliminarCategoria(id) {
     Swal.fire({
@@ -30,7 +28,6 @@
       "reverseButtons":true,
       "confirmButtonColor":"darkred"
     })
-    
     .then(function(result) {
       if(result.isConfirmed) {
         window.location.href = "/eliminarCategoria/"+id
@@ -40,7 +37,6 @@
     }
 </script>
 {% endblock alert %}
-
 {% block content %}
 
 <br><br><br><br>
@@ -51,7 +47,6 @@
   
   <div class="input-field col s2">
     <a class='dropdown-trigger btn black right' href='#' data-target='listas'>Listar</a>
-
   <!-- Dropdown Structure -->
   <ul id='listas' class='dropdown-content'>
     <li><a href="{% url 'koras_joyeria:listaProductos' %}" class="black-text">Productos</a></li>

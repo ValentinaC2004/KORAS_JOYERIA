@@ -8,8 +8,7 @@
 <section>
     <div class="container">
       <div class="row">
-        
-        
+
         {% for producto in productos %}
 
         <a href="{% url 'koras_joyeria:ver-producto' producto.id %}">
@@ -38,6 +37,5 @@
       </div>
     </div>
   </section>
-
 
 {% endblock %}

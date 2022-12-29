@@ -121,7 +121,6 @@ class CompraDetalle(models.Model):
     def __str__(self):
         return f"{self.id} - {self.id_compra}"
 
-
 #Adicionales para el panel de personalización para el anillo
 
 class MarcoP(models.Model):

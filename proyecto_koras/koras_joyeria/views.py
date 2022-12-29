@@ -585,5 +585,12 @@ class Error404View(TemplateView):
 def Loader(request):
     return render(request, 'koras_joyeria/base/loader.html')
         
-
-
+        
+def buscar(request):
+    if not request.user.is_authenticated:
+        messages.info(request, "Es necesario que inicie sesión primero...")
+        return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
+    else:
+        q = Producto.objects.filter(nombre__icontains = request.POST["dato"])
+        contexto = {'data': q}
+        return render(request, 'koras_joyeria/admin/listas/listaProductos.html', contexto)

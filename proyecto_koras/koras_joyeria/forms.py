@@ -13,3 +13,4 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = Userfields = ['first_name', 'last_name', 'email', 'username','password1', 'password2']
         help_texts = {k:"" for k in fields}
+        

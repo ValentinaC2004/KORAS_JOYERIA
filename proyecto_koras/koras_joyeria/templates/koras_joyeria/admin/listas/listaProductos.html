@@ -43,8 +43,10 @@
 {% endblock alert %}
 
 {% block content %}
-<br><br><br><br>
+<br><br>
 
+<section class="sectionn card">
+<br><br>
 <div class="container">
   
   <h4>Productos</h4>
@@ -63,6 +65,20 @@
     <a href="{% url 'koras_joyeria:crearProductos' %}"> <i class="material-icons black-text small">add</i> </a> 
     <br><br>
     <table class="">
+      
+      <!--Buscador-->
+      <div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">textsms</i>
+              <input type="text" id="autocomplete-input" class="autocomplete">
+              <label for="autocomplete-input">Autocomplete</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
         <thead>
           <nav>
             <div class="nav-wrapper">
@@ -106,5 +122,6 @@
         </tbody>
       </table>
 </div>
+</section>
 
 {% endblock content %}

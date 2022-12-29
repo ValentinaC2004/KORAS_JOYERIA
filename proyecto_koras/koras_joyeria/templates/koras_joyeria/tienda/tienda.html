@@ -55,9 +55,9 @@
 
 {% block content %} 
 
-<section>
-<br><br>
 
+<br><br>
+<section class="sectionn card">
 <section>
 
     <div class="container section">
@@ -66,17 +66,18 @@
   
           <div class="slider">
             <ul class="slides">
-  
               <li>
-                <img src="{% static 'koras_joyeria/img/port8.jpg' %}" alt="">
+                <img src="{% static 'koras_joyeria\imagenes\joyas\depositphotos_348355676-stock-photo-cropped-view-gemstone-jewelry-board.jpg' %}" alt="">
                 <div class="caption center-align">
                   <h3>Lorem, ipsum dolor.</h3>
                   <h5 class="light grey-text text-lighten-3">Lorem, ipsum dolor.</h5>
                 </div>
               </li>
+
+            
   
               <li>
-                <img src="{% static 'koras_joyeria/img/port2.jpg' %}" alt="">
+                <img src="{% static 'koras_joyeria\imagenes\joyas\gettyimages-486949044-612x612.jpg' %}" alt="">
                 <div class="caption left-align">
                   <h3>Lorem, ipsum dolor.</h3>
                   <h5 class="light grey-text text-lighten-3">Lorem ipsum dolor sit.</h5>
@@ -84,7 +85,7 @@
               </li>
   
               <li>
-                <img src="{% static 'koras_joyeria/img/port3.jpg' %}" alt="">
+                <img src="{% static 'koras_joyeria\imagenes\joyas\depositphotos_12252249-stock-photo-close-up-of-beautiful-womans.jpg' %}" alt="">
                 <div class="caption right-align">
                   <h3>Lorem, ipsum dolor.</h3>
                   <h5 class="light grey-text text-lighten-3">Lorem ipsum dolor sit.</h5>
@@ -92,13 +93,15 @@
               </li>
   
               <li>
-                <img src="{% static 'koras_joyeria/img/port3.jpg' %}" alt="">
+                <img src="{% static 'koras_joyeria\imagenes\joyas\jewellery-784410__340.jpg' %}" alt="">
                 <div class="caption center-align">
             <h3>Lorem, ipsum dolor.</h3>
             <h5 class="light grey-text text-lighten-3">Lorem ipsum dolor sit.</h5>
           </div>
               </li>
             </ul>
+
+            
           </div>
         </div>
       </div>
@@ -106,22 +109,22 @@
   </section>
 
   <section>
-    <div class="container">
-    <div class="filtrar-productos">
-        <div class="filtro">
-            <a class='dropdown-trigger btn #e0e0e0 grey lighten-2 black-text' href='#' data-target='filtro1'>Filtrar</a>
 
-  <ul id='filtro1' class='dropdown-content'>
-    <li><a href="#!" class="black-text">one</a></li>
-    <li><a href="#!" class="black-text">two</a></li>
-    <li class="divider" tabindex="-1"></li>
-    <li><a href="#!" class="black-text">three</a></li>
-    
-  </ul>
-        </div>
+    <section id="p-4" class="section scrollspy">
+      <div class="sesion container filt">
+        <h4>JOYERÍA</h4>
+        <a class='dropdown-trigger btn #e0e0e0 grey lighten-2 black-text' href='#' data-target='filtro1'>Filtrar</a>
+        <ul id='filtro1' class='dropdown-content'>
+          <li><a href="#!" class="black-text">one</a></li>
+          <li><a href="#!" class="black-text">two</a></li>
+          <li class="divider" tabindex="-1"></li>
+          <li><a href="#!" class="black-text">three</a></li>
+          
+        </ul>
         <a href="{% url 'koras_joyeria:diseñarHome' %}" class="waves-effect waves-light btn #e0e0e0 grey lighten-2 black-text"><i class="material-icons left">brush</i>Personalizar diseño</a>
-    </div>
-</div>
+      </div>
+    </section>
+ 
   </section>
 
   <section>
