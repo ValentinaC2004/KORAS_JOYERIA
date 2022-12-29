@@ -45,7 +45,6 @@
 <br><br><br><br>
 
 <div class="container">
-   
 
     <h4>Lista de colores</h4>
   
@@ -62,6 +61,17 @@
 </div>
     <a href="{% url 'koras_joyeria:crearColores' %}"> <i class="material-icons black-text small">add</i> </a> 
     <table class="">
+      <div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">search</i>
+              <input type="text" id="autocomplete-input" class="autocomplete">
+              <label for="autocomplete-input">Buscar un color</label>
+            </div>
+          </div>
+        </div>
+      </div>
         <thead>
           <tr>
               <th>nombre del color</th>

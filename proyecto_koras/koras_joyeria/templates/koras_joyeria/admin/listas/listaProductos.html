@@ -50,9 +50,9 @@
 <div class="container">
   
   <h4>Productos</h4>
+
   <div class="input-field col s2">
     <a class='dropdown-trigger btn black right' href='#' data-target='listas'>Listar</a>
-
   <!-- Dropdown Structure -->
   <ul id='listas' class='dropdown-content'>
     <li><a href="{% url 'koras_joyeria:listaCategorias' %}" class="black-text">Categorias</a></li>
@@ -62,23 +62,21 @@
     <li><a href="{% url 'koras_joyeria:listaColores' %}" class="black-text">Colores</a></li>
   </ul>
 </div>
-    <a href="{% url 'koras_joyeria:crearProductos' %}"> <i class="material-icons black-text small">add</i> </a> 
+    <a href="{% url 'koras_joyeria:crearProductos' %}"> <i class="material-icons black-text small">add</i></a> 
     <br><br>
     <table class="">
-      
-      <!--Buscador-->
+    <!--Buscador-->
       <div class="row">
         <div class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <i class="material-icons prefix">textsms</i>
+              <i class="material-icons prefix">search</i>
               <input type="text" id="autocomplete-input" class="autocomplete">
-              <label for="autocomplete-input">Autocomplete</label>
+              <label for="autocomplete-input">Buscar un producto</label>
             </div>
           </div>
         </div>
       </div>
-
         <thead>
           <nav>
             <div class="nav-wrapper">
