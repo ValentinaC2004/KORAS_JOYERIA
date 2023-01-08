@@ -4,6 +4,8 @@
 {% block title2 %}Tienda{% endblock title2 %}
 
 {% block alert %}
+
+
 {% if messages %}
 
 {% for m in messages %}
@@ -56,25 +58,20 @@
 {% block content %} 
 
 
-<br><br>
-<section class="sectionn card">
 <section>
-
-    <div class="container section">
+<br><br>
+    <div>
       <div class="row">
-        <div class="col s12">
-  
+        <div class="">
           <div class="slider">
             <ul class="slides">
               <li>
                 <img src="{% static 'koras_joyeria\imagenes\joyas\depositphotos_348355676-stock-photo-cropped-view-gemstone-jewelry-board.jpg' %}" alt="">
                 <div class="caption center-align">
                   <h3>Lorem, ipsum dolor.</h3>
-                  <h5 class="light grey-text text-lighten-3">Lorem, ipsum dolor.</h5>
+                  <h5 class="light black-text text-lighten-3">Lorem, ipsum dolor.</h5>
                 </div>
               </li>
-
-            
   
               <li>
                 <img src="{% static 'koras_joyeria\imagenes\joyas\gettyimages-486949044-612x612.jpg' %}" alt="">
@@ -108,6 +105,41 @@
     </div>
   </section>
 
+  <div class="container">
+    <div class="container">
+    <h3 class="center lgrey">LO NUEVO EN LA COLECCIÒN</h3>
+    <hr>
+  </div>
+    <div class="carousel center" style="width: 1200px; right: 12%; height: 200px;">
+      {% for producto in productos %}
+      <a class="carousel-item" style="width: 300px;" href="{% url 'koras_joyeria:ver-producto' producto.id %}"><img src="{{ producto.imagen.url }}"></a>
+      {% endfor %}
+    </div>
+    <br>
+
+    <div class="container">
+      <h3 class="center lgrey">CATEGORIAS</h3>
+    <hr>
+    </div>
+
+    <div>
+      <div class="cards-list">
+      
+        {% for categoria in categorias %}
+        <a href="{% url 'koras_joyeria:mostrarCatalogo' %}">
+          <div class="cardd 1" style="height: 200px;">
+            <div class="card_imagen"> <img src="{{ categoria.foto.url }}" /> </div>
+            <div class="card_title title-white">
+              <p>{{ categoria.nombre_categoria }}</p>
+            </div>
+          </div>
+        </a>
+          {% endfor %}
+          
+          
+          </div>
+    </div>
+
   <section>
 
     <section id="p-4" class="section scrollspy">
@@ -127,16 +159,14 @@
  
   </section>
 
-  <section>
-    <div class="container">
+  <section style=" display: flex; justify-content: center;" >
+    <div style="width: 90%;" class="card" >
       <div class="row">
         
         {% for producto in productos %}
 
         <a href="{% url 'koras_joyeria:ver-producto' producto.id %}">
         <div class="col 14 m4 s12 animate__animated animate__flipInY">
-          <strong class="black-text">Fecha:</strong>
-          <span class="grey-text">{{ producto.timestamp }}</span>
           <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
               <img class="activator" src="{{ producto.foto.url }}" width="auto" height="200px">
@@ -145,12 +175,14 @@
             <div class="card-content">
               <span class="card-title activator grey-text text-darken-4">{{ producto.nombre_producto }}<i
                   class="material-icons right">more_vert</i></span>
-              <p>precio: {{ producto.precio_producto }}</p>
               <a class="waves-effect waves-light btn black grey-text right" href="{% url 'koras_joyeria:Add' producto.id %}">Agregar al carrito</a>
             </div>
             
             <div class="card-reveal">
+              <strong class="black-text">Fecha:</strong>
+          <span class="grey-text">{{ producto.timestamp }}</span>
               <span class="card-title grey-text text-darken-4">{{ producto.nombre_producto }}<i class="material-icons right">close</i></span>
+              <p>precio: {{ producto.precio_producto }}</p>
               <p>{{ producto.desc }}</p>
             </div>
           </div>
@@ -158,9 +190,13 @@
         {% endfor %}
       </div>
     </div>
-  </section>
 
-</section>
+    <div>
+      
+    </div>
+  </section>
 
 
 {% endblock content %}
+
+

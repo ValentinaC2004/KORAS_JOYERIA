@@ -30,7 +30,7 @@ post_save.connect(create_profile, sender=User)
 class Categoria(models.Model):
     nombre_categoria = models.CharField(max_length=12)
 
-    foto = models.ImageField(upload_to="proyecto_koras/categorias", default="proyecto_koras/categorias/fontcategoria-default.jpg")
+    foto = models.ImageField(upload_to="proyecto_koras/categorias", default="proyecto_koras/categorias/defaultcategory.jpeg")
 
     def __str__(self):
         return f"{self.nombre_categoria}"
@@ -58,13 +58,18 @@ class Producto(models.Model):
     id_color = models.ForeignKey(Colore, on_delete=models.DO_NOTHING, null=True)
     peso= models.CharField(max_length=10 , null=True)
     id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING, null=True)
-    foto = models.ImageField(upload_to="proyecto_koras/productos", default="proyecto_koras/productos/product-default.jpg", null=True)
+    imagen = models.ImageField(upload_to="proyecto_koras/productos", default="proyecto_koras/productos/product-default.jpg", null=True)
 
     class Meta:
         ordering = ['-timestamp']
     
     def __str__(self):
         return f"{self.nombre_producto}"
+
+class ImagenProducto(models.Model):
+    imagen = models.ImageField(upload_to="proyecto_koras/productos", default="proyecto_koras/productos/product-default.jpg", null=True)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name="imagenes")
+
 
 class Tipo(models.Model):
     nombre = models.CharField(max_length=100)

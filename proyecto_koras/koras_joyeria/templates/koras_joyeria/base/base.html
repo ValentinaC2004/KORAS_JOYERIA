@@ -111,7 +111,7 @@
 
               </ul>
 
-              <br><br>
+              <br><br><br><br>
 
               
     {% block content %}
@@ -120,7 +120,7 @@
 
 
 
-    <footer class="page-footer #212121 grey darken-4">
+    <footer class="page-footer #212121 grey darken-4" style="width: 100%;">
         <div class="row">
 
         <div class="flex1 col l6 s12">
@@ -187,7 +187,12 @@
         var instances = M.Dropdown.init(elems);
 
         var elems = document.querySelectorAll('.carousel');
-        var instances = M.Carousel.init(elems);
+        var instances = M.Carousel.init(elems,{
+            dist:10,
+            numVisible:100,
+            shift:10,
+            
+        });
 
         var elems = document.querySelectorAll('.slider');
         var instances = M.Slider.init(elems);
@@ -214,6 +219,7 @@
     $('.sidenav').sidenav({
         edge: 'right'
     });
+
   });
     </script>
 

@@ -39,7 +39,8 @@ def ProfileEdit(request):
 
 def VerProducto(request,id):
     q = Producto.objects.get(pk = id)
-    context = {'data':q}
+    productos = Producto.objects.all()
+    context = {'data':q, 'productos':productos}
     return render(request, 'koras_joyeria/tienda/ver-producto.html', context)
 
 def Inquietudes(request):
@@ -47,7 +48,9 @@ def Inquietudes(request):
 
 def Tienda(request):
     productos = Producto.objects.all()
-    return render(request, 'koras_joyeria/tienda/tienda.html', {'productos':productos})
+    categorias = Categoria.objects.all()
+    contexto = { "categorias": categorias,  "productos":productos, }
+    return render(request, 'koras_joyeria/tienda/tienda.html',contexto)
 
 def VerCarrito(request):
     return render(request, 'koras_joyeria/tienda/ver-carrito.html')
