@@ -195,7 +195,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='180' height='180' viewBo
     margin-bottom: 2%;
 }
 .flex-crea{
-    margin: 4%;
+    margin: 10%;
     display: flex;
     justify-content: space-evenly;
 }
@@ -643,8 +643,9 @@ label:active {
 
 .diseñopersonalizado{
     display: flex;
-    justify-content:space-between;
+    justify-content: space-evenly;
     align-items: center;
+    margin-right: 10%;
 }
 
 
@@ -652,7 +653,6 @@ label:active {
     display: flex;
     justify-content: space-evenly;
 }
-
 
 
 
