@@ -107,18 +107,20 @@
 
   <div class="container">
     <div class="container">
-    <h3 class="center lgrey">LO NUEVO EN LA COLECCIÒN</h3>
+    <h4 class="center lgrey">Lo nuevo en la colecciòn</h4>
+    <p class="center grey-text">Ultimos productos agregados a la tienda</p>
     <hr>
   </div>
-    <div class="carousel center" style="width: 1200px; right: 12%; height: 200px;">
+    <div class="carousel center" style="width: 1200px; right: 12%; height: 150px;">
       {% for producto in productos %}
-      <a class="carousel-item" style="width: 300px;" href="{% url 'koras_joyeria:ver-producto' producto.id %}"><img src="{{ producto.imagen.url }}"></a>
+      <a class="carousel-item" style="width: 250px;" href="{% url 'koras_joyeria:ver-producto' producto.id %}"><img src="{{ producto.imagen.url }}"></a>
       {% endfor %}
     </div>
     <br>
 
     <div class="container">
-      <h3 class="center lgrey">CATEGORIAS</h3>
+      <h4 class="center lgrey">Categorias</h4>
+      <p class="center grey-text">Selecciona una de las categorias para visualizar sus productos</p>
     <hr>
     </div>
 

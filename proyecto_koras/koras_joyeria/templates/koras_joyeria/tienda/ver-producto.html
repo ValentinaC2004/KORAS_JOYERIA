@@ -11,16 +11,17 @@
     <div class="flex-producto container">
         <div class="imgs-producto">
             <div>
+                
                 {% for producto in productos %}
-                {% if producto.imagenes %}
                 <div>
-                    <img src="{{ producto.imagenes.first.imagen.url }}" alt="imagen producto" width="30px" title="xsxs">
+                    <img src="{{ producto.imagenes.second.imagen.url }}" alt="imagen producto" width="30px" >
                 </div>
-                {% endif %}
+                
                 {% endfor %}
+                
             </div>
         </div>
-        <img src="{{ data.imagen.url }}" alt="{{ data.nombre_producto }}" width="50%">
+        <img src="{{ data.imagenes.first.imagen.url }}" alt="{{ data.nombre_producto }}" width="50%">
         <div class="content-producto">
             <h4>{{ data.nombre_producto }}</h4>
             <p>DESCRIPCION</p>

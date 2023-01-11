@@ -1,128 +1,230 @@
 {% extends 'koras_joyeria/base/base.html' %}
 {% load static %}
 
-{% block title2 %}Tienda{% endblock title2 %}
+{% block title2 %}Diseñar joya{% endblock title2 %}
 
 {% block content %} 
 
 <section>
     <div class="container">
         <div class="sesion container">
-            <h4>ELIGE EL TIPO DE JOYA A DISEÑAR</h4>
+            <h4 class="lgrey">Encuentra tu joya ideal</h4>
           </div>
+        <br>
+        
+        <form action="#">
+          <div class="file-field input-field">
+            <div class="btn grey">
+              <span>Imagen</span>
+              <input type="file" multiple>
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" placeholder="Agrega una imagen del producto que buscas">
+            </div>
+          </div>
+        </form>
+
+        <div class="container">
+          <h4 class="center lgrey">Personalizar joya</h4>
+          <p class="center grey-text">Selecciona el tipo de producto que desea diseñar</p>
+          <hr>
+        </div>
+
+        <div class="diseñopersonalizado">
+          <div class="product1">
+            <h5 class="lgrey">Cadenas</h5>
+            <img src="{% static 'koras_joyeria/img/port11.jpg' %}" alt="producto" width="50%">
+          </div>
+          <div class="pasos">
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">1.Base</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">2.Ensambles</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">3.Color</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">4.Seleccionar</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">5.Talla</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">6.Comprar</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
         <hr>
+
+        <div class="diseñopersonalizado">
+          <div class="product1">
+            <h5 class="lgrey">Pulseras</h5>
+            <img src="{% static 'koras_joyeria/img/port11.jpg' %}" alt="producto" width="50%">
+          </div>
+          <div class="pasos">
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">1.Material</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">2.Diamantes</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">3.Color</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">4.Seleccionar</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">5.Talla</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">6.Comprar</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <hr>
+
         <a href="{% url 'koras_joyeria:diseñarAnillos' %}">
-        <div class="card div-product">
-           
-            <div class="flex-joyas">
-                <img src="{% static 'koras_joyeria/img/port11.jpg' %}" alt="" class="joya-joyas">
-
-
-                <div class="flex-crea">
-
-                    <div class="col 14 m4 s12 animate__animated animate__flipInY">
-                      <h6 class="animate__animated animate__fadeInTopLeft black-text">Montaje</h6>
-                      <div class="icon-crea animate__animated animate__fadeInTopLeft">
-                        <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
-                      </div>
-                    </div>
-              
-                    <div class="col 14 m4 s12 animate__animated animate__flipInY">
-                      <h6 class="text-center animate__animated animate__fadeInTopLeft black-text ">Material</h6>
-                      <div class="icon-crea animate__animated animate__fadeInTopLeft">
-                        <img src="{% static 'koras_joyeria/img/material.png' %}" alt="" width="100%">
-                      </div>
-                    </div>
-              
-                    <div class="col 14 m4 s12 animate__animated animate__flipInY">
-                      <h6 class="text-center animate__animated animate__fadeInTopLeft black-text">Ensamble</h6>
-                      <div class="icon-crea animate__animated animate__fadeInTopLeft">
-                        <img src="{% static 'koras_joyeria/img/ensamblaje.png' %}" alt="" width="100%">
-                      </div>
-                    </div>
-              
-                    <div class="col 14 m4 s12 animate__animated animate__flipInY">
-                      <h6 class="text-center animate__animated animate__fadeInTopRight black-text ">Talla</h6>
-                      <div class="icon-crea animate__animated animate__fadeInTopRight">
-                        <img src="{% static 'koras_joyeria/img/talla.png' %}" alt="" width="100%">
-                      </div>
-                    </div>
-              
-                    <div class="col 14 m4 s12 animate__animated animate__flipInY">
-                      <h6 class="text-center animate__animated animate__fadeInTopRight black-text">Peso</h6>
-                      <div class="icon-crea animate__animated animate__fadeInTopRight">
-                        <img src="{% static 'koras_joyeria/img/peso.png' %}" alt="" width="100%">
-                      </div>
-                    </div>
-              
-                  </div>
-
-                <!--
-                <div class="contenido-joyas">
-                    <div class="content-product">
-                        PASO 1
-                    </div>
-                    <div class="content-product">
-                        PASO 2
-                    </div>
-                    <div class="content-product">
-                        PASO 3
-                    </div>
-                    <div class="content-product">
-                        PASO 4
-                    </div>
-                </div>
-            -->
+        <div class="diseñopersonalizado">
+          <div class="product1">
+            <h5 class="lgrey">Anillos</h5>
+            <img src="{% static 'koras_joyeria/img/port11.jpg' %}" alt="producto" width="50%">
+          </div>
+          <div class="pasos">
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">1.Material</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
             </div>
-      
-        </div>
-    </a>
 
-    <a href="">
-        <div class="card div-product">
-            <div class="flex-joyas">
-                <img src="{% static 'koras_joyeria/img/port5.jpg' %}" alt="" class="joya-joyas">
-                <div class="flex-crea">
-
-                    <div class="col 14 m4 s12 animate__animated animate__flipInY">
-                      <h6 class="animate__animated animate__fadeInTopLeft black-text">Montaje</h6>
-                      <div class="icon-crea animate__animated animate__fadeInTopLeft">
-                        <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
-                      </div>
-                    </div>
-              
-                    <div class="col 14 m4 s12 animate__animated animate__flipInY">
-                      <h6 class="text-center animate__animated animate__fadeInTopLeft black-text ">Material</h6>
-                      <div class="icon-crea animate__animated animate__fadeInTopLeft">
-                        <img src="{% static 'koras_joyeria/img/material.png' %}" alt="" width="100%">
-                      </div>
-                    </div>
-              
-                    <div class="col 14 m4 s12 animate__animated animate__flipInY">
-                      <h6 class="text-center animate__animated animate__fadeInTopLeft black-text">Ensamble</h6>
-                      <div class="icon-crea animate__animated animate__fadeInTopLeft">
-                        <img src="{% static 'koras_joyeria/img/ensamblaje.png' %}" alt="" width="100%">
-                      </div>
-                    </div>
-              
-                    <div class="col 14 m4 s12 animate__animated animate__flipInY">
-                      <h6 class="text-center animate__animated animate__fadeInTopRight black-text ">Talla</h6>
-                      <div class="icon-crea animate__animated animate__fadeInTopRight">
-                        <img src="{% static 'koras_joyeria/img/talla.png' %}" alt="" width="100%">
-                      </div>
-                    </div>
-              
-                    <div class="col 14 m4 s12 animate__animated animate__flipInY">
-                      <h6 class="text-center animate__animated animate__fadeInTopRight black-text">Peso</h6>
-                      <div class="icon-crea animate__animated animate__fadeInTopRight">
-                        <img src="{% static 'koras_joyeria/img/peso.png' %}" alt="" width="100%">
-                      </div>
-                    </div>
-              
-                  </div>
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">2.Diamantes</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
             </div>
+
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">3.Color</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">4.Seleccionar</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">5.Talla</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+            <div class="flex-crea">
+              <div class="nivel">
+                <span class="large grey-text">6.Comprar</span>
+                <div class="icon-crea">
+                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+              </div>
+              </div>
+            </div>
+
+          </div>
         </div>
-    </a>
+      </a>
+
 
     </div>
 </section>
