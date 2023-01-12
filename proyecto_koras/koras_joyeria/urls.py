@@ -77,6 +77,8 @@ urlpatterns = [
     path('eliminarUsuarios/<int:id>', views.EliminarUsuarios, name='eliminarUsuarios'),
 
     path('diseñarAnillos/', views.DiseñarAnillos, name='diseñarAnillos'),
+    path('diseñarCadenas/', views.DiseñarCadenas, name='diseñarCadenas'),
+    path('diseñarArgollas/', views.DiseñarArgollas, name='diseñarArgollas'),
 ]
 
 

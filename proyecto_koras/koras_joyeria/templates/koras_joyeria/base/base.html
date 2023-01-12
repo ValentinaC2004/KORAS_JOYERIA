@@ -209,10 +209,10 @@
         var toastElement = document.querySelector('.toast');
         var toastInstance = M.Toast.getInstance(toastElement);
         toastInstance.dismiss();
-
     });
 
     </script>
+
     <!--Modificar-->
     <script>
     $(document).ready(function(){
@@ -223,15 +223,23 @@
   });
     </script>
 
+  
+
     <script src="{% static 'koras_joyeria/material/js/materialize.js' %}"></script>
     <script src="{% static 'koras_joyeria/material/js/materialize.min.js' %}"></script>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="{% static 'koras_joyeria/js/loader.js' %}"></script>
 
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var fab = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(fab);
+  });
+    </script>
     {% block alert %}
     
     {% endblock alert %}

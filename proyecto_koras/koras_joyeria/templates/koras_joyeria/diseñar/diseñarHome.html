@@ -25,12 +25,14 @@
         </form>
 
         <div class="container">
+          
           <h4 class="center lgrey">Personalizar joya</h4>
           <p class="center grey-text">Selecciona el tipo de producto que desea diseñar</p>
           <hr>
           <p class="center grey-text">Diseña y realiza la compra de tu joya en solo 4 pasos</p>
         </div>
 
+        <a href="{% url 'koras_joyeria:diseñarCadenas' %}">
         <div class="diseñopersonalizado">
           <div class="product1">
             <h5 class="lgrey">Cadenas</h5>
@@ -75,9 +77,11 @@
 
           </div>
         </div>
+        </a>
 
         <hr>
 
+        <a href="{% url 'koras_joyeria:diseñarArgollas' %}">
         <div class="diseñopersonalizado">
           <div class="product1">
             <h5 class="lgrey">Argollas</h5>
@@ -122,6 +126,7 @@
 
           </div>
         </div>
+        </a>
 
         <hr>
 

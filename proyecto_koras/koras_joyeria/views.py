@@ -581,7 +581,14 @@ def guardarProducto(request):
     #PERSONALIZAR
 def DiseñarAnillos(request):
     return render(request, 'koras_joyeria/diseñar/diseñar-anillos/diseñar-anillos.html')
-        
+
+
+def DiseñarCadenas(request):
+    return render(request, 'koras_joyeria/diseñar/diseñar-cadenas/diseñar-cadenas.html')
+
+def DiseñarArgollas(request):
+    return render(request, 'koras_joyeria/diseñar/diseñar-argollas/diseñar-argollas.html')
+
 class Error404View(TemplateView):
     template_name = "koras_joyeria/Error_404.html"
 
