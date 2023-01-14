@@ -5,6 +5,29 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
+
+class BaseJoya(models.Model):
+    image = models.ImageField(upload_to="proyecto_koras/diseñarjoya/basejoya", null=True)
+    palabrasClave = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"{self.palabrasClave}"
+
+class EnsablesPiedrasJoya(models.Model):
+    image = models.ImageField(upload_to="proyecto_koras/diseñarjoya/ensamblespiedrasjoya", null=True)
+    palabrasClave = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"{self.palabrasClave}"
+
+class Joyaprediseñada(models.Model):
+    id_basejoya = models.ForeignKey(BaseJoya, on_delete=models.DO_NOTHING, null=True)
+    id_ensamblespiedrasjoya = models.ForeignKey(EnsablesPiedrasJoya, on_delete=models.DO_NOTHING, null=True)
+
+    def __str__(self):
+        return f"{self.id_basejoya} {self.id_ensamblespiedrasjoya}"
+    
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="proyecto_koras/profiles", default="proyecto_koras/profiles/profile-default.png")

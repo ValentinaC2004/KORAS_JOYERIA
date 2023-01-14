@@ -112,9 +112,44 @@
     <hr>
   </div>
     <div class="carousel center" style="width: 1200px; right: 12%; height: 150px;">
-      {% for producto in productos %}
-      <a class="carousel-item" style="width: 250px;" href="{% url 'koras_joyeria:ver-producto' producto.id %}"><img src="{{ producto.imagen.url }}"></a>
+      {% for newproducto in newproduct %}
+      <a class="carousel-item" style="width: 250px;" href="{% url 'koras_joyeria:ver-producto' newproducto.id %}"><img src="{{ newproducto.imagen.url }}"></a>
       {% endfor %}
+    </div>
+    <br>
+    <div>
+      <div class="row">
+        
+        {% for newproducto in newproducts %}
+
+        <a href="{% url 'koras_joyeria:ver-producto' newproducto.id %}">
+        <div class="col 14 m4 s12 animate__animated animate__flipInY">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="{{ newproducto.imagen.url }}" width="auto" height="200px">
+            </div>
+          </a>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">{{ newproducto.nombre_producto }}<i
+                  class="material-icons right">more_vert</i></span>
+            </div>
+            
+            <div class="card-reveal">
+              <strong class="black-text">Fecha:</strong>
+          <span class="grey-text">{{ newproducto.timestamp }}</span>
+              <span class="card-title grey-text text-darken-4">{{ newproducto.nombre_producto }}<i class="material-icons right">close</i></span>
+              <p>{{ newproducto.desc }}</p>
+              <p>precio: {{ newproducto.precio_producto }}</p>
+              <a class="waves-effect waves-light btn grey right" href="{% url 'koras_joyeria:Add' newproducto.id %}">Agregar al carrito</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+  </div>
+  </div>
+    <br>
+    <div class="container center">
+      <a class="waves-effect waves-light btn grey center"><i class="material-icons left">cloud</i>Ver todo</a>
     </div>
     <br>
 

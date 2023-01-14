@@ -47,9 +47,11 @@ def Inquietudes(request):
     return render(request, 'koras_joyeria/info/inquietudes.html')
 
 def Tienda(request):
+    newproduct = Producto.objects.all()[:5]
+    newproducts = Producto.objects.all()[6:15]
     productos = Producto.objects.all()
     categorias = Categoria.objects.all()
-    contexto = { "categorias": categorias,  "productos":productos, }
+    contexto = { "categorias": categorias,  "productos":productos, "newproduct":newproduct,"newproducts":newproducts}
     return render(request, 'koras_joyeria/tienda/tienda.html',contexto)
 
 def VerCarrito(request):

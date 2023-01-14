@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.html import format_html 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from koras_joyeria.models import ImagenProducto, Categoria, Producto,Profile, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, Talla, SizeP, Empleado, Tipo, Colore, UserRegisterForm
+from koras_joyeria.models import BaseJoya, EnsablesPiedrasJoya, Joyaprediseñada, ImagenProducto, Categoria, Producto,Profile, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, Talla, SizeP, Empleado, Tipo, Colore, UserRegisterForm
 # Register your models here.
 
 #class UserRegisterFormAdmin(UserAdmin):
@@ -12,6 +12,20 @@ from koras_joyeria.models import ImagenProducto, Categoria, Producto,Profile, Co
       # (None, {'fields': ('first_name', 'last_name', 'username','email')}),
    #)
     #fieldsets = UserAdmin.fieldsets
+class BaseJoyaAdmin(admin.ModelAdmin):
+    def imagenes(self, obj):
+        return format_html('<img src="{}" width="110px"/>'.format(obj.imagen.url))
+
+    list_display = ('imagenes','palabrasClave')
+
+class EnsablesPiedrasJoyaAdmin(admin.ModelAdmin):
+    def imagenes(self, obj):
+        return format_html('<img src="{}" width="110px"/>'.format(obj.imagen.url))
+
+    list_display = ('imagenes','palabrasClave')
+
+class JoyaprediseñadaAdmin(admin.ModelAdmin):
+    list_display = ('id_basejoya','id_ensamblespiedrasjoya')
 
 class ImagenProductoAdmin(admin.TabularInline):
     model = ImagenProducto
