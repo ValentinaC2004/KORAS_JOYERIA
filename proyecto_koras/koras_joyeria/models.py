@@ -5,29 +5,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
-
-class BaseJoya(models.Model):
-    image = models.ImageField(upload_to="proyecto_koras/diseñarjoya/basejoya", null=True)
-    palabrasClave = models.CharField(max_length=20)
-
-    def __str__(self):
-        return f"{self.palabrasClave}"
-
-class EnsablesPiedrasJoya(models.Model):
-    image = models.ImageField(upload_to="proyecto_koras/diseñarjoya/ensamblespiedrasjoya", null=True)
-    palabrasClave = models.CharField(max_length=20)
-
-    def __str__(self):
-        return f"{self.palabrasClave}"
-
-class Joyaprediseñada(models.Model):
-    id_basejoya = models.ForeignKey(BaseJoya, on_delete=models.DO_NOTHING, null=True)
-    id_ensamblespiedrasjoya = models.ForeignKey(EnsablesPiedrasJoya, on_delete=models.DO_NOTHING, null=True)
-
-    def __str__(self):
-        return f"{self.id_basejoya} {self.id_ensamblespiedrasjoya}"
-    
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="proyecto_koras/profiles", default="proyecto_koras/profiles/profile-default.png")
@@ -50,20 +27,56 @@ def create_profile(sender, instance,created,**kwargs):
 
 post_save.connect(create_profile, sender=User)
 
+
 class Categoria(models.Model):
-    nombre_categoria = models.CharField(max_length=12)
+    nombre_categoria = models.CharField(max_length=20)
 
     foto = models.ImageField(upload_to="proyecto_koras/categorias", default="proyecto_koras/categorias/defaultcategory.jpeg")
 
     def __str__(self):
         return f"{self.nombre_categoria}"
 
+
+class SubCategoria(models.Model):
+    nombre_subcategoria = models.CharField(max_length=20)
+    foto = models.ImageField(upload_to="proyecto_koras/subcategorias", default="proyecto_koras/categorias/defaultcategory.jpeg")
+
+    categoria = models.ForeignKey(Categoria,related_name='get_subcategoria', on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return f"{self.categoria} -- {self.nombre_subcategoria}"
+
+class BaseJoya(models.Model):
+    palabrasClave = models.CharField(max_length=12)
+    categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+
+    image = models.ImageField(upload_to="proyecto_koras/diseñarjoya/basejoya", null=True)
+
+    def __str__(self):
+        return f"{self.palabrasClave} -- {self.categoria}"
+
+class EnsablesPiedrasJoya(models.Model):
+    palabrasClave = models.CharField(max_length=12)
+    categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+
+    image = models.ImageField(upload_to="proyecto_koras/diseñarjoya/ensamblespiedrasjoya", null=True)
+
+    def __str__(self):
+        return f"{self.palabrasClave} -- {self.categoria}"
+
+class Joyaprediseñada(models.Model):
+    basejoya = models.ForeignKey(BaseJoya, on_delete=models.DO_NOTHING)
+    ensamblespiedrasjoya = models.ForeignKey(EnsablesPiedrasJoya, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return f"{self.basejoya} , {self.ensamblespiedrasjoya}"
+
 class Talla(models.Model):
     talla = models.CharField(max_length=20)
     id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return f"{self.talla} - {self.id_categoria}"
+        return f"{self.id_categoria} -- {self.talla}"
 
 class Colore(models.Model):
     nombre_color = models.CharField(max_length=20)
@@ -80,7 +93,8 @@ class Producto(models.Model):
     talla_id = models.ForeignKey(Talla, on_delete=models.DO_NOTHING , null=True)
     id_color = models.ForeignKey(Colore, on_delete=models.DO_NOTHING, null=True)
     peso= models.CharField(max_length=10 , null=True)
-    id_categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING, null=True)
+    categoria = models.ForeignKey(Categoria, related_name='get_productos', on_delete=models.DO_NOTHING, null=True)
+    subcategoria = models.ForeignKey(SubCategoria, on_delete=models.DO_NOTHING, null=True)
     imagen = models.ImageField(upload_to="proyecto_koras/productos", default="proyecto_koras/productos/product-default.jpg", null=True)
 
     class Meta:

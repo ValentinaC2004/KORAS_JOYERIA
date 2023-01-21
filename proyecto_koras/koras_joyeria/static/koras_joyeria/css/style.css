@@ -654,6 +654,11 @@ label:active {
     justify-content: space-evenly;
 }
 
+.flex-categoria{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
 
 
   

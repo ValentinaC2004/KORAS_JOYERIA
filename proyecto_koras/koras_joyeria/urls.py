@@ -8,6 +8,7 @@ from koras_joyeria import views
 
 app_name = 'koras_joyeria'
 urlpatterns = [
+    path('admin/', admin.site.urls, name='admin'),
     #Diseñar
     path('diseñarHome/', views.diseñarHome, name='diseñarHome'),
 
@@ -30,7 +31,7 @@ urlpatterns = [
     path('limpiar/', views.limpiar_carrito, name='CLS'),
 
     path('catalogoHome/', views.CatalogoHome, name='catalogoHome'),
-    path('mostrarCatalogo/', views.mostrarCatalogo, name='mostrarCatalogo'),
+    path('mostrarCatalogo/<int:id>', views.mostrarCatalogo, name='mostrarCatalogo'),
 
     #Profile
     path('profile/', views.Profile, name='profile'),

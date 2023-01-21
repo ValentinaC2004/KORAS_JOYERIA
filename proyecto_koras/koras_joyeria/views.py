@@ -22,9 +22,10 @@ from os import remove, path
 
 # Diseñar joyeria
 
-def mostrarCatalogo(request):
-    productos = Producto.objects.all()
-    return render(request, 'koras_joyeria/tienda/mostrarCatalogo.html', {'productos':productos})
+def mostrarCatalogo(request,id):
+    categoria = Categoria.objects.get(pk = id)
+    context = {'categoria':categoria}
+    return render(request, 'koras_joyeria/tienda/mostrarCatalogo.html',context)
 
 def CatalogoHome(request):
     categorias = Categoria.objects.all()
@@ -50,7 +51,7 @@ def Tienda(request):
     newproduct = Producto.objects.all()[:5]
     newproducts = Producto.objects.all()[6:15]
     productos = Producto.objects.all()
-    categorias = Categoria.objects.all()
+    categorias = SubCategoria.objects.all().order_by('-id')
     contexto = { "categorias": categorias,  "productos":productos, "newproduct":newproduct,"newproducts":newproducts}
     return render(request, 'koras_joyeria/tienda/tienda.html',contexto)
 
@@ -586,7 +587,10 @@ def DiseñarAnillos(request):
 
 
 def DiseñarCadenas(request):
-    return render(request, 'koras_joyeria/diseñar/diseñar-cadenas/diseñar-cadenas.html')
+    basejoyas= BaseJoya.objects.all()
+    listado= BaseJoya.id_categoria.all()
+    contexto = { "basejoyas":basejoyas, "id_categoria":listado}
+    return render(request, 'koras_joyeria/diseñar/diseñar-cadenas/diseñar-cadenas.html',contexto)
 
 def DiseñarArgollas(request):
     return render(request, 'koras_joyeria/diseñar/diseñar-argollas/diseñar-argollas.html')

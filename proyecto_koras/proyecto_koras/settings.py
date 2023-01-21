@@ -86,7 +86,7 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'koras_joyeria',
+        'NAME': 'korasjoyeria',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

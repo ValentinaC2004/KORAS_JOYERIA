@@ -5,37 +5,47 @@
 
 {% block content %} 
 
-<section>
-    <div class="container">
-      <div class="row">
+<div class="container">
+  <h3 class="center">{{ categoria.nombre_categoria }}</h3>
 
-        {% for producto in productos %}
+  <div class="flex-subcategoria">
+  <div>
+    <div class="row">
+      
+      {% for productos in categoria.get_productos.all %}
 
-        <a href="{% url 'koras_joyeria:ver-producto' producto.id %}">
-        <div class="col 14 m4 s12 animate__animated animate__flipInY">
-          <strong class="black-text">Fecha:</strong>
-          <span class="grey-text">{{ producto.timestamp }}</span>
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{{ producto.foto.url }}" width="auto" height="200px">
-            </div>
-          </a>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">{{ producto.nombre_producto }}<i
-                  class="material-icons right">more_vert</i></span>
-              <p>precio: {{ producto.precio_producto }}</p>
-              <a class="waves-effect waves-light btn black grey-text right" href="{% url 'koras_joyeria:Add' producto.id %}">Agregar al carrito</a>
-            </div>
-            
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">{{ producto.nombre_producto }}<i class="material-icons right">close</i></span>
-              <p>{{ producto.desc }}</p>
-            </div>
+      <a href="{% url 'koras_joyeria:ver-producto' productos.id %}">
+      <div class="col 14 m4 s12 animate__animated animate__flipInY">
+        <div class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="{{ productos.imagen.url }}" width="auto" height="200px">
+          </div>
+        </a>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">{{ productos.nombre_producto }}<i
+                class="material-icons right">more_vert</i></span>
+          </div>
+          
+          <div class="card-reveal">
+            <strong class="black-text">Fecha:</strong>
+        <span class="grey-text">{{ productos.timestamp }}</span>
+            <span class="card-title grey-text text-darken-4">{{ productos.nombre_producto }}<i class="material-icons right">close</i></span>
+            <p>{{ productos.desc }}</p>
+            <p>precio: {{ productos.precio_producto }}</p>
+            <a class="waves-effect waves-light btn grey right" href="{% url 'koras_joyeria:Add' productos.id %}">Agregar al carrito</a>
           </div>
         </div>
+      </div>
+      {% endfor %}
+
+      <div>
+        {% for subcategoria in categoria.get_subcategoria.all %}
+        {{ subcategoria.nombre_subcategoria }}
         {% endfor %}
       </div>
     </div>
-  </section>
 
+ 
+</div>
+      
 {% endblock %}

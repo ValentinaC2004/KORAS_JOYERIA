@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{% static 'koras_joyeria/img/favicon.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'koras_joyeria/img/diamanteicon.png' %}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'koras_joyeria/material/css/materialize.css' %}">
     <link rel="stylesheet" href="{% static 'koras_joyeria/material/css/materialize.min.css' %}">
@@ -42,6 +42,7 @@
         </div>
         {% endif %}
 
+
             <a class="waves-effect waves-light  modal-trigger right" href="#carrito">
                 <span class="material-icons right black-text small">
                     shopping_bag
@@ -62,13 +63,12 @@
     </div>
 </header>
 
-
             <ul id="menu-side" class="sidenav">
                 <li><div class="user-view">
                   <div class="background">
-                    <img src="{% static 'koras_joyeria/img/font-joyas.jpg' %}" width="100%">
+                    <img src="{% static 'koras_joyeria/imagenes/joyas/depositphotos_68922369-stock-photo-white-gold-jewelry.jpg' %}" width="100%">
                   </div>
-                  <a href="#user"><img src="{% static 'koras_joyeria/img/logo.png' %}" class="logo-menu"></a>
+                  <img src="{% static 'koras_joyeria/img/logokorasjoyeria.png' %}" class="logo-menu">
                 </div></li>
 
                 {% if request.user.is_authenticated %}
@@ -117,8 +117,6 @@
     {% block content %}
     
     {% endblock content %}
-
-
 
     <footer class="page-footer #212121 grey darken-4" style="width: 100%;">
         <div class="row">

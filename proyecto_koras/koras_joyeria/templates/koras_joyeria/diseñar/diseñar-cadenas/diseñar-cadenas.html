@@ -46,7 +46,24 @@
     <div id="test1" class="col s12 card">
       <h6 class="center lgrey">Seleccione la base de la cadena</h6><br>
       <span>Mostrar modelo de las bases para cadenas, luego de seleccionar lo llevara al paso 2 y guardara el id seleccionado</span>
+      <br>
+      
+      <div class="row">
+        {% for basejoya in basejoyas %}
+        <div class="col s12 m6">
+          <div class="card">
+            <a href="#">
+          <div class="card-image">
+            <img src="{{basejoya.image.url}}" alt="base joya" height="300px">
+          </div>
+            </a>
+        </div>
+        </div>
+        {% endfor %}
+      </div>
+      
     </div>
+      
     <div id="test2" class="col s12 card">
       <h6 class="center lgrey">Seleccione el ensamble de la cadena</h6><br>
       <span>Mostrar modelo de ensambles para cadenas, luego de seleccionar lo llevara al paso 3 y guardara el id seleccionado (en una tabla de mucho a muchos)</span>

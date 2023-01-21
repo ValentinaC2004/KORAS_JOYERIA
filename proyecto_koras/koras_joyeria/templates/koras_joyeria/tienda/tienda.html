@@ -163,7 +163,7 @@
       <div class="cards-list">
       
         {% for categoria in categorias %}
-        <a href="{% url 'koras_joyeria:mostrarCatalogo' %}">
+        <a href="{% url 'koras_joyeria:mostrarCatalogo' categoria.id %}">
           <div class="cardd 1" style="height: 200px;">
             <div class="card_imagen"> <img src="{{ categoria.foto.url }}" /> </div>
             <div class="card_title title-white">
