@@ -27,6 +27,11 @@ def mostrarCatalogo(request,id):
     context = {'categoria':categoria}
     return render(request, 'koras_joyeria/tienda/mostrarCatalogo.html',context)
 
+def mostrarSubcategoria(request,id):
+    subcategoria = SubCategoria.objects.get(pk = id)
+    context = {'subcategoria':subcategoria}
+    return render(request, 'koras_joyeria/tienda/mostrarSubcategoria.html',context)
+
 def CatalogoHome(request):
     categorias = Categoria.objects.all()
     return render(request, 'koras_joyeria/tienda/catalogoHome.html', {'categorias':categorias})
@@ -49,8 +54,8 @@ def Inquietudes(request):
 
 def Tienda(request):
     newproduct = Producto.objects.all()[:5]
-    newproducts = Producto.objects.all()[6:15]
-    productos = Producto.objects.all()
+    newproducts = Producto.objects.all()
+    productos = Producto.objects.all()[:10]
     categorias = Categoria.objects.all().order_by('-id')
     contexto = { "categorias": categorias,  "productos":productos, "newproduct":newproduct,"newproducts":newproducts}
     return render(request, 'koras_joyeria/tienda/tienda.html',contexto)

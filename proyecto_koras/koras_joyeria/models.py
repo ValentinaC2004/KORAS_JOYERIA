@@ -94,7 +94,7 @@ class Producto(models.Model):
     id_color = models.ForeignKey(Colore, on_delete=models.DO_NOTHING, null=True)
     peso= models.CharField(max_length=10 , null=True)
     categoria = models.ForeignKey(Categoria, related_name='get_productos', on_delete=models.DO_NOTHING, null=True)
-    subcategoria = models.ForeignKey(SubCategoria, on_delete=models.DO_NOTHING, null=True)
+    subcategoria = models.ForeignKey(SubCategoria,related_name='get_productos', on_delete=models.DO_NOTHING, null=True)
     imagen = models.ImageField(upload_to="proyecto_koras/productos", default="proyecto_koras/productos/product-default.jpg", null=True)
 
     class Meta:

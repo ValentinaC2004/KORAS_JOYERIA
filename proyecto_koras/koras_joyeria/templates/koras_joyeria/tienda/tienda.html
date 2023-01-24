@@ -118,44 +118,8 @@
       {% endfor %}
     </div>
     <br>
-    <div>
-      <div class="row">
-        
-        {% for newproducto in newproducts %}
-
-        <a href="{% url 'koras_joyeria:ver-producto' newproducto.id %}">
-        <div class="col 14 m4 s12 animate__animated animate__flipInY">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{{ newproducto.imagen.url }}" width="auto" height="200px">
-            </div>
-          </a>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">{{ newproducto.nombre_producto }}<i
-                  class="material-icons right">more_vert</i></span>
-            </div>
-            
-            <div class="card-reveal">
-              <strong class="black-text">Fecha:</strong>
-          <span class="grey-text">{{ newproducto.timestamp }}</span>
-              <span class="card-title grey-text text-darken-4">{{ newproducto.nombre_producto }}<i class="material-icons right">close</i></span>
-              <p>{{ newproducto.desc }}</p>
-              <p>precio: {{ newproducto.precio_producto }}</p>
-              <a class="waves-effect waves-light btn grey right" href="{% url 'koras_joyeria:Add' newproducto.id %}">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-  </div>
-  </div>
-    <br>
-    <div class="container center">
-      <a class="waves-effect waves-light btn grey center"><i class="material-icons left">cloud</i>Ver todo</a>
-    </div>
-    <br>
-
     <div class="container">
-      <h4 class="center lgrey">Catálogos</h4>
+      <h4 class="center lgrey">Nuestro Catálogo</h4>
     <hr>
     </div>
 
@@ -164,7 +128,7 @@
       
         {% for categoria in categorias %}
         <a href="{% url 'koras_joyeria:mostrarCatalogo' categoria.id %}">
-          <div class="cardd 1" style="height: 200px;">
+          <div class="cardd 1" style="height: 500px;">
             <div class="card_imagen"> <img src="{{ categoria.foto.url }}" /> </div>
             <div class="card_title title-white">
               <h4 class="lgrey">{{ categoria.nombre_categoria }}</h4>
@@ -176,62 +140,130 @@
           
           </div>
     </div>
-
-  <section>
-
-    <section id="p-4" class="section scrollspy">
-      <div class="sesion container filt">
-        <h4>JOYERÍA</h4>
-        <a class='dropdown-trigger btn #e0e0e0 grey lighten-2 black-text' href='#' data-target='filtro1'>Filtrar</a>
-        <ul id='filtro1' class='dropdown-content'>
-          <li><a href="#!" class="black-text">one</a></li>
-          <li><a href="#!" class="black-text">two</a></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><a href="#!" class="black-text">three</a></li>
-          
-        </ul>
-        <a href="{% url 'koras_joyeria:diseñarHome' %}" class="waves-effect waves-light btn #e0e0e0 grey lighten-2 black-text"><i class="material-icons left">brush</i>Personalizar diseño</a>
-      </div>
-    </section>
- 
-  </section>
-
-  <section style=" display: flex; justify-content: center;" >
-    <div style="width: 90%;" class="card" >
+    <div>
       <div class="row">
         
-        {% for producto in productos %}
+        {% for newproductos in newproducts %}
 
-        <a href="{% url 'koras_joyeria:ver-producto' producto.id %}">
+        <a href="{% url 'koras_joyeria:ver-producto' newproductos.id %}">
         <div class="col 14 m4 s12 animate__animated animate__flipInY">
           <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{{ producto.foto.url }}" width="auto" height="200px">
+              <img class="activator" src="{{ newproductos.imagen.url }}" width="auto" height="200px">
             </div>
           </a>
             <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">{{ producto.nombre_producto }}<i
+              <span class="card-title activator grey-text text-darken-4">{{ newproductos.nombre_producto }}<i
                   class="material-icons right">more_vert</i></span>
-              <a class="waves-effect waves-light btn black grey-text right" href="{% url 'koras_joyeria:Add' producto.id %}">Agregar al carrito</a>
             </div>
             
             <div class="card-reveal">
               <strong class="black-text">Fecha:</strong>
-          <span class="grey-text">{{ producto.timestamp }}</span>
-              <span class="card-title grey-text text-darken-4">{{ producto.nombre_producto }}<i class="material-icons right">close</i></span>
-              <p>precio: {{ producto.precio_producto }}</p>
-              <p>{{ producto.desc }}</p>
+          <span class="grey-text">{{ newproductos.timestamp }}</span>
+              <span class="card-title grey-text text-darken-4">{{ newproducto.nombre_producto }}<i class="material-icons right">close</i></span>
+              <p>{{ newproductos.desc }}</p>
+              <p>precio: {{ newproductos.precio_producto }}</p>
+              <a class="waves-effect waves-light btn grey right" href="{% url 'koras_joyeria:Add' newproductos.id %}">Agregar al carrito</a>
             </div>
           </div>
         </div>
         {% endfor %}
+  </div>
+  </div>
+    <br>
+    <div class="container center">
+      <a class="waves-effect waves-light btn grey center"><i class="material-icons left">cloud</i>Ver todo</a>
+    </div>
+    <br><br>
+
+    <div class="container">
+      <h5 class="center">Diseña tus joyas</h5>
+      <p class="lgrey center">Crea diseños personalizados a tu preferencia y encuentra las mejores opciones para realizar tu compra</p>
+      <hr>
+      <h5 class="lgrey center">Pasos a seguir para realizar un diseño personalizado</h5>
+      </div>
+
+    <div class="col s12 m7">
+      <h2 class="header">Elige una base para tu joya</h2>
+      <div class="card horizontal">
+        <div class="card-image">
+          <img src="{% static 'koras_joyeria\imagenes\joyas\gettyimages-1249442477-612x612.jpg' %}">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>Como primer paso tendras que imaginar como es la joya que quieres y luego seleccionar un tipo de base para la misma que se encontraran disponibles en el sistema, despues daras a la clic en la opcion de continuar para seguir con el proceso de diseñar joya</p>
+          </div>
+          <div class="card-action">
+            <a href="#" class="black-text">Paso 1: Seleccionar base</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col s12 m7">
+      <h2 class="header">Elige una ensamble o piedra para tu joya</h2>
+      <div class="card horizontal">
+        
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>Como segundo paso tendras que seleccionar un ensamble o piedra que quieres que adquiera tu joya a comprar.</p>
+          </div>
+          <div class="card-action">
+            <a href="#" class="black-text">Paso 2: Seleccionar un ensamble o piedra</a>
+          </div>
+        </div>
+        <div class="card-image">
+          <img src="{% static 'koras_joyeria\imagenes\joyas\gettyimages-516889988-612x612.jpg' %}">
+        </div>
       </div>
     </div>
 
-    <div>
-      
+    <div class="col s12 m7">
+      <h2 class="header">Selecciona tu joya</h2>
+      <div class="card horizontal">
+        <div class="card-image">
+          <img src="{% static 'koras_joyeria\imagenes\joyas\gettyimages-1274828960-612x612.jpg' %}">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>Luego de realizar los dos pasos anteriores ya tendras lista la maqueta de tu joya personalizada, por lo tanto podras elegir tu joya ideal entre las opciones que te mostraremos por pantalla.</p>
+          </div>
+          <div class="card-action">
+            <a href="#" class="black-text">Paso 3: Seleccionar joya</a>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="col s12 m7">
+      <h2 class="header">Comprar joya</h2>
+      <div class="card horizontal">
+        
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>Al seleccionar la joya que prefieres podras visualizar el detalle de su informaciòn y caracteristicas y podras agregarla a tu carrito de compras para realizar tu compra.
+              Como segundo paso tendras que seleccionar un ensamble o piedra que quieres que adquiera tu joya a comprar.</p>
+          </div>
+          <div class="card-action">
+            <a href="#" class="black-text">Paso 4: Comprar joya</a>
+          </div>
+        </div>
+        <div class="card-image">
+          <img src="{% static 'koras_joyeria\imagenes\joyas\gettyimages-1251002827-612x612.jpg' %}">
+        </div>
+      </div>
+    </div>
+
+    <div class="center">
+      <a href="{% url 'koras_joyeria:diseñarHome' %}" class="waves-effect waves-light btn #757575 grey darken-1">Ir a diseñar joya</a>
+    </div>
+  
   </section>
+
+    <br><br>
+
+
+  
 
 
 {% endblock content %}

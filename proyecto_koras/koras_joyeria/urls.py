@@ -32,6 +32,7 @@ urlpatterns = [
 
     path('catalogoHome/', views.CatalogoHome, name='catalogoHome'),
     path('mostrarCatalogo/<int:id>', views.mostrarCatalogo, name='mostrarCatalogo'),
+    path('mostrarSubcategoria/<int:id>', views.mostrarSubcategoria, name='mostrarSubcategoria'),
 
     #Profile
     path('profile/', views.Profile, name='profile'),

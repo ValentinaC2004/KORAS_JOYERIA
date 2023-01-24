@@ -4,47 +4,29 @@
 {% block title2 %}Catalogo{% endblock title2 %}
 
 {% block content %} 
-
-<div class="container" style="width: 90%;">
+<div class="container" style="width: 80%;">
   <a href="{% url 'koras_joyeria:tienda' %}"><i class="medium material-icons left lgrey">arrow_back</i></a>
 <div class="col s12">
   <div class="card horizontal">
     <div class="card-image">
-      <img src="{{ categoria.foto.url }}" height="100%">
+      <img src="{{ subcategoria.foto.url }}" style="width: 280px; height: 100%;">
     </div>
     <div class="card-stacked">
       <div class="card-content">
-        <h1 class="center">{{ categoria.nombre_categoria }}</h1>
-        <h5 class="center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, eum aliquid pariatur maiores molestiae velit nobis impedit. Molestias, ex! Quaerat dolores laudantium cum! Nisi exercitationem explicabo, quo facilis dolores quisquam.</h5>
+        <h3 class="center">{{ subcategoria.categoria }} para {{ subcategoria.nombre_subcategoria }}</h3>
+        <h5 class="center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, eum aliquid pariatur maiores molestiae velit nobis impedit. </h5>
       </div>
       
     </div>
   </div>
 </div>
 </div>
-
 <div class="container">
-  <div>
-    <div class="cards-list">
-      {% for subcategorias in categoria.get_subcategoria.all %}
-      <a href="{% url 'koras_joyeria:mostrarSubcategoria' subcategorias.id %}">
-        <div class="cardd 1" style="height: 400px;">
-          <div class="card_imagen"> <img src="{{ subcategorias.foto.url }}" /> </div>
-          <div class="card_title title-white">
-            <h5 class="black-text">{{ categoria.nombre_categoria }} para {{ subcategorias.nombre_subcategoria }}</h5>
-          </div>
-        </div>
-      </a>
-        {% endfor %}
-        
-        
-        </div>
-  </div>
 
   <div>
     <div class="row">
       
-      {% for productos in categoria.get_productos.all %}
+      {% for productos in subcategoria.get_productos.all %}
 
       <a href="{% url 'koras_joyeria:ver-producto' productos.id %}">
       <div class="col 14 m4 s12 animate__animated animate__flipInY">
