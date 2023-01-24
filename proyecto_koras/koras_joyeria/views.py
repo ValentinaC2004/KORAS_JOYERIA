@@ -51,7 +51,7 @@ def Tienda(request):
     newproduct = Producto.objects.all()[:5]
     newproducts = Producto.objects.all()[6:15]
     productos = Producto.objects.all()
-    categorias = SubCategoria.objects.all().order_by('-id')
+    categorias = Categoria.objects.all().order_by('-id')
     contexto = { "categorias": categorias,  "productos":productos, "newproduct":newproduct,"newproducts":newproducts}
     return render(request, 'koras_joyeria/tienda/tienda.html',contexto)
 

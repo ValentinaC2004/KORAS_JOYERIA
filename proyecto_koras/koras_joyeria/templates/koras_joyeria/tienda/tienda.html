@@ -66,34 +66,35 @@
           <div class="slider">
             <ul class="slides">
               <li>
-                <img src="{% static 'koras_joyeria\imagenes\joyas\depositphotos_348355676-stock-photo-cropped-view-gemstone-jewelry-board.jpg' %}" alt="">
+                <img src="{% static 'koras_joyeria\imagenes\joyas\depositphotos_19405087-stock-photo-golden-heart-on-blazing-defocused.jpg' %}" alt="">
                 <div class="caption center-align">
-                  <h3>Lorem, ipsum dolor.</h3>
+                  <h3 class="lgrey">Lorem, ipsum dolor.</h3>
                   <h5 class="light black-text text-lighten-3">Lorem, ipsum dolor.</h5>
                 </div>
               </li>
   
               <li>
-                <img src="{% static 'koras_joyeria\imagenes\joyas\gettyimages-486949044-612x612.jpg' %}" alt="">
+                <img src="{% static 'koras_joyeria\imagenes\joyas\depositphotos_263571630-stock-photo-young-naked-woman-shiny-makeup.jpg' %}" alt="">
                 <div class="caption left-align">
-                  <h3>Lorem, ipsum dolor.</h3>
-                  <h5 class="light grey-text text-lighten-3">Lorem ipsum dolor sit.</h5>
+                  <h3 class="black-text">Lorem, ipsum dolor.</h3>
+                  <h5 class="light lgrey text-lighten-3">Lorem ipsum dolor sit.</h5>
                 </div>
               </li>
   
               <li>
-                <img src="{% static 'koras_joyeria\imagenes\joyas\depositphotos_12252249-stock-photo-close-up-of-beautiful-womans.jpg' %}" alt="">
+                <img src="{% static 'koras_joyeria\imagenes\joyas\depositphotos_134801838-stock-photo-female-hands-with-jewelry.jpg' %}" alt="">
+                
                 <div class="caption right-align">
                   <h3>Lorem, ipsum dolor.</h3>
-                  <h5 class="light grey-text text-lighten-3">Lorem ipsum dolor sit.</h5>
+                  <h5 class="light lgrey text-lighten-3">Lorem ipsum dolor sit.</h5>
                 </div>
               </li>
   
               <li>
-                <img src="{% static 'koras_joyeria\imagenes\joyas\jewellery-784410__340.jpg' %}" alt="">
+                <img src="{% static 'koras_joyeria\imagenes\joyas\depositphotos_483543208-stock-photo-cropped-view-young-indian-bride.jpg' %}" alt="">
                 <div class="caption center-align">
-            <h3>Lorem, ipsum dolor.</h3>
-            <h5 class="light grey-text text-lighten-3">Lorem ipsum dolor sit.</h5>
+            <h3 class="lgrey">Lorem, ipsum dolor.</h3>
+            <h5 class="light black-text text-lighten-3">Lorem ipsum dolor sit.</h5>
           </div>
               </li>
             </ul>
@@ -107,8 +108,8 @@
 
   <div class="container">
     <div class="container">
-    <h4 class="center lgrey">Lo nuevo en la colecciòn</h4>
-    <p class="center grey-text">Ultimos productos agregados a la tienda</p>
+    <h4 class="center lgrey">Lo nuevo en Koras Joyería ✨</h4>
+    <p class="center grey-text">Nuevos productos a la venta</p>
     <hr>
   </div>
     <div class="carousel center" style="width: 1200px; right: 12%; height: 150px;">
@@ -154,8 +155,7 @@
     <br>
 
     <div class="container">
-      <h4 class="center lgrey">Categorias</h4>
-      <p class="center grey-text">Selecciona una de las categorias para visualizar sus productos</p>
+      <h4 class="center lgrey">Catálogos</h4>
     <hr>
     </div>
 
@@ -167,7 +167,7 @@
           <div class="cardd 1" style="height: 200px;">
             <div class="card_imagen"> <img src="{{ categoria.foto.url }}" /> </div>
             <div class="card_title title-white">
-              <p>{{ categoria.nombre_categoria }}</p>
+              <h4 class="lgrey">{{ categoria.nombre_categoria }}</h4>
             </div>
           </div>
         </a>

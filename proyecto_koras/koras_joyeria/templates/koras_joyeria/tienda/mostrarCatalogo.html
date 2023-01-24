@@ -5,10 +5,29 @@
 
 {% block content %} 
 
-<div class="container">
-  <h3 class="center">{{ categoria.nombre_categoria }}</h3>
+<div class="col s12">
+  <div class="card horizontal">
+    <div class="card-image">
+      <img src="{{ categoria.foto.url }}">
+    </div>
+    <div class="card-stacked">
+      <div class="card-content">
+        <h1 class="center">{{ categoria.nombre_categoria }}</h1>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
-  <div class="flex-subcategoria">
+<div class="container">
+  <a href="#">
+  <div class="images-flex">
+    {% for subcategorias in categoria.get_subcategoria.all %}
+    <img src="{{ subcategorias.foto.url }}" alt="{{ subcategorias.nombre_subcategoria }}">
+    {% endfor %}
+  </div>
+</a>
+
   <div>
     <div class="row">
       
@@ -38,14 +57,11 @@
       </div>
       {% endfor %}
 
-      <div>
-        {% for subcategoria in categoria.get_subcategoria.all %}
-        {{ subcategoria.nombre_subcategoria }}
-        {% endfor %}
-      </div>
+      
+
+      
     </div>
 
  
-</div>
       
 {% endblock %}
