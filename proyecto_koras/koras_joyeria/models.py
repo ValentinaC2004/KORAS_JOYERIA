@@ -105,7 +105,7 @@ class Producto(models.Model):
 
 class ImagenProducto(models.Model):
     imagen = models.ImageField(upload_to="proyecto_koras/productos", default="proyecto_koras/productos/product-default.jpg", null=True)
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name="imagenes")
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name="get_imagenes")
 
 
 class Tipo(models.Model):

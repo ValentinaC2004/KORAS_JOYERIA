@@ -254,11 +254,21 @@ label:active {
     color: #000000;
 }
 
-.flex-producto{
-    width: 60%;
-    height: 280px;
+.detalle-producto{
     display: flex;
-    justify-content:space-between;
+    justify-content:space-evenly;
+    align-items: center;
+    padding: 2%;
+}
+
+.dt-desc{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.info-producto{
+    display: flex;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -602,10 +612,6 @@ label:active {
     overflow: hidden;
   }
 
-
-
-
-  
 
 .owl-carousel .owl-nav .owl-prev,
   .owl-carousel .owl-nav .owl-next,

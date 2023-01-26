@@ -4,47 +4,50 @@
 {% block title2 %}Producto{% endblock title2 %}
 
 {% block content %}
-
+<br><br>
 <div class="container">
-    <br><br><br>
-
-    <div class="flex-producto container">
-        <div class="imgs-producto">
-            <div>
-                
-                {% for producto in productos %}
-                <div>
-                    <img src="{{ producto.imagenes.second.imagen.url }}" alt="imagen producto" width="30px" >
-                </div>
-                
-                {% endfor %}
-                
+    <div class="card">
+        <div class="detalle-producto">
+            <div class="imgs-producto">
+                    {% for imagenes in producto.get_imagenes.all %}
+                    <div>
+                        <img src="{{ imagenes.imagen.url }}" style="height: 80px;" >
+                    </div>    
+                    {% endfor %}
             </div>
-        </div>
-        <img src="{{ data.imagenes.first.imagen.url }}" alt="{{ data.nombre_producto }}" width="50%">
-        <div class="content-producto">
-            <h4>{{ data.nombre_producto }}</h4>
-            <p>DESCRIPCION</p>
-            <P>{{ data.desc }}</P>
-            <p>color:</p>
-            <a class='dropdown-trigger btn' href='#' data-target='colorDrop'>{{ data.color }}</a>
+                <div class="info-producto">
+                    <div class="imagenproduct" style="margin-right: 2%;">
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre_producto }}" style="height: 300px;">
+                    </div>
+                    <div class="content-producto" style="width: 70%;">
+                    <h4>{{ producto.nombre_producto }}</h4>
+                    <h5>${{ producto.precio_producto }}</h5>
+                    <div class="card-action">
+                        <a class="waves-effect waves-light btn grey" href="{% url 'koras_joyeria:Add' producto.id %}">Agregar al carrito</a>
+                      </div>
 
-            <ul id='colorDrop' class='dropdown-content'>
-                <li><a href="#!">Dorado</a></li>
-                <li><a href="#!">Plateado</a></li>
-            </ul>
-            <p>Talla:</p>
-            <a class='dropdown-trigger btn' href='#' data-target='tallaDrop'>{{ data.talla }}</a>
-
-            <ul id='tallaDrop' class='dropdown-content'>
-                <li><a href="#!">1</a></li>
-                <li><a href="#!">2</a></li>
-                <li><a href="#!">3</a></li>
-            </ul>
-            <p>Precio: {{ data.precio_producto }}</p>
-
+                </div>
+            </div>
+            
         </div>
     </div>
+    <div class="card" >
+        <div class="dt-desc">
+            <div>
+        <h5>Descripciòn del producto</h5>
+        <p>{{ producto.desc }}</p>
+            </div>
+            <div>
+        <h5>Especificaciones</h5>
+        <h6>Talla: {{ producto.talla_id.talla }}</h6>
+        <h6>Color: {{ producto.id_color }}</h6>
+        <h6>Categoria: {{ producto.categoria }}</h6>
+    </div>
+    </div>
+</div>
+</div>
+
+    
     <br>
     <span>SIMILARES</span>
     <hr>

@@ -17,8 +17,6 @@ from koras_joyeria.models import SubCategoria, BaseJoya, EnsablesPiedrasJoya, Jo
 class ImagenProductoAdmin(admin.TabularInline):
     model = ImagenProducto
 
-
-
 class CategoriaAdmin(admin.ModelAdmin):
     def imagen(self, obj):
         return format_html('<img src="{}" width="110px"/>'.format(obj.foto.url))
