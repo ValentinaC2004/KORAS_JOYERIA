@@ -46,19 +46,28 @@ class SubCategoria(models.Model):
     def __str__(self):
         return f"{self.categoria} -- {self.nombre_subcategoria}"
 
+class diseñarColor(models.Model):
+    color = models.CharField(max_length=12)
+    categoria = models.ForeignKey(Categoria, related_name='get_color', on_delete=models.DO_NOTHING, null=True)
+    image = models.ImageField(upload_to="proyecto_koras/diseñarjoya/colores", null=True)
+
+    def __str__(self):
+        return f"{self.color} -- {self.categoria}"
+
 class BaseJoya(models.Model):
     palabrasClave = models.CharField(max_length=12)
-    categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
-
+    categoria = models.ForeignKey(Categoria, related_name='get_basejoya', on_delete=models.DO_NOTHING, null=True)
+    color = models.ForeignKey(diseñarColor, related_name='get_basejoya', on_delete=models.DO_NOTHING, null=True)
     image = models.ImageField(upload_to="proyecto_koras/diseñarjoya/basejoya", null=True)
 
     def __str__(self):
         return f"{self.palabrasClave} -- {self.categoria}"
 
+
 class EnsablesPiedrasJoya(models.Model):
     palabrasClave = models.CharField(max_length=12)
-    categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
-
+    categoria = models.ForeignKey(Categoria, related_name='get_ensamblespiedrasjoya', on_delete=models.DO_NOTHING, null=True)
+    color = models.ForeignKey(diseñarColor, related_name='get_ensamblespiedrasjoya', on_delete=models.DO_NOTHING, null=True, blank=True, default=0)
     image = models.ImageField(upload_to="proyecto_koras/diseñarjoya/ensamblespiedrasjoya", null=True)
 
     def __str__(self):

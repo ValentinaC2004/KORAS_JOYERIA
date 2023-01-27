@@ -37,7 +37,9 @@ def CatalogoHome(request):
     return render(request, 'koras_joyeria/tienda/catalogoHome.html', {'categorias':categorias})
 
 def diseñarHome(request):
-    return render(request, 'koras_joyeria/diseñar/diseñarHome.html')
+    categorias = Categoria.objects.all().order_by('-id')
+    contexto = {"categorias":categorias}
+    return render(request, 'koras_joyeria/diseñar/diseñarHome.html',contexto)
 
 # Profile
 def ProfileEdit(request):
@@ -586,15 +588,17 @@ def guardarProducto(request):
         return HttpResponseRedirect(reverse('koras_joyeria:tienda'))
 
     #PERSONALIZAR
-def DiseñarAnillos(request):
-    return render(request, 'koras_joyeria/diseñar/diseñar-anillos/diseñar-anillos.html')
 
 
-def DiseñarCadenas(request):
-    basejoyas= BaseJoya.objects.all()
-    listado= BaseJoya.id_categoria.all()
-    contexto = { "basejoyas":basejoyas, "id_categoria":listado}
-    return render(request, 'koras_joyeria/diseñar/diseñar-cadenas/diseñar-cadenas.html',contexto)
+def DiseñarColor(request,id):
+    categoria = Categoria.objects.get(pk = id)
+    contexto = { 'categoria':categoria}
+    return render(request, 'koras_joyeria\diseñar\diseñarcolor.html',contexto)
+
+def PersonalizarJoya(request,id):
+    dcolor = diseñarColor.objects.get(pk = id)
+    contexto = { 'dcolor':dcolor}
+    return render(request, 'koras_joyeria\diseñar\personalizarjoya.html',contexto)
 
 def DiseñarArgollas(request):
     return render(request, 'koras_joyeria/diseñar/diseñar-argollas/diseñar-argollas.html')

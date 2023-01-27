@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.html import format_html 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from koras_joyeria.models import SubCategoria, BaseJoya, EnsablesPiedrasJoya, Joyaprediseñada, ImagenProducto, Categoria, Producto,Profile, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, Talla, SizeP, Empleado, Tipo, Colore, UserRegisterForm
+from koras_joyeria.models import diseñarColor, SubCategoria, BaseJoya, EnsablesPiedrasJoya, Joyaprediseñada, ImagenProducto, Categoria, Producto,Profile, Compra, CompraDetalle, MarcoP, MaterialP, DiamanteP, Talla, SizeP, Empleado, Tipo, Colore, UserRegisterForm
 # Register your models here.
 
 #class UserRegisterFormAdmin(UserAdmin):
@@ -13,6 +13,11 @@ from koras_joyeria.models import SubCategoria, BaseJoya, EnsablesPiedrasJoya, Jo
    #)
     #fieldsets = UserAdmin.fieldsets
 
+class diseñarColorAdmin(admin.ModelAdmin):
+    def imagenes(self, obj):
+        return format_html('<img src="{}" width="110px"/>'.format(obj.image.url))
+
+    list_display = ('imagenes','color','categoria')
 
 class ImagenProductoAdmin(admin.TabularInline):
     model = ImagenProducto
@@ -33,13 +38,13 @@ class BaseJoyaAdmin(admin.ModelAdmin):
     def imagenes(self, obj):
         return format_html('<img src="{}" width="110px"/>'.format(obj.image.url))
 
-    list_display = ('imagenes','palabrasClave','categoria')
+    list_display = ('imagenes','palabrasClave','categoria','color')
 
 class EnsablesPiedrasJoyaAdmin(admin.ModelAdmin):
     def imagenes(self, obj):
         return format_html('<img src="{}" width="110px"/>'.format(obj.image.url))
 
-    list_display = ('imagenes','palabrasClave','categoria')
+    list_display = ('imagenes','palabrasClave','categoria','color')
 
 class JoyaprediseñadaAdmin(admin.ModelAdmin):
     list_display = ('basejoya','ensamblespiedrasjoya')
@@ -91,6 +96,7 @@ admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Colore, ColoreAdmin)
 admin.site.register(Categoria, CategoriaAdmin)
 admin.site.register(BaseJoya, BaseJoyaAdmin)
+admin.site.register(diseñarColor,diseñarColorAdmin)
 admin.site.register(EnsablesPiedrasJoya, EnsablesPiedrasJoyaAdmin)
 admin.site.register(Joyaprediseñada, JoyaprediseñadaAdmin)
 admin.site.register(SubCategoria, SubCategoriaAdmin)

@@ -9,7 +9,7 @@
     <div class="container">
       <a href="{% url 'koras_joyeria:diseñarHome' %}"><i class="small material-icons left black-text">arrow_back</i></a>
         <div class="sesion container">
-            <h4 class="lgrey">Personaliza tu cadena</h4>
+            <h4 class="lgrey">Personalizar {{dcolor.categoria}}</h4>
           </div>
           <br>
         
@@ -49,7 +49,7 @@
       <br>
       
       <div class="row">
-        {% for basejoya in basejoyas %}
+        {% for basejoya in dcolor.get_basejoya.all %}
         <div class="col s12 m6">
           <div class="card">
             <a href="#">
@@ -65,12 +65,44 @@
     </div>
       
     <div id="test2" class="col s12 card">
-      <h6 class="center lgrey">Seleccione el ensamble de la cadena</h6><br>
+      <h6 class="center lgrey">Seleccione el ensamble o piedra para la joya</h6><br>
       <span>Mostrar modelo de ensambles para cadenas, luego de seleccionar lo llevara al paso 3 y guardara el id seleccionado (en una tabla de mucho a muchos)</span>
+      <br>
+      
+      <div class="row">
+        {% for ensamblespiedrasjoya in dcolor.get_ensamblespiedrasjoya.all %}
+        <div class="col s12 m6">
+          <div class="card">
+            <a href="#">
+          <div class="card-image">
+            <img src="{{ensamblespiedrasjoya.image.url}}" alt="base joya" height="300px">
+          </div>
+            </a>
+        </div>
+        </div>
+        {% endfor %}
+
+        {% if ensamblespiedrasjoya.color == null %}
+        {% for piedrasjoya in dcolor.categoria.get_ensamblespiedrasjoya.all %}
+        <div class="col s12 m2">
+          <div class="card" style="width: 90px; height: 90px;">
+            <a href="#">
+          <div class="card-image" >
+            <img src="{{piedrasjoya.image.url}}" alt="base joya">
+          </div>
+            </a>
+        </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+        
+      </div>
     </div>
     <div id="test3" class="col s12 card">
       <h6 class="center lgrey">Productos encontrados</h6><br>
-      <span>Mostrar los productos similares a las opciones y mostrar detalle al producto que seleccione</span>
+      <span>Mostrar el diseño y los productos similares a las opciones y mostrar detalle al producto que seleccione</span>
     </div>
     <div id="test4" class="col s12 card">Test 4</div>
   </div>

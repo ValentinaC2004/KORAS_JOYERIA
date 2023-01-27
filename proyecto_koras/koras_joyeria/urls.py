@@ -78,9 +78,8 @@ urlpatterns = [
     path('eliminarColores/<int:id>', views.EliminarColores, name='eliminarColores'),
     path('eliminarUsuarios/<int:id>', views.EliminarUsuarios, name='eliminarUsuarios'),
 
-    path('diseñarAnillos/', views.DiseñarAnillos, name='diseñarAnillos'),
-    path('diseñarCadenas/', views.DiseñarCadenas, name='diseñarCadenas'),
-    path('diseñarArgollas/', views.DiseñarArgollas, name='diseñarArgollas'),
+    path('personalizarjoya/<int:id>', views.PersonalizarJoya, name='personalizarjoya'),
+    path('diseñarColor/<int:id>', views.DiseñarColor, name='diseñarColor')
 ]
 
 

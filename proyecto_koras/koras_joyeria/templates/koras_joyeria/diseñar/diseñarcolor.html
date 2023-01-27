@@ -1,0 +1,55 @@
+{% extends 'koras_joyeria/base/base.html' %}
+{% load static %}
+
+{% block title2 %}Personalizar cadena{% endblock title2 %}
+
+{% block content %} 
+
+<section>
+    <div class="container">
+      <a href="{% url 'koras_joyeria:diseñarHome' %}"><i class="small material-icons left black-text">arrow_back</i></a>
+        <div class="sesion container">
+            <h4 class="lgrey">Personalizar {{categoria.nombre_categoria}}</h4>
+          </div>
+          <br>
+        
+        <form action="#">
+          <div class="file-field input-field">
+            <div class="btn grey">
+              <span>Imagen</span>
+              <input type="file" multiple>
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" placeholder="Agrega una imagen del estilo de cadena que buscas">
+            </div>
+          </div>
+        </form>
+        <br>
+
+        <div class="container">
+          
+          <h5 class="center lgrey">Seleccione un color para la joya</h5>
+          <hr>
+          
+        </div>
+
+        <div class="card" style="padding: 4%;">
+            <div class="cards-list">
+              {% for color in categoria.get_color.all %}
+              <a href="{% url 'koras_joyeria:personalizarjoya' color.id %}">
+                <div class="cardd 1" style="height:100px;">
+                  <div class="card_imagen"> <img src="{{ color.image.url }}"/> </div>
+                  <div class="card_title title-white">
+                    <h5 class="black-text">{{ color.color }}</h5>
+                  </div>
+                </div>
+              </a>
+                {% endfor %}
+                
+                
+                </div>
+          </div>
+</section>
+
+
+{% endblock %}

@@ -100,160 +100,29 @@
             </div>
           </div>
         </div>
-
         <div class="container">
-
-          
-          <h4 class="center lgrey">Personalizar joya</h4>
-          <h5 class="center grey-text">Selecciona el tipo de producto a diseñar</h5>
+          <h5 class="center">Selecciona el tipo de joya que deseas diseñar</h5>
           <hr>
-        </div>
-
-        <a href="{% url 'koras_joyeria:diseñarCadenas' %}">
-        <div class="diseñopersonalizado">
-          <div class="product1">
-            <h5 class="lgrey">Cadenas</h5>
-            <img src="{% static 'koras_joyeria\imagenes\joyas\gettyimages-80486330-612x612.jpg' %}" alt="producto" width="50%">
           </div>
-          <div class="pasos">
-            <div class="flex-crea">
-              <div class="nivel">
-                <span class="large grey-text">1.Base</span>
-                <div class="icon-crea">
-                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
+        <div>
+          <div class="cards-list">
+          
+            {% for categoria in categorias %}
+            <a href="{% url 'koras_joyeria:diseñarColor' categoria.id %}">
+              <div class="cardd 1" style="height: 500px;">
+                <div class="card_imagen"> <img src="{{ categoria.foto.url }}" /> </div>
+                <div class="card_title title-white">
+                  <h4 class="lgrey">{{ categoria.nombre_categoria }}</h4>
+                </div>
               </div>
+            </a>
+              {% endfor %}
+              
+              
               </div>
-            </div>
-
-            <div class="flex-crea">
-              <div class="nivel">
-                <span class="large grey-text">2.Ensambles</span>
-                <div class="icon-crea">
-                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
-              </div>
-              </div>
-            </div>
-
-            <div class="flex-crea">
-              <div class="nivel">
-                <span class="large grey-text">3.Seleccionar</span>
-                <div class="icon-crea">
-                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
-              </div>
-              </div>
-            </div>
-
-            <div class="flex-crea">
-              <div class="nivel">
-                <span class="large grey-text">4.Comprar</span>
-                <div class="icon-crea">
-                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
-              </div>
-              </div>
-            </div>
-
-          </div>
         </div>
-        </a>
 
         <hr>
-
-        <a href="{% url 'koras_joyeria:diseñarArgollas' %}">
-        <div class="diseñopersonalizado">
-          <div class="product1">
-            <h5 class="lgrey">Argollas</h5>
-            <img src="{% static 'koras_joyeria\imagenes\joyas\jewellery-1203951__340.jpg' %}" alt="producto" width="50%">
-          </div>
-          <div class="pasos">
-            <div class="flex-crea">
-              <div class="nivel">
-                <span class="large grey-text">1.Base</span>
-                <div class="icon-crea">
-                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
-              </div>
-              </div>
-            </div>
-
-            <div class="flex-crea">
-              <div class="nivel">
-                <span class="large grey-text">2.Piedras</span>
-                <div class="icon-crea">
-                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
-              </div>
-              </div>
-            </div>
-
-            <div class="flex-crea">
-              <div class="nivel">
-                <span class="large grey-text">3.Seleccionar</span>
-                <div class="icon-crea">
-                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
-              </div>
-              </div>
-            </div>
-
-            <div class="flex-crea">
-              <div class="nivel">
-                <span class="large grey-text">4.Comprar</span>
-                <div class="icon-crea">
-                <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
-              </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-        </a>
-
-        <hr>
-
-        <a href="{% url 'koras_joyeria:diseñarAnillos' %}">
-          <div class="diseñopersonalizado">
-            <div class="product1">
-              <h5 class="lgrey">Anillos</h5>
-              <img src="{% static 'koras_joyeria\imagenes\joyas\depositphotos_68934111-stock-photo-golden-engagement-ring-with-diamond.jpg' %}" alt="producto" width="50%">
-            </div>
-            <div class="pasos">
-              <div class="flex-crea">
-                <div class="nivel">
-                  <span class="large grey-text">1.Base</span>
-                  <div class="icon-crea">
-                  <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
-                </div>
-                </div>
-              </div>
-  
-              <div class="flex-crea">
-                <div class="nivel">
-                  <span class="large grey-text">2.Piedras</span>
-                  <div class="icon-crea">
-                  <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
-                </div>
-                </div>
-              </div>
-  
-              <div class="flex-crea">
-                <div class="nivel">
-                  <span class="large grey-text">3.Seleccionar</span>
-                  <div class="icon-crea">
-                  <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
-                </div>
-                </div>
-              </div>
-  
-              <div class="flex-crea">
-                <div class="nivel">
-                  <span class="large grey-text">4.Comprar</span>
-                  <div class="icon-crea">
-                  <img src="{% static 'koras_joyeria/img/montaje.png' %}" alt="" width="100%">
-                </div>
-                </div>
-              </div>
-  
-            </div>
-          </div>
-      </a>
-
 
     </div>
 </section>
